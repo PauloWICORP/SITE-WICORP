@@ -470,3 +470,90 @@ MARQUEE = f"""
   </div>
 </section>
 """
+
+
+# ===========================================================================
+# 5. VERSÕES REAPROVEITÁVEIS PARA AS PÁGINAS INTERNAS
+# ===========================================================================
+
+# O simulador de failover com fundo alternado, para a página do Link.Box
+FAILOVER_ALT = FAILOVER.replace('<section class="section" id="failover">',
+                                '<section class="section section--alt" id="failover">')
+
+
+def mockup_section(titulo, eyebrow, texto, mockup, stats, alt=False, ancora=""):
+    """Seção com um mockup de interface e três indicadores embaixo."""
+    cls = "section section--alt" if alt else "section"
+    idattr = f' id="{ancora}"' if ancora else ""
+    blocos = "".join(
+        f'<div class="panel__stat"><b>{b}</b><span>{s}</span></div>' for b, s in stats)
+    return f"""
+<section class="{cls}"{idattr}>
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">{eyebrow}</span>
+      <h2 class="display">{titulo}</h2>
+      <p class="lead">{texto}</p>
+    </div>
+    <div class="reveal" data-d="1" style="max-width:760px;margin-inline:auto">
+      {mockup}
+      <div class="panel__cap">{blocos}</div>
+    </div>
+  </div>
+</section>
+"""
+
+
+# ===========================================================================
+# 6. DIMENSIONADOR DE RAMAIS — página do PABX
+#    Mostra a configuração recomendada conforme o porte da operação.
+#    Não exibe preço: o posicionamento da Wicorp é proposta personalizada,
+#    e inventar valor aqui contradiria isso.
+# ===========================================================================
+DIMENSIONADOR = f"""
+<section class="section section--alt" id="dimensionar">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Dimensione sua operação</span>
+      <h2 class="display">Quantos ramais sua empresa precisa?</h2>
+      <p class="lead">
+        Ajuste o número de ramais e veja a configuração que costumamos recomendar
+        para uma operação desse porte.
+      </p>
+    </div>
+
+    <div class="dim reveal">
+      <div class="dim__control">
+        <div class="dim__readout">
+          <span class="dim__num" data-dim-num>25</span>
+          <span class="dim__unit">ramais</span>
+        </div>
+        <input type="range" class="dim__range" min="5" max="150" step="5" value="25"
+               data-dim-range aria-label="Número de ramais">
+        <div class="dim__scale"><span>5</span><span>50</span><span>100</span><span>150</span></div>
+        <p class="dim__porte" data-dim-porte>Operação de médio porte</p>
+      </div>
+
+      <div class="dim__result">
+        <div class="screen">
+          <div class="screen__bar">
+            <span class="screen__dot"></span><span class="screen__dot"></span><span class="screen__dot"></span>
+            <span class="screen__title">Configuração recomendada</span>
+          </div>
+          <div class="screen__body">
+            <ul class="checklist" data-dim-list></ul>
+            <a href="#form" class="btn btn--primary btn--wide" style="margin-top:20px" data-dim-cta>
+              Solicitar proposta para 25 ramais
+              {ico('<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>', 17, 2.5)}
+            </a>
+            <p class="form-note">
+              Cada operação é diferente. A proposta final é montada por um especialista
+              depois de entender seu fluxo de atendimento.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+"""

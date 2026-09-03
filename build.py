@@ -14,6 +14,8 @@ O logo é referenciado como img/logo-wicorp.png em todas as páginas.
 Para trocar a marca, basta substituir aquele arquivo.
 """
 import pathlib
+import sections
+import paginas
 
 ROOT = pathlib.Path(__file__).parent
 SITE = "https://wicorp.com.br"
@@ -85,8 +87,8 @@ def header(prefix, active=""):
         </div>
       </div>
       <a href="{prefix}index.html#diferenciais" class="nav__link">Diferenciais</a>
-      <a href="{prefix}index.html#quem-somos" class="nav__link">Quem somos</a>
-      <a href="#" class="nav__link">Blog</a>
+      <a href="{prefix}quem-somos.html" class="nav__link">Quem somos</a>
+      <a href="{prefix}blog/index.html" class="nav__link">Blog</a>
       <a href="{prefix}contato.html" class="nav__link"{cls('contato')}>Contato</a>
     </nav>
     <a href="{prefix}contato.html" class="btn btn--primary btn--sm header__cta">Falar com um especialista</a>
@@ -101,8 +103,8 @@ def header(prefix, active=""):
   <a href="{prefix}solucoes/firewall-sd-wan.html" class="sub">Firewall e SD-WAN</a>
   <a href="{prefix}solucoes/infraestrutura-ti.html" class="sub">Infraestrutura e projetos</a>
   <a href="{prefix}index.html#diferenciais">Diferenciais</a>
-  <a href="{prefix}index.html#quem-somos">Quem somos</a>
-  <a href="#">Blog</a>
+  <a href="{prefix}quem-somos.html">Quem somos</a>
+  <a href="{prefix}blog/index.html">Blog</a>
   <a href="{prefix}contato.html">Contato</a>
   <a href="{prefix}contato.html" class="btn btn--primary btn--wide">Falar com um especialista</a>
 </div>
@@ -146,8 +148,8 @@ def footer(prefix, lp=False):
         <p>Desde 1998, entregando consultoria estratégica em Tecnologia da Informação e Comunicação.</p>
         <div class="social">
           <a href="https://www.instagram.com/wicorpconexoes/" target="_blank" rel="noopener" aria-label="Instagram da Wicorp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-          <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn da Wicorp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-          <a href="#" target="_blank" rel="noopener" aria-label="Facebook da Wicorp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.linkedin.com/in/wicorp-conex%C3%B5es-inteligentes-480066185/" target="_blank" rel="noopener" aria-label="LinkedIn da Wicorp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=100081075576327" target="_blank" rel="noopener" aria-label="Facebook da Wicorp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
         </div>
       </div>
       <div>
@@ -164,9 +166,9 @@ def footer(prefix, lp=False):
       <div>
         <h4>Empresa</h4>
         <ul>
-          <li><a href="{prefix}index.html#quem-somos">Quem somos</a></li>
+          <li><a href="{prefix}quem-somos.html">Quem somos</a></li>
           <li><a href="{prefix}index.html#diferenciais">Diferenciais</a></li>
-          <li><a href="#">Blog</a></li>
+          <li><a href="{prefix}blog/index.html">Blog</a></li>
           <li><a href="{prefix}contato.html">Contato</a></li>
           <li><a href="https://wicorp.desk.ms" target="_blank" rel="noopener">Suporte ao cliente</a></li>
         </ul>
@@ -183,7 +185,7 @@ def footer(prefix, lp=False):
     </div>
     <div class="footer__bar">
       <span>© 1998–<span data-year>2026</span> Wicorp — Conexões Inteligentes. Todos os direitos reservados.</span>
-      <span>CNPJ · Política de Privacidade · LGPD</span>
+      <span><a href="{prefix}privacidade.html">Política de Privacidade</a> · LGPD</span>
     </div>
   </div>
 </footer>
@@ -380,6 +382,8 @@ BODY_LINK = f"""
 
 {proof_band()}
 
+{sections.FAILOVER_ALT}
+
 <section class="section">
   <div class="wrap">
     <div class="section-head center reveal">
@@ -483,6 +487,8 @@ BODY_LINK = f"""
     </div>
   </div>
 </section>
+
+{sections.mockup_section("Sua rede acompanhada em tempo real", "Monitoramento 24/7", "Nosso NOC acompanha cada link continuamente. Quando algo sai do padrão, o alerta chega para a nossa equipe antes de chegar ao seu usuário.", sections.MOCK_NOC, [("24/7", "acompanhamento do NOC"), ("+700", "equipamentos monitorados"), ("SLA", "prazo em contrato")])}
 
 <section class="section">
   <div class="wrap">
@@ -631,7 +637,11 @@ BODY_PABX = f"""
   </div>
 </section>
 
-<section class="section section--alt">
+{sections.mockup_section("O painel que sua equipe usa todo dia", "A plataforma por dentro", "Ligações, WhatsApp e chat na mesma tela, com tempo de espera e status de cada atendente à vista.", sections.MOCK_PABX, [("1 painel", "todos os canais"), ("Tempo real", "supervisão da fila"), ("IA", "roteamento por assunto")])}
+
+{sections.DIMENSIONADOR}
+
+<section class="section">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Perguntas frequentes</span>
@@ -788,6 +798,8 @@ BODY_FW = f"""
   </div>
 </section>
 
+{sections.mockup_section("O que passa a ficar visível", "Visibilidade da rede", "Sem firewall gerenciado, ninguém sabe qual aplicação consome a banda nem o que foi bloqueado. Com ele, isso vira relatório.", sections.MOCK_FW, [("1.284", "ameaças bloqueadas no mês"), ("142", "dispositivos mapeados"), ("LGPD", "registro para auditoria")])}
+
 <section class="section section--alt">
   <div class="wrap">
     <div class="section-head reveal">
@@ -913,6 +925,8 @@ BODY_INFRA = f"""
     </div>
   </div>
 </section>
+
+{sections.mockup_section("Sua rede documentada, não improvisada", "O que entra na entrega", "Cada ponto identificado, cada cabo certificado e um diagrama que qualquer técnico entende depois — inclusive daqui a três anos.", sections.MOCK_INFRA, [("as-built", "projeto entregue"), ("100%", "pontos certificados"), ("SLA 4h", "atendimento em campo")], alt=True)}
 
 <section class="section">
   <div class="wrap">
@@ -1196,6 +1210,47 @@ PAGES = [
 ]
 
 
+# Blog e páginas institucionais
+_outros = lambda slug: [x for x in paginas.POSTS if x["slug"] != slug][:2]
+for _p in paginas.POSTS:
+    PAGES.append(dict(
+        path=f"blog/{_p['slug']}.html", prefix=P, body=paginas.post_body(_p, _outros(_p["slug"])),
+        title=f"{_p['titulo']} | Blog Wicorp",
+        desc=_p["desc"], canonical=f"blog/{_p['slug']}", artigo=_p,
+    ))
+
+PAGES.append(dict(
+    path="blog/index.html", prefix=P, body=paginas.blog_index(),
+    title="Blog | Wicorp — Conectividade, telefonia e segurança para empresas",
+    desc="Conteúdo técnico sem jargão sobre link dedicado, PABX em nuvem, SD-WAN e "
+         "segurança de rede, para quem decide sobre a infraestrutura da empresa.",
+    canonical="blog",
+))
+
+PAGES.append(dict(
+    path="quem-somos.html", prefix="", body=paginas.QUEM_SOMOS,
+    title="Quem somos | Wicorp — 28 anos em TI e Telecom em São Paulo",
+    desc="Desde 1998 transformando tecnologia em conexão estratégica. Mais de 800 clientes "
+         "e 700 equipamentos em operação em São Paulo e Grande São Paulo.",
+    canonical="quem-somos",
+))
+
+PAGES.append(dict(
+    path="privacidade.html", prefix="", body=paginas.PRIVACIDADE,
+    title="Política de Privacidade | Wicorp",
+    desc="Como a Wicorp trata os dados pessoais coletados neste site, conforme a Lei Geral "
+         "de Proteção de Dados.",
+    canonical="privacidade", noindex=True,
+))
+
+PAGES.append(dict(
+    path="404.html", prefix="", body=paginas.NAO_ENCONTRADA,
+    title="Página não encontrada | Wicorp",
+    desc="A página que você procura não existe ou mudou de endereço.",
+    canonical="404", noindex=True,
+))
+
+
 def main():
     for pg in PAGES:
         prefix = pg["prefix"]
@@ -1204,6 +1259,18 @@ def main():
         if pg.get("noindex"):
             html = html.replace('<meta name="robots" content="index, follow">',
                                 '<meta name="robots" content="noindex, follow">')
+        if pg.get("artigo"):
+            import json
+            a = pg["artigo"]
+            art = {"@context": "https://schema.org", "@type": "BlogPosting",
+                   "headline": a["titulo"], "description": a["desc"],
+                   "datePublished": a["data"], "dateModified": a["data"],
+                   "author": {"@type": "Organization", "name": "Wicorp"},
+                   "publisher": {"@type": "Organization", "name": "Wicorp",
+                                 "url": SITE + "/"},
+                   "mainEntityOfPage": f"{SITE}/{pg['canonical']}"}
+            html = html.replace("</head>",
+                f'<script type="application/ld+json">{json.dumps(art, ensure_ascii=False)}</script>\n</head>')
         if pg.get("faq"):
             html = html.replace("</head>", faq_schema(pg["faq"]) + "\n</head>")
 
