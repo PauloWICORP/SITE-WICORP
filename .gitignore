@@ -1,0 +1,22 @@
+# Arquivos gerados pelo build — não versionar.
+# São recriados por build.py e build-preview.py.
+preview.html
+prev-*.html
+
+# Python
+__pycache__/
+*.pyc
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+
+# O pacote nao entra no repositorio: os arquivos ja estao aqui
+wicorp-site.zip
