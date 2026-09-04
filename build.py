@@ -47,7 +47,12 @@ def head(title, desc, canonical, prefix):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{SITE}/{canonical}">
+<meta property="og:image" content="{SITE}/img/arte/og-wicorp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Wicorp — infraestrutura de TI, conectividade e telefonia para empresas de São Paulo">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{SITE}/img/arte/og-wicorp.jpg">
 <meta name="theme-color" content="#080C0E">
 
 <link rel="icon" href="{prefix}img/favicon.png">
@@ -797,6 +802,12 @@ BODY_INFRA = f"""
           <img src="../img/fotos/rack.jpg" alt="Rack instalado pela Wicorp, com switches, patch panels organizados por cores e nobreaks na base"
                loading="lazy" decoding="async" style="aspect-ratio:3/4;object-fit:cover;width:100%">
         </picture>
+        <picture style="margin-top:14px">
+          <source type="image/webp" srcset="../img/fotos/rack-cliente-700.webp 700w, ../img/fotos/rack-cliente.webp 1200w" sizes="(max-width:900px) 100vw, 45vw">
+          <source type="image/jpeg" srcset="../img/fotos/rack-cliente-700.jpg 700w, ../img/fotos/rack-cliente.jpg 1200w" sizes="(max-width:900px) 100vw, 45vw">
+          <img src="../img/fotos/rack-cliente.jpg" alt="Rack completo instalado em cliente, com patch panels identificados, DVR e organização vertical dos cabos"
+               loading="lazy" decoding="async" style="aspect-ratio:16/10;object-fit:cover;width:100%">
+        </picture>
       </div>
       <div>
         <span class="eyebrow">Entrega real</span>
@@ -895,6 +906,14 @@ BODY_LP = f"""
     <div class="section-head center reveal">
       <span class="eyebrow">O que muda</span>
       <h2 class="display">Menos fornecedores. Menos incêndios.</h2>
+    </div>
+    <div class="reveal" style="max-width:800px;margin:0 auto 46px">
+      <picture>
+        <source type="image/webp" srcset="../img/arte/centralizacao-800.webp 800w, ../img/arte/centralizacao.webp 1400w" sizes="(max-width:900px) 100vw, 800px">
+        <source type="image/jpeg" srcset="../img/arte/centralizacao-800.jpg 800w, ../img/arte/centralizacao.jpg 1400w" sizes="(max-width:900px) 100vw, 800px">
+        <img src="../img/arte/centralizacao.jpg" alt="Ilustração comparando cinco pontos dispersos e desconectados à esquerda com os mesmos cinco organizados em torno de um ponto central à direita"
+             loading="lazy" decoding="async" style="aspect-ratio:7/5;object-fit:contain;width:100%">
+      </picture>
     </div>
     <div class="vs reveal">
       <div class="vs__col vs__col--before">
@@ -1005,6 +1024,29 @@ BODY_CONTATO = f"""
       {form("contato", "geral", "Fale com um especialista",
             "Retornamos em até 1 dia útil com alguém que entende do seu cenário.",
             "Enviar mensagem")}
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt section--tight">
+  <div class="wrap">
+    <div class="split reveal">
+      <div class="foto-frame">
+        <picture>
+          <source type="image/webp" srcset="img/fotos/recepcao-900.webp 900w, img/fotos/recepcao.webp 1600w" sizes="(max-width:900px) 100vw, 45vw">
+          <source type="image/jpeg" srcset="img/fotos/recepcao-900.jpg 900w, img/fotos/recepcao.jpg 1600w" sizes="(max-width:900px) 100vw, 45vw">
+          <img src="img/fotos/recepcao.jpg" alt="Recepção da Wicorp, com a marca aplicada na parede e poltronas de espera"
+               loading="lazy" decoding="async" style="aspect-ratio:3/2;object-fit:cover;width:100%">
+        </picture>
+      </div>
+      <div>
+        <span class="eyebrow">Onde estamos</span>
+        <h2 class="display" style="margin-bottom:18px">Nossa casa fica na Parada Inglesa</h2>
+        <p class="lead" style="margin-bottom:20px">
+          Av. Luiz Dumont Villares, 2078 — CJ 78, São Paulo.
+          Se preferir conversar pessoalmente, agende com o comercial e tome um café aqui.
+        </p>
+        <a href="tel:{TEL_HREF}" class="btn btn--ghost">Ligar: {TEL}</a>
     </div>
   </div>
 </section>

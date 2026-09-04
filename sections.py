@@ -30,7 +30,8 @@ I_FIBER  = '<path d="M4 12h4l3-8 4 16 3-8h2"/>'
 #    Vem da recomendação de b-roll de failover em tempo real do plano.
 # ===========================================================================
 FAILOVER = f"""
-<section class="section" id="failover">
+<section class="section section--textura" id="failover">
+  <div class="section__bg" style="background-image:url(img/arte/textura-malha-1200.webp)"></div>
   <div class="wrap">
     <div class="fail">
 
@@ -509,8 +510,9 @@ MARQUEE = f"""
 
 # O simulador de failover com fundo alternado, para a página do Link.Box
 FAILOVER_ALT = (FAILOVER
-                .replace('<section class="section" id="failover">',
-                         '<section class="section section--alt" id="failover">')
+                .replace('class="section section--textura"',
+                         'class="section section--alt section--textura"')
+                .replace('url(img/arte/', 'url(../img/arte/')
                 .replace('href="calculadora-custo-downtime.html"',
                          'href="../calculadora-custo-downtime.html"'))
 
