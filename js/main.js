@@ -476,4 +476,170 @@
     render();
   });
 
+
+  /* ----------------------------------------------------------------------
+     13. DIMENSIONADOR DE RAMAIS
+     Mostra a configuração recomendada conforme o porte da operação.
+     Não calcula preço de propósito: a Wicorp trabalha com proposta
+     personalizada, e exibir valor aqui contradiria o posicionamento.
+     ---------------------------------------------------------------------- */
+  var dimRange = $('[data-dim-range]');
+  if (dimRange) {
+    var dimNum   = $('[data-dim-num]');
+    var dimPorte = $('[data-dim-porte]');
+    var dimList  = $('[data-dim-list]');
+    var dimCta   = $('[data-dim-cta]');
+
+    var CHECK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
+                ' stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+                '<polyline points="20 6 9 17 4 12"/></svg>';
+
+    function faixa(n) {
+      if (n <= 20)  return {
+        porte: 'Operação enxuta — equipe única',
+        itens: [
+          'Ramais em nuvem no celular e no computador',
+          'URA com menu de opções e horário de atendimento',
+          'Portabilidade dos números que você já usa',
+          'Gravação de chamadas com histórico consultável',
+          'WhatsApp corporativo com fila única'
+        ]
+      };
+      if (n <= 60)  return {
+        porte: 'Operação de médio porte — times separados',
+        itens: [
+          'Tudo do porte anterior',
+          'Filas por setor: comercial, suporte e financeiro',
+          'URA inteligente com roteamento por assunto',
+          'Relatórios por fila e por atendente',
+          'Integração do WhatsApp com distribuição automática',
+          'Painel de supervisão em tempo real'
+        ]
+      };
+      if (n <= 110) return {
+        porte: 'Operação estruturada — atendimento como área',
+        itens: [
+          'Tudo do porte anterior',
+          'Contact Center com controle de pausa e produtividade',
+          'Transcrição de chamadas com recursos de IA',
+          'Integração com CRM e sistemas internos',
+          'SLA de atendimento monitorado',
+          'Redundância de link recomendada junto (Link.Box)'
+        ]
+      };
+      return {
+        porte: 'Operação de grande porte — múltiplas unidades',
+        itens: [
+          'Tudo do porte anterior',
+          'Arquitetura distribuída entre filiais',
+          'Discagem automática e campanhas ativas',
+          'Painéis por unidade e consolidado',
+          'Projeto dedicado com gerente de contas',
+          'Link dedicado com redundância em cada unidade'
+        ]
+      };
+    }
+
+    var dimT;
+    function renderDim() {
+      var n = parseInt(dimRange.value, 10);
+      var f = faixa(n);
+      dimNum.textContent = n;
+      dimPorte.textContent = f.porte;
+      dimCta.childNodes[0].nodeValue = 'Solicitar proposta para ' + n + ' ramais ';
+      dimList.innerHTML = f.itens.map(function (i) {
+        return '<li>' + CHECK + '<span>' + i + '</span></li>';
+      }).join('');
+
+      // Preenche o campo de mensagem do formulário, se existir na página
+      var extra = $('[name="mensagem"]');
+      if (extra && !extra.value) extra.value = 'Preciso de aproximadamente ' + n + ' ramais.';
+
+      clearTimeout(dimT);
+      dimT = setTimeout(function () {
+        track('dimensionou_ramais', { ramais: n, porte: f.porte });
+      }, 900);
+    }
+
+    dimRange.addEventListener('input', renderDim);
+    renderDim();
+  }
+
+
+  /* ----------------------------------------------------------------------
+     14. CALCULADORA DE CUSTO DE DOWNTIME
+     Roda inteira no navegador: nenhum dado sai da máquina do visitante.
+     ---------------------------------------------------------------------- */
+  var calcFat = $('[data-calc-fat]');
+  if (calcFat) {
+    var calcParada = $('[data-calc-parada]');
+    var calcUnid   = $('[data-calc-unid]');
+    var chips      = $$('[data-calc-regime]');
+    var regime     = 176;
+
+    var brl = function (v) {
+      return 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+    };
+
+    /** Formata milhar enquanto a pessoa digita. */
+    function maskMoney(v) {
+      var d = v.replace(/\D/g, '').slice(0, 12);
+      if (!d) return '';
+      return parseInt(d, 10).toLocaleString('pt-BR');
+    }
+    function parseMoney(v) {
+      var d = v.replace(/\D/g, '');
+      return d ? parseInt(d, 10) : 0;
+    }
+
+    var calcT;
+    function renderCalc() {
+      var fat    = parseMoney(calcFat.value);
+      var horas  = parseFloat(calcParada.value);
+      var unid   = parseInt(calcUnid.value, 10);
+
+      var porHora     = regime > 0 ? fat / regime : 0;
+      var custoHora   = porHora * unid;
+      var perdaMes    = custoHora * horas;
+      var perdaAno    = perdaMes * 12;
+
+      $('[data-calc-parada-val]').textContent =
+        (horas % 1 === 0 ? horas : horas.toFixed(1).replace('.', ',')) + 'h';
+      $('[data-calc-unid-val]').textContent = unid;
+
+      $('[data-calc-hora]').textContent       = brl(porHora);
+      $('[data-calc-hora-total]').textContent = brl(custoHora);
+      $('[data-calc-mes]').textContent        = brl(perdaMes);
+      $('[data-calc-ano]').textContent        = brl(perdaAno);
+
+      clearTimeout(calcT);
+      calcT = setTimeout(function () {
+        track('calculou_downtime', {
+          faturamento: fat, horas_paradas: horas,
+          unidades: unid, perda_anual: Math.round(perdaAno)
+        });
+      }, 1200);
+    }
+
+    calcFat.addEventListener('input', function () {
+      var pos = calcFat.selectionStart === calcFat.value.length;
+      calcFat.value = maskMoney(calcFat.value);
+      if (pos) calcFat.setSelectionRange(calcFat.value.length, calcFat.value.length);
+      renderCalc();
+    });
+    calcParada.addEventListener('input', renderCalc);
+    calcUnid.addEventListener('input', renderCalc);
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        chips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+        chip.setAttribute('aria-pressed', 'true');
+        regime = parseInt(chip.getAttribute('data-calc-regime'), 10);
+        renderCalc();
+      });
+    });
+
+    renderCalc();
+  }
+
 })();
