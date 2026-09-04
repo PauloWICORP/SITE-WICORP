@@ -38,7 +38,7 @@ def photo_slot(titulo, descricao, ratio="4/3"):
 # ===========================================================================
 POSTS = [
     dict(
-        slug="pabx-em-nuvem-vale-a-pena",
+        slug="pabx-em-nuvem-vale-a-pena", capa="blog-pabx",
         cat="Telefonia",
         icone=I_CLOUD,
         titulo="PABX em nuvem: quando vale a pena trocar o aparelho físico",
@@ -152,7 +152,7 @@ para uma decisão de infraestrutura.</p>
     ),
 
     dict(
-        slug="link-box-redundancia-internet",
+        slug="link-box-redundancia-internet", capa="blog-linkbox",
         cat="Conectividade",
         icone=I_WIFI,
         titulo="Link.Box: como funciona a redundância de internet com dois chips 4G/5G",
@@ -258,7 +258,7 @@ ocorrência evitada paga o ano.</p>
     ),
 
     dict(
-        slug="sd-wan-reduzir-custo-link",
+        slug="sd-wan-reduzir-custo-link", capa="blog-sdwan",
         cat="Segurança e redes",
         icone=I_NET,
         titulo="SD-WAN: como reduzir custo de link sem perder estabilidade",
@@ -374,6 +374,17 @@ por links que ninguém está usando direito.</p>
 ]
 
 
+def capa_img(nome, alt, prefix="", loading="lazy", ratio="16/9"):
+    """Capa de artigo. WebP com fallback JPEG e proporção fixa."""
+    c = f"{prefix}img/arte/{nome}"
+    return f'''<picture>
+  <source type="image/webp" srcset="{c}-800.webp 800w, {c}.webp 1400w" sizes="(max-width:900px) 100vw, 50vw">
+  <source type="image/jpeg" srcset="{c}-800.jpg 800w, {c}.jpg 1400w" sizes="(max-width:900px) 100vw, 50vw">
+  <img src="{c}.jpg" alt="{alt}" loading="{loading}" decoding="async"
+       style="aspect-ratio:{ratio};object-fit:cover;width:100%">
+</picture>'''
+
+
 def _fmt(d):
     m = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
          "agosto", "setembro", "outubro", "novembro", "dezembro"]
@@ -385,7 +396,7 @@ def post_body(p, outros):
     toc = "".join(f'<li><a href="#{i}">{t}</a></li>' for t, i in p["toc"])
     rel = "".join(f"""
       <a class="post-card" href="{o['slug']}.html">
-        <div class="post-card__cover">{ico(o['icone'], 46, 1.4)}</div>
+        <div class="post-card__cover">{capa_img(o['capa'], o['titulo'], prefix='../')}</div>
         <div class="post-card__body">
           <div class="post-card__meta"><span class="post-card__cat">{o['cat']}</span><span>·</span><span>{o['leitura']}</span></div>
           <h3>{o['titulo']}</h3>
@@ -408,7 +419,10 @@ def post_body(p, outros):
       </nav>
       <span class="eyebrow">{p['cat']}</span>
       <h1 class="display" style="margin-bottom:20px">{p['h1']}</h1>
-      <p class="lead">{p['resumo']}</p>
+      <p class="lead" style="margin-bottom:34px">{p['resumo']}</p>
+      <div class="foto-frame">
+        {capa_img(p['capa'], p['titulo'], prefix='../', loading='eager')}
+      </div>
     </div>
   </div>
 </section>
@@ -472,7 +486,7 @@ def post_body(p, outros):
 def blog_index():
     cards = "".join(f"""
       <a class="post-card reveal" href="{p['slug']}.html">
-        <div class="post-card__cover">{ico(p['icone'], 54, 1.3)}</div>
+        <div class="post-card__cover">{capa_img(p['capa'], p['titulo'], prefix='../')}</div>
         <div class="post-card__body">
           <div class="post-card__meta">
             <span class="post-card__cat">{p['cat']}</span><span>·</span>
@@ -557,6 +571,14 @@ QUEM_SOMOS = f"""
           </picture>
         </div>
         <p class="foto-cap">O NOC da Wicorp, em São Paulo.</p>
+        <div class="foto-frame" style="margin-top:18px">
+          <picture>
+            <source type="image/webp" srcset="img/fotos/escritorio-900.webp 900w, img/fotos/escritorio.webp 1600w" sizes="(max-width:980px) 100vw, 45vw">
+            <source type="image/jpeg" srcset="img/fotos/escritorio-900.jpg 900w, img/fotos/escritorio.jpg 1600w" sizes="(max-width:980px) 100vw, 45vw">
+            <img src="img/fotos/escritorio.jpg" alt="Equipe da Wicorp trabalhando no escritório, em mesas com computadores e divisórias de vidro"
+                 loading="lazy" decoding="async" style="aspect-ratio:3/2;object-fit:cover;width:100%">
+          </picture>
+        </div>
       </div>
     </div>
   </div>

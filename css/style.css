@@ -1179,14 +1179,12 @@ h3.display{font-size:clamp(1.4rem, 2.4vw, 1.9rem)}
 .post-card:hover{transform:translateY(-4px); border-color:var(--line-strong)}
 .post-card__cover{
   aspect-ratio:16/9; position:relative; overflow:hidden;
-  background:linear-gradient(140deg,#132025,#0C1418);
-  display:grid; place-items:center;
+  background:#0C1418;
 }
-.post-card__cover::after{
-  content:""; position:absolute; inset:0;
-  background:radial-gradient(circle at 30% 25%, rgba(91,191,198,.20), transparent 62%);
+.post-card__cover img{
+  transition:transform .5s var(--ease);
 }
-.post-card__cover svg{position:relative; z-index:1; color:var(--w-teal); opacity:.75}
+.post-card:hover .post-card__cover img{transform:scale(1.04)}
 .post-card__body{padding:24px 26px 26px; display:flex; flex-direction:column; flex:1}
 .post-card__meta{
   display:flex; gap:10px; align-items:center; flex-wrap:wrap;
@@ -1431,3 +1429,21 @@ picture img{
   filter:blur(34px); pointer-events:none;
 }
 .foto-produto picture{position:relative}
+
+
+/* ==========================================================================
+   41. TEXTURA DE FUNDO EM SEÇÃO
+   Imagem gerada, usada com opacidade baixa. Existe para dar profundidade,
+   não para ser notada — se competir com o texto, perdeu a função.
+   ========================================================================== */
+/* O url() precisa ficar num elemento real, não numa variável CSS:
+   dentro de custom property ele resolve relativo ao arquivo .css,
+   e não ao HTML — o que quebrava o caminho nas páginas internas. */
+.section--textura{position:relative; isolation:isolate}
+.section__bg{
+  position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background-size:cover; background-position:center;
+  opacity:.30;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
+  mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
+}
