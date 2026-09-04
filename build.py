@@ -16,6 +16,7 @@ Para trocar a marca, basta substituir aquele arquivo.
 import pathlib
 import sections
 import paginas
+import conectividade
 
 ROOT = pathlib.Path(__file__).parent
 SITE = "https://wicorp.com.br"
@@ -80,7 +81,8 @@ def header(prefix, active=""):
           <svg class="nav__caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
         </a>
         <div class="dropdown">
-          <a href="{prefix}solucoes/link-dedicado-empresarial.html"><b>Link dedicado e Link.Box</b><span>Internet dedicada com backup automático 4G/5G</span></a>
+          <a href="{prefix}solucoes/link-dedicado-empresarial.html"><b>Link dedicado</b><span>Banda garantida, IP fixo e SLA — fibra ou rádio</span></a>
+          <a href="{prefix}solucoes/link-box-redundancia.html"><b>Link.Box</b><span>Redundância automática com dois chips 4G/5G</span></a>
           <a href="{prefix}solucoes/pabx-virtual-nuvem.html"><b>PABX virtual com IA</b><span>Telefonia em nuvem, SIP Trunk e Contact Center</span></a>
           <a href="{prefix}solucoes/firewall-sd-wan.html"><b>Firewall e SD-WAN</b><span>Proteção de rede gerenciada e monitorada</span></a>
           <a href="{prefix}solucoes/infraestrutura-ti.html"><b>Infraestrutura e projetos</b><span>Cabeamento, Wi-Fi corporativo, CFTV e suporte</span></a>
@@ -98,7 +100,8 @@ def header(prefix, active=""):
 
 <div class="mobile-menu" id="mobile-menu">
   <a href="{prefix}index.html#solucoes">Soluções</a>
-  <a href="{prefix}solucoes/link-dedicado-empresarial.html" class="sub">Link dedicado e Link.Box</a>
+  <a href="{prefix}solucoes/link-dedicado-empresarial.html" class="sub">Link dedicado</a>
+  <a href="{prefix}solucoes/link-box-redundancia.html" class="sub">Link.Box</a>
   <a href="{prefix}solucoes/pabx-virtual-nuvem.html" class="sub">PABX virtual com IA</a>
   <a href="{prefix}solucoes/firewall-sd-wan.html" class="sub">Firewall e SD-WAN</a>
   <a href="{prefix}solucoes/infraestrutura-ti.html" class="sub">Infraestrutura e projetos</a>
@@ -155,7 +158,8 @@ def footer(prefix, lp=False):
       <div>
         <h4>Soluções</h4>
         <ul>
-          <li><a href="{prefix}solucoes/link-dedicado-empresarial.html">Link dedicado e Link.Box</a></li>
+          <li><a href="{prefix}solucoes/link-dedicado-empresarial.html">Link dedicado</a></li>
+          <li><a href="{prefix}solucoes/link-box-redundancia.html">Link.Box</a></li>
           <li><a href="{prefix}solucoes/pabx-virtual-nuvem.html">PABX virtual com IA</a></li>
           <li><a href="{prefix}solucoes/pabx-virtual-nuvem.html">SIP Trunk</a></li>
           <li><a href="{prefix}solucoes/pabx-virtual-nuvem.html">Contact Center</a></li>
@@ -328,185 +332,41 @@ def faq_schema(pairs):
 P = "../"   # prefixo para páginas em subpasta
 
 
+
 # --------------------------------------------------------------------------
-# 1. LINK DEDICADO E LINK.BOX
+# 1. CONECTIVIDADE — duas páginas separadas
+#    Link Dedicado é a conexão; Link.Box é a redundância. São produtos
+#    diferentes e cada um tem página própria.
 # --------------------------------------------------------------------------
-FAQ_LINK = [
-    ("Qual a diferença entre link dedicado e banda larga comum?",
-     "Banda larga é compartilhada com outros assinantes e a velocidade contratada é um teto, não uma garantia. "
-     "O link dedicado entrega banda garantida, simétrica, com IP fixo e SLA contratual — a mesma velocidade de "
-     "subida e descida, a qualquer hora do dia."),
-    ("Como funciona o backup automático do Link.Box?",
-     "O Link.Box monitora a conexão principal continuamente. Quando detecta queda ou degradação, comuta o tráfego "
-     "para dois chips 4G/5G de operadoras diferentes, sem intervenção manual. Quando o link principal volta, "
-     "a comutação é revertida automaticamente."),
-    ("Preciso trocar meu link atual para usar o Link.Box?",
-     "Não. O Link.Box trabalha sobre a conexão que você já tem, inclusive de outra operadora. Muitos clientes "
-     "começam mantendo o link atual e adicionando apenas a camada de redundância."),
-    ("Em quanto tempo o link é ativado?",
-     "Depende da viabilidade técnica no endereço. Em regiões com fibra já instalada, a ativação costuma ocorrer "
-     "em poucos dias. A consulta de disponibilidade responde isso antes de qualquer proposta."),
-    ("Vocês atendem operações com várias filiais?",
-     "Sim — é um dos cenários mais comuns. Redes de varejo, farmácias e operações distribuídas usam o Link.Box "
-     "justamente para que um PDV isolado não pare por falha de uma única operadora."),
-]
+BODY_DEDICADO = (conectividade.BODY_DEDICADO
+    .replace("{FORM_DEDICADO}", form("dedicado", "link-dedicado", "Consulte a disponibilidade",
+             "Informe seus dados e verificamos a viabilidade técnica no endereço da sua operação.",
+             "Consultar disponibilidade"))
+    .replace("{PROOF}", proof_band())
+    .replace("{MOCK_NOC}", sections.mockup_section(
+             "Sua conexão acompanhada em tempo real", "Monitoramento 24/7",
+             "Nosso NOC acompanha cada link continuamente. Quando algo sai do padrão, o alerta "
+             "chega para a nossa equipe antes de chegar ao seu usuário.",
+             sections.MOCK_NOC,
+             [("24/7", "acompanhamento do NOC"), ("SLA", "prazo em contrato"),
+              ("Equipe própria", "sem fila de operadora")]))
+    .replace("{FAQ_DEDICADO}", faq(conectividade.FAQ_DEDICADO))
+    .replace("{CTA_DEDICADO}", cta_band(
+             "Consulte a disponibilidade no seu endereço",
+             "Verificamos a viabilidade técnica antes de qualquer proposta — em fibra ou rádio.",
+             "Consultar disponibilidade")))
 
-BODY_LINK = f"""
-<main id="main">
-<section class="page-hero">
-  <div class="wrap">
-    <div class="page-hero__grid">
-      <div>
-        {crumb(P, "Link dedicado e Link.Box")}
-        <span class="eyebrow">Conectividade empresarial</span>
-        <h1 class="display">Link dedicado empresarial com <span class="grad-text">backup automático 4G/5G</span></h1>
-        <p class="lead">Sua operação continua online mesmo quando a conexão principal cai. Banda garantida,
-        IP fixo, monitoramento 24/7 e redundância que age sozinha.</p>
-        <div class="hero__actions">
-          <a href="#form" class="btn btn--primary">Consultar disponibilidade no meu endereço
-            <svg class="arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
-          <a href="https://wa.me/{WPP_HREF}" data-pos="hero-link" class="btn btn--ghost" target="_blank" rel="noopener">Falar com um especialista</a>
-        </div>
-        <div class="hero__seals">
-          <div class="seal">{CHECK} Banda garantida e simétrica</div>
-          <div class="seal">{CHECK} IP fixo incluso</div>
-          <div class="seal">{CHECK} SLA contratual</div>
-        </div>
-      </div>
-      {form("link", "link-dedicado", "Consulte a disponibilidade",
-            "Informe seus dados e verificamos a viabilidade técnica no endereço da sua operação.",
-            "Consultar disponibilidade")}
-    </div>
-  </div>
-</section>
-
-{proof_band()}
-
-{sections.FAILOVER_ALT}
-
-<section class="section">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow">Por que isso importa</span>
-      <h2 class="display">Se a internet principal cair agora, sua operação para?</h2>
-      <p class="lead">A maioria das empresas descobre que não tinha plano B no dia em que precisou dele.</p>
-    </div>
-    <div class="grid grid--3">
-      <div class="pain reveal">
-        <div class="pain__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
-        <div><h3>PDV sem conexão não fatura</h3><p>Cada minuto de loja parada é venda que não acontece — e cliente que vai embora sem esperar.</p></div>
-      </div>
-      <div class="pain reveal" data-d="1">
-        <div class="pain__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <div><h3>Filial isolada trava o time inteiro</h3><p>Sem conexão, a unidade perde acesso a sistemas, telefonia e ao restante da empresa ao mesmo tempo.</p></div>
-      </div>
-      <div class="pain reveal" data-d="2">
-        <div class="pain__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg></div>
-        <div><h3>Sistema em nuvem fora do ar</h3><p>ERP, emissor fiscal e atendimento dependem da conexão. Sem ela, a operação inteira fica cega.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--alt">
-  <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow">Como funciona na prática</span>
-      <h2 class="display">Três níveis de proteção da conexão</h2>
-      <p class="lead">Este é o comparativo que costuma decidir a conversa. A diferença não está na velocidade —
-      está no que acontece quando algo falha.</p>
-    </div>
-    <div class="table-scroll reveal">
-      <table class="compare">
-        <thead><tr><th>Cenário</th><th>Link único</th><th>Dois links, mesma operadora</th><th>Link.Box com backup 4G/5G</th></tr></thead>
-        <tbody>
-          <tr><td>Queda da operadora principal</td><td class="no">Operação para</td><td class="no">Ambos caem juntos</td><td class="yes">Comuta automaticamente</td></tr>
-          <tr><td>Tempo de indisponibilidade</td><td>Horas, até o reparo</td><td>Horas, se a falha for na operadora</td><td class="yes">Segundos</td></tr>
-          <tr><td>Ação necessária da equipe</td><td>Abrir chamado e aguardar</td><td>Trocar manualmente</td><td class="yes">Nenhuma</td></tr>
-          <tr><td>Visibilidade da falha</td><td class="no">Só quando o usuário reclama</td><td>Parcial</td><td class="yes">Alerta do NOC em tempo real</td></tr>
-          <tr><td>Dependência de fornecedor único</td><td class="no">Total</td><td class="no">Total</td><td class="yes">Nenhuma</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="wrap">
-    <div class="split reveal">
-      <div>
-        <span class="eyebrow">O que está incluído</span>
-        <h2 class="display" style="margin-bottom:20px">Conectividade preparada para operação crítica</h2>
-        <p class="lead" style="margin-bottom:24px">Conectividade empresarial vai além de contratar internet.
-        Ela precisa acompanhar as necessidades e os riscos da operação.</p>
-        {checklist([
-          "Link dedicado via fibra óptica ou rádio",
-          "Banda garantida e simétrica, com IP fixo",
-          "Redundância automática por dois chips 4G/5G",
-          "Monitoramento proativo 24/7 pelo nosso NOC",
-          "SLA contratual com prazo de atendimento definido",
-          "Suporte técnico próprio, sem fila de operadora",
-        ])}
-      </div>
-      <div class="callout">
-        <h3>Link.Box: tecnologia proprietária da Wicorp</h3>
-        <p>O Link.Box é o equipamento que gerencia diferentes conexões e cria uma estrutura de redundância real
-        para a empresa. Ele não depende de uma única operadora — combina o link cabeado com dois chips de
-        operadoras distintas.</p>
-        <p>Hoje são mais de 700 equipamentos em operação em redes de varejo, farmácias, indústrias e
-        instituições de ensino em todo o Brasil.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--alt">
-  <div class="wrap">
-    <div class="split--wide-left split reveal">
-      <div>
-        <span class="eyebrow">Como começamos</span>
-        <h2 class="display" style="margin-bottom:32px">Do primeiro contato à ativação</h2>
-        <ol class="steps">
-          <li><h3>Consulta de disponibilidade</h3><p>Verificamos a viabilidade técnica no endereço da sua operação — antes de qualquer proposta.</p></li>
-          <li><h3>Diagnóstico da estrutura atual</h3><p>Nossa equipe mapeia onde existe ponto único de falha e o que já pode ser aproveitado.</p></li>
-          <li><h3>Desenho da arquitetura</h3><p>Definimos banda, redundância e SLA a partir da sua operação, não de um pacote pronto.</p></li>
-          <li><h3>Instalação e ativação</h3><p>Equipe própria em campo, com testes de comutação validados antes da entrega.</p></li>
-          <li><h3>Monitoramento contínuo</h3><p>O NOC passa a acompanhar o link 24/7 e age antes que a falha chegue ao seu usuário.</p></li>
-        </ol>
-      </div>
-      <div>
-        <div class="card">
-          <h3 style="font-size:1.1rem;margin-bottom:12px">Já é cliente Wicorp?</h3>
-          <p style="font-size:.92rem;color:var(--tx-2);line-height:1.7;margin-bottom:20px">
-            Se você já tem link dedicado conosco e ainda não tem a camada de redundância,
-            vale conversar. Na maioria dos casos o Link.Box é adicionado sem trocar nada
-            da estrutura existente.</p>
-          <a href="https://wa.me/{WPP_HREF}" data-pos="ja-cliente" class="btn btn--ghost btn--wide" target="_blank" rel="noopener">Falar com meu consultor</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-{sections.mockup_section("Sua rede acompanhada em tempo real", "Monitoramento 24/7", "Nosso NOC acompanha cada link continuamente. Quando algo sai do padrão, o alerta chega para a nossa equipe antes de chegar ao seu usuário.", sections.MOCK_NOC, [("24/7", "acompanhamento do NOC"), ("+700", "equipamentos monitorados"), ("SLA", "prazo em contrato")])}
-
-<section class="section">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow">Perguntas frequentes</span>
-      <h2 class="display">Dúvidas de quem está avaliando</h2>
-    </div>
-    <div class="reveal">{faq(FAQ_LINK)}</div>
-  </div>
-</section>
-
-{cta_band("Descubra onde sua rede está vulnerável",
-          "Avaliamos sua estrutura atual e mostramos onde existe ponto único de falha. Sem compromisso.",
-          "Solicitar avaliação da minha rede")}
-</main>
-"""
-
+BODY_LINKBOX = (conectividade.BODY_LINKBOX
+    .replace("{FORM_LINKBOX}", form("linkbox", "link-box", "Simule sua arquitetura de redundância",
+             "Nossa equipe avalia sua estrutura atual e mostra onde existe ponto único de falha.",
+             "Simular minha redundância"))
+    .replace("{FAILOVER}", sections.FAILOVER_ALT.replace(
+             'class="section section--alt" id="failover"', 'class="section" id="failover"'))
+    .replace("{FAQ_LINKBOX}", faq(conectividade.FAQ_LINKBOX))
+    .replace("{CTA_LINKBOX}", cta_band(
+             "Descubra onde sua rede está vulnerável",
+             "Avaliamos sua estrutura atual e mostramos onde existe ponto único de falha. Sem compromisso.",
+             "Solicitar avaliação da minha rede")))
 
 # --------------------------------------------------------------------------
 # 2. PABX VIRTUAL EM NUVEM
@@ -927,6 +787,34 @@ BODY_INFRA = f"""
   </div>
 </section>
 
+<section class="section">
+  <div class="wrap">
+    <div class="split reveal">
+      <div class="foto-frame">
+        <picture>
+          <source type="image/webp" srcset="../img/fotos/rack-700.webp 700w, ../img/fotos/rack.webp 1200w" sizes="(max-width:900px) 100vw, 45vw">
+          <source type="image/jpeg" srcset="../img/fotos/rack-700.jpg 700w, ../img/fotos/rack.jpg 1200w" sizes="(max-width:900px) 100vw, 45vw">
+          <img src="../img/fotos/rack.jpg" alt="Rack instalado pela Wicorp, com switches, patch panels organizados por cores e nobreaks na base"
+               loading="lazy" decoding="async" style="aspect-ratio:3/4;object-fit:cover;width:100%">
+        </picture>
+      </div>
+      <div>
+        <span class="eyebrow">Entrega real</span>
+        <h2 class="display" style="margin-bottom:20px">Assim fica um rack que a gente entrega</h2>
+        <p class="lead" style="margin-bottom:22px">
+          Cabo identificado, passagem organizada, nobreak dimensionado e espaço para crescer.
+          Não é preciosismo: é o que faz a manutenção de daqui a dois anos levar minutos
+          em vez de uma tarde inteira de investigação.
+        </p>
+        <p class="lead muted">
+          Toda entrega sai com projeto as-built, certificação dos pontos e inventário
+          dos equipamentos instalados.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 {sections.mockup_section("Sua rede documentada, não improvisada", "O que entra na entrega", "Cada ponto identificado, cada cabo certificado e um diagrama que qualquer técnico entende depois — inclusive daqui a três anos.", sections.MOCK_INFRA, [("as-built", "projeto entregue"), ("100%", "pontos certificados"), ("SLA 4h", "atendimento em campo")], alt=True)}
 
 <section class="section">
@@ -1168,11 +1056,19 @@ BODY_OBRIGADO = f"""
 # GERAÇÃO DOS ARQUIVOS
 # ===========================================================================
 PAGES = [
-    dict(path="solucoes/link-dedicado-empresarial.html", prefix=P, body=BODY_LINK, faq=FAQ_LINK,
-         title="Link Dedicado Empresarial e Backup de Internet 4G/5G | Wicorp",
-         desc="Link dedicado com IP fixo, banda garantida e redundância automática por dois chips 4G/5G. "
-              "Monitoramento 24/7 e SLA. Consulte a disponibilidade no seu endereço.",
+    dict(path="solucoes/link-dedicado-empresarial.html", prefix=P, body=BODY_DEDICADO,
+         faq=conectividade.FAQ_DEDICADO,
+         title="Link Dedicado Empresarial em São Paulo — Fibra e Rádio | Wicorp",
+         desc="Link dedicado com banda garantida e simétrica, IP fixo, SLA em contrato e "
+              "monitoramento 24/7. Em fibra ou rádio. Consulte a disponibilidade no seu endereço.",
          canonical="solucoes/link-dedicado-empresarial"),
+
+    dict(path="solucoes/link-box-redundancia.html", prefix=P, body=BODY_LINKBOX,
+         faq=conectividade.FAQ_LINKBOX,
+         title="Link.Box — Backup de Internet 4G/5G para Empresas | Wicorp",
+         desc="Equipamento proprietário da Wicorp que faz a comutação automática para dois chips "
+              "4G/5G quando a conexão principal cai. Funciona sobre o link que você já tem.",
+         canonical="solucoes/link-box-redundancia"),
 
     dict(path="solucoes/pabx-virtual-nuvem.html", prefix=P, body=BODY_PABX, faq=FAQ_PABX,
          title="PABX Virtual em Nuvem, SIP Trunk e Contact Center | Wicorp",

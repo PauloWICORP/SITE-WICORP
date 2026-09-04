@@ -230,7 +230,7 @@ cabo para trocar ou roteador para reiniciar. Na maioria dos casos, o usuário fi
 nem percebe que houve troca.</p>
 
 <p>Você pode ver essa sequência acontecendo na
-<a href="../solucoes/link-dedicado-empresarial.html#failover">simulação da página do Link.Box</a> —
+<a href="../solucoes/link-box-redundancia.html#failover">simulação da página do Link.Box</a> —
 é a mesma que rodamos em campo antes de entregar qualquer projeto.</p>
 
 <h2 id="para-quem">Para quem isso faz mais diferença</h2>
@@ -254,7 +254,7 @@ ocorrência evitada paga o ano.</p>
         cta_texto="Avaliamos sua estrutura atual e mostramos onde existe ponto único de falha. "
                   "Sem compromisso.",
         cta_botao="Solicitar avaliação da minha rede",
-        cta_href="../solucoes/link-dedicado-empresarial.html#form",
+        cta_href="../solucoes/link-box-redundancia.html#form",
     ),
 
     dict(
@@ -548,7 +548,15 @@ QUEM_SOMOS = f"""
         </div>
       </div>
       <div>
-        {photo_slot("Foto da equipe Wicorp", "Espaço reservado para imagem autoral. Entra em img/equipe.jpg sem alterar o layout.")}
+        <div class="foto-frame">
+          <picture>
+            <source type="image/webp" srcset="img/fotos/noc-sala-900.webp 900w, img/fotos/noc-sala.webp 1600w" sizes="(max-width:980px) 100vw, 45vw">
+            <source type="image/jpeg" srcset="img/fotos/noc-sala-900.jpg 900w, img/fotos/noc-sala.jpg 1600w" sizes="(max-width:980px) 100vw, 45vw">
+            <img src="img/fotos/noc-sala.jpg" alt="Centro de operações de rede da Wicorp, com painel de telas mostrando mapas e indicadores de disponibilidade"
+                 loading="eager" decoding="async" style="aspect-ratio:3/2;object-fit:cover;width:100%">
+          </picture>
+        </div>
+        <p class="foto-cap">O NOC da Wicorp, em São Paulo.</p>
       </div>
     </div>
   </div>
@@ -634,7 +642,15 @@ QUEM_SOMOS = f"""
         </ul>
       </div>
       <div>
-        {photo_slot("NOC 24/7 em operação", "A prova de que o monitoramento proativo existe. Entra em img/noc.jpg.", "3/4")}
+        <div class="foto-frame">
+          <picture>
+            <source type="image/webp" srcset="img/fotos/noc-equipe-900.webp 900w, img/fotos/noc-equipe.webp 1600w" sizes="(max-width:980px) 100vw, 45vw">
+            <source type="image/jpeg" srcset="img/fotos/noc-equipe-900.jpg 900w, img/fotos/noc-equipe.jpg 1600w" sizes="(max-width:980px) 100vw, 45vw">
+            <img src="img/fotos/noc-equipe.jpg" alt="Equipe técnica da Wicorp trabalhando no centro de operações de rede"
+                 loading="lazy" decoding="async" style="aspect-ratio:3/2;object-fit:cover;width:100%">
+          </picture>
+        </div>
+        <p class="foto-cap">Monitoramento proativo: a falha é identificada aqui antes de chegar ao seu usuário.</p>
       </div>
     </div>
   </div>
@@ -973,10 +989,10 @@ CALCULADORA = f"""
           </div>
 
           <div class="calc__actions">
-            <a href="solucoes/link-dedicado-empresarial.html#form" class="btn btn--primary btn--wide">
+            <a href="solucoes/link-box-redundancia.html#form" class="btn btn--primary btn--wide">
               Solicitar avaliação da minha rede {ARROW}
             </a>
-            <a href="solucoes/link-dedicado-empresarial.html#failover" class="btn btn--ghost btn--wide">
+            <a href="solucoes/link-box-redundancia.html#failover" class="btn btn--ghost btn--wide">
               Ver como o backup automático funciona
             </a>
           </div>
@@ -1066,7 +1082,7 @@ CALCULADORA = f"""
           </p>
         </div>
         <div class="cta-band__actions">
-          <a href="solucoes/link-dedicado-empresarial.html#form" class="btn btn--primary btn--wide">Solicitar avaliação {ARROW}</a>
+          <a href="solucoes/link-box-redundancia.html#form" class="btn btn--primary btn--wide">Solicitar avaliação {ARROW}</a>
           <a href="tel:{TEL_HREF}" class="btn btn--ghost btn--wide">Ligar: {TEL}</a>
         </div>
       </div>

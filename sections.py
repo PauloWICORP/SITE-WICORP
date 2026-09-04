@@ -347,6 +347,18 @@ MOCK_INFRA = f"""
 """
 
 
+# Painel do Link.Box — aqui a prova é o equipamento em si, fotografado.
+MOCK_LINKBOX = """
+<div class="foto-produto">
+  <picture>
+    <source type="image/webp" srcset="img/fotos/link-box-700.webp 700w, img/fotos/link-box.webp 1200w" sizes="(max-width:900px) 100vw, 55vw">
+    <source type="image/png" srcset="img/fotos/link-box-700.png 700w, img/fotos/link-box.png 1200w" sizes="(max-width:900px) 100vw, 55vw">
+    <img src="img/fotos/link-box.png" alt="Link.Box 5G da Wicorp, equipamento preto com quatro antenas e faixa azul-turquesa com a marca"
+         loading="lazy" decoding="async" style="aspect-ratio:4/3;object-fit:contain;width:100%">
+  </picture>
+</div>
+"""
+
 # ===========================================================================
 # 3. ABAS DE SOLUÇÃO
 # ===========================================================================
@@ -355,7 +367,7 @@ TABS = f"""
   <div class="wrap">
     <div class="section-head center reveal">
       <span class="eyebrow">Ecossistema Wicorp</span>
-      <h2 class="display">Quatro frentes, um único parceiro</h2>
+      <h2 class="display">Cinco frentes, um único parceiro</h2>
       <p class="lead">
         Conectividade, comunicação, segurança e infraestrutura desenhadas em conjunto —
         com uma equipe que enxerga sua operação inteira, não um pedaço dela.
@@ -365,9 +377,14 @@ TABS = f"""
     <div class="tabs reveal">
       <div class="tabs__nav" role="tablist" aria-label="Soluções Wicorp">
 
-        <button class="tab" role="tab" aria-selected="true" aria-controls="p-noc" id="t-noc" data-tab="noc">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="p-noc" id="t-noc" data-tab="link-dedicado">
           <span class="tab__ico">{ico(I_WIFI, 20)}</span>
-          <span class="tab__txt"><b>Link dedicado e Link.Box</b><span>Conexão com backup automático 4G/5G</span></span>
+          <span class="tab__txt"><b>Link dedicado</b><span>Banda garantida, IP fixo e SLA</span></span>
+        </button>
+
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-lb" id="t-lb" data-tab="link-box" tabindex="-1">
+          <span class="tab__ico">{ico(I_SIM, 20)}</span>
+          <span class="tab__txt"><b>Link.Box</b><span>Redundância com dois chips 4G/5G</span></span>
         </button>
 
         <button class="tab" role="tab" aria-selected="false" aria-controls="p-pabx" id="t-pabx" data-tab="pabx" tabindex="-1">
@@ -392,10 +409,23 @@ TABS = f"""
         <div class="panel is-on" id="p-noc" role="tabpanel" aria-labelledby="t-noc">
           {MOCK_NOC}
           <div class="panel__cap">
-            <div class="panel__stat"><b>+700</b><span>equipamentos em campo</span></div>
-            <div class="panel__stat"><b>4G/5G</b><span>backup em dois chips</span></div>
+            <div class="panel__stat"><b>Simétrica</b><span>banda garantida</span></div>
+            <div class="panel__stat"><b>IP fixo</b><span>incluso no plano</span></div>
             <div class="panel__stat" style="margin-left:auto">
-              <a href="solucoes/link-dedicado-empresarial.html" class="sol__cta">Conhecer link dedicado e Link.Box
+              <a href="solucoes/link-dedicado-empresarial.html" class="sol__cta">Conhecer o link dedicado
+                {ico('<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>', 15, 2.5)}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" id="p-lb" role="tabpanel" aria-labelledby="t-lb" hidden>
+          {MOCK_LINKBOX}
+          <div class="panel__cap">
+            <div class="panel__stat"><b>~1s</b><span>para comutar a rota</span></div>
+            <div class="panel__stat"><b>+700</b><span>equipamentos em campo</span></div>
+            <div class="panel__stat" style="margin-left:auto">
+              <a href="solucoes/link-box-redundancia.html" class="sol__cta">Conhecer o Link.Box
                 {ico('<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>', 15, 2.5)}
               </a>
             </div>
@@ -561,3 +591,23 @@ DIMENSIONADOR = f"""
   </div>
 </section>
 """
+
+
+# ===========================================================================
+# 7. FOTO RESPONSIVA
+#    WebP como formato principal, com fallback para navegador antigo.
+#    A proporção fica fixa no CSS para o layout não pular quando a
+#    imagem termina de carregar.
+# ===========================================================================
+def foto(nome, alt, ratio="16/9", ext="jpg", prefix="", larguras=(900, 1600),
+         classe="", loading="lazy", radius="var(--r-lg)"):
+    p = f"{prefix}img/fotos/{nome}"
+    menor, maior = larguras
+    src_webp = f"{p}-{menor}.webp {menor}w, {p}.webp {maior}w"
+    src_fall = f"{p}-{menor}.{ext} {menor}w, {p}.{ext} {maior}w"
+    return f"""<picture class="{classe}">
+  <source type="image/webp" srcset="{src_webp}" sizes="(max-width:900px) 100vw, 50vw">
+  <source type="image/{'png' if ext == 'png' else 'jpeg'}" srcset="{src_fall}" sizes="(max-width:900px) 100vw, 50vw">
+  <img src="{p}.{ext}" alt="{alt}" loading="{loading}" decoding="async"
+       style="aspect-ratio:{ratio};object-fit:{'contain' if ext == 'png' else 'cover'};width:100%;border-radius:{radius}">
+</picture>"""

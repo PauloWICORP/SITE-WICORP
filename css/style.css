@@ -1405,3 +1405,29 @@ h3.display{font-size:clamp(1.4rem, 2.4vw, 1.9rem)}
   font-size:.85rem; color:var(--tx-2); line-height:1.65;
 }
 .calc__actions{margin-top:24px; display:flex; flex-direction:column; gap:11px}
+
+/* ==========================================================================
+   40. FOTOS
+   ========================================================================== */
+picture{display:block}
+picture img{
+  display:block; width:100%;
+  background:var(--surface-2);   /* cor de espera enquanto carrega */
+}
+/* Moldura sutil nas fotos de ambiente, para não flutuarem no fundo escuro */
+.foto-frame{
+  border-radius:var(--r-lg); overflow:hidden;
+  border:1px solid var(--line-strong);
+  box-shadow:var(--shadow);
+}
+.foto-cap{
+  margin-top:12px; font-size:.8rem; color:var(--tx-3); line-height:1.55;
+}
+/* Produto recortado: sem moldura, com brilho por baixo */
+.foto-produto{position:relative}
+.foto-produto::before{
+  content:""; position:absolute; inset:12% 8% 4%;
+  background:radial-gradient(ellipse at 50% 60%, rgba(91,191,198,.22), transparent 70%);
+  filter:blur(34px); pointer-events:none;
+}
+.foto-produto picture{position:relative}
