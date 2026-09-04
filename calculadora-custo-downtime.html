@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Quem somos | Wicorp — 28 anos em TI e Telecom em São Paulo</title>
-<meta name="description" content="Desde 1998 transformando tecnologia em conexão estratégica. Mais de 800 clientes e 700 equipamentos em operação em São Paulo e Grande São Paulo.">
-<link rel="canonical" href="https://wicorp.com.br/quem-somos">
+<title>Calculadora: quanto custa uma hora de operação parada | Wicorp</title>
+<meta name="description" content="Calcule quanto a indisponibilidade de internet custa para sua empresa por mês e por ano. Sem cadastro — o cálculo roda no seu navegador.">
+<link rel="canonical" href="https://wicorp.com.br/calculadora-custo-downtime">
 <meta name="robots" content="index, follow">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Wicorp">
-<meta property="og:title" content="Quem somos | Wicorp — 28 anos em TI e Telecom em São Paulo">
-<meta property="og:description" content="Desde 1998 transformando tecnologia em conexão estratégica. Mais de 800 clientes e 700 equipamentos em operação em São Paulo e Grande São Paulo.">
-<meta property="og:url" content="https://wicorp.com.br/quem-somos">
+<meta property="og:title" content="Calculadora: quanto custa uma hora de operação parada | Wicorp">
+<meta property="og:description" content="Calcule quanto a indisponibilidade de internet custa para sua empresa por mês e por ano. Sem cadastro — o cálculo roda no seu navegador.">
+<meta property="og:url" content="https://wicorp.com.br/calculadora-custo-downtime">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#080C0E">
 
@@ -67,120 +67,155 @@
 </div>
 
 <main id="main">
-<section class="page-hero">
+<section class="page-hero" style="padding-bottom:40px">
   <div class="wrap">
-    <div class="page-hero__grid">
-      <div>
-        <span class="eyebrow">Desde 1998</span>
-        <h1 class="display">Transformar tecnologia em <span class="grad-text">conexão estratégica</span></h1>
-        <p class="lead">
-          A Wicorp nasceu em 1998 com um propósito claro. Vinte e oito anos depois,
-          atendemos mais de 800 empresas e mantemos cerca de 700 equipamentos em operação —
-          a maior parte em operações que não podem parar.
-        </p>
-        <div class="hero__actions">
-          <a href="contato.html" class="btn btn--primary">Falar com um especialista <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-          <a href="index.html#solucoes" class="btn btn--ghost">Ver soluções</a>
+    <span class="eyebrow">Calculadora · sem cadastro</span>
+    <h1 class="display" style="max-width:22ch">Quanto custa uma hora da sua operação <span class="grad-text">parada?</span></h1>
+    <p class="lead" style="max-width:62ch">
+      Preencha com os números da sua empresa e veja o que a indisponibilidade custa por mês
+      e por ano. O cálculo acontece aqui no seu navegador — nada é enviado.
+    </p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="calc">
+
+      <div class="calc__form">
+
+        <div class="calc__field">
+          <label class="calc__label" for="c-fat">
+            <span>Faturamento mensal da operação</span>
+          </label>
+          <div class="field calc__money" style="margin-bottom:0">
+            <input type="text" id="c-fat" inputmode="numeric" value="500.000" data-calc-fat
+                   aria-describedby="c-fat-hint">
+          </div>
+          <small id="c-fat-hint" style="display:block;font-size:.78rem;color:var(--tx-3);margin-top:8px">
+            Considere só o que depende de estar conectado — vendas, atendimento, produção.
+          </small>
         </div>
-      </div>
-      <div>
-        <div class="photo-slot" style="aspect-ratio:4/3">
-  <div>
-    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-    <span><b>Foto da equipe Wicorp</b>Espaço reservado para imagem autoral. Entra em img/equipe.jpg sem alterar o layout.</span>
-  </div>
-</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section class="proof">
-  <div class="wrap">
-    <div class="proof__grid">
-      <div class="proof__item"><div class="proof__num grad-text" data-count="28">0</div><div class="proof__lbl">anos de mercado<br>desde 1998</div></div>
-      <div class="proof__item"><div class="proof__num grad-text" data-count="800" data-prefix="+">0</div><div class="proof__lbl">clientes ativos<br>em todo o Brasil</div></div>
-      <div class="proof__item"><div class="proof__num grad-text" data-count="700" data-prefix="+">0</div><div class="proof__lbl">equipamentos<br>em operação</div></div>
-      <div class="proof__item"><div class="proof__num grad-text">24/7</div><div class="proof__lbl">monitoramento<br>proativo da rede</div></div>
-    </div>
-  </div>
-</section>
+        <div class="calc__field">
+          <label class="calc__label" for="c-horas">
+            <span>Horas de operação por mês</span>
+          </label>
+          <div class="calc__chips" role="group" aria-label="Regime de operação">
+            <button type="button" class="calc__chip" data-calc-regime="176" aria-pressed="true">Comercial · 176h</button>
+            <button type="button" class="calc__chip" data-calc-regime="264" aria-pressed="false">Estendido · 264h</button>
+            <button type="button" class="calc__chip" data-calc-regime="720" aria-pressed="false">24/7 · 720h</button>
+          </div>
+        </div>
 
-<section class="section">
-  <div class="wrap">
-    <div class="split reveal">
-      <div>
-        <span class="eyebrow">Como trabalhamos</span>
-        <h2 class="display" style="margin-bottom:20px">Não apenas instalamos tecnologia. Desenhamos soluções.</h2>
-        <p class="lead" style="margin-bottom:16px">
-          A diferença entre um fornecedor e um parceiro aparece no dia do problema.
-          Fornecedor entrega o que foi contratado. Parceiro conhece o ambiente inteiro
-          e sabe onde olhar primeiro.
-        </p>
-        <p class="lead muted">
-          É por isso que atuamos como extensão da área de TI dos nossos clientes:
-          assumimos a complexidade da infraestrutura para que o gestor recupere tempo
-          para o que é estratégico.
-        </p>
+        <div class="calc__field">
+          <label class="calc__label" for="c-parada">
+            <span>Horas paradas por mês</span>
+            <small class="calc__val" data-calc-parada-val>2h</small>
+          </label>
+          <input type="range" class="dim__range" id="c-parada" min="0.5" max="16" step="0.5" value="2"
+                 data-calc-parada>
+          <div class="dim__scale"><span>30 min</span><span>4h</span><span>8h</span><span>16h</span></div>
+          <small style="display:block;font-size:.78rem;color:var(--tx-3);margin-top:10px">
+            Some quedas de link, instabilidade e manutenção não programada.
+          </small>
+        </div>
+
+        <div class="calc__field">
+          <label class="calc__label" for="c-unid">
+            <span>Unidades afetadas</span>
+            <small class="calc__val" data-calc-unid-val>1</small>
+          </label>
+          <input type="range" class="dim__range" id="c-unid" min="1" max="40" step="1" value="1"
+                 data-calc-unid>
+          <div class="dim__scale"><span>1</span><span>10</span><span>25</span><span>40</span></div>
+          <small style="display:block;font-size:.78rem;color:var(--tx-3);margin-top:10px">
+            Matriz, filiais ou pontos de venda que param junto quando o link cai.
+          </small>
+        </div>
+
       </div>
-      <div class="callout">
-        <h3>Por que só São Paulo e Grande São Paulo</h3>
-        <p>Poderíamos vender para o Brasil inteiro. Não vendemos — porque SLA que não se
-        cumpre não é SLA, é texto em contrato.</p>
-        <p>Concentramos a operação onde conseguimos garantir suporte presencial,
-        monitoramento e tempo de resposta. A expansão acontece de forma seletiva,
-        quando conseguimos manter o mesmo padrão.</p>
-      </div>
+
+      <aside class="calc__out" aria-live="polite">
+        <div class="calc__out-head">
+          <b>Resultado</b>
+          <span>Estimativa com base nos números que você informou</span>
+        </div>
+        <div class="calc__out-body">
+
+          <div class="calc__hero-num" data-calc-ano>R$ 0</div>
+          <div class="calc__hero-lbl">de faturamento perdido por ano</div>
+
+          <div class="calc__rows">
+            <div class="calc__row">
+              <span>Faturamento por hora</span>
+              <b data-calc-hora>R$ 0</b>
+            </div>
+            <div class="calc__row">
+              <span>Custo de cada hora parada</span>
+              <b data-calc-hora-total>R$ 0</b>
+            </div>
+            <div class="calc__row calc__row--total">
+              <span>Perda estimada por mês</span>
+              <b data-calc-mes>R$ 0</b>
+            </div>
+          </div>
+
+          <div class="calc__note">
+            Esta conta considera apenas o faturamento perdido. Não entram: hora de equipe
+            parada, retrabalho da TI, multa contratual, cliente que desistiu e não voltou,
+            nem o custo do chamado com a operadora.
+            <strong>O prejuízo real costuma ser maior.</strong>
+          </div>
+
+          <div class="calc__actions">
+            <a href="solucoes/link-dedicado-empresarial.html#form" class="btn btn--primary btn--wide">
+              Solicitar avaliação da minha rede <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="solucoes/link-dedicado-empresarial.html#failover" class="btn btn--ghost btn--wide">
+              Ver como o backup automático funciona
+            </a>
+          </div>
+
+        </div>
+      </aside>
+
     </div>
   </div>
 </section>
 
 <section class="section section--alt">
   <div class="wrap">
-    <div class="split reveal">
-      <div>
-        <span class="eyebrow">Nossa trajetória</span>
-        <h2 class="display" style="margin-bottom:34px">De provedor a parceiro de tecnologia</h2>
-        <ul class="timeline">
-          <li>
-            <b>1998</b>
-            <h3>O começo</h3>
-            <p>A Wicorp nasce em São Paulo com foco em telecomunicações corporativas,
-            num momento em que conectividade empresarial ainda era exceção.</p>
-          </li>
-          <li>
-            <b>2010s</b>
-            <h3>Ampliação do ecossistema</h3>
-            <p>Telefonia, segurança e infraestrutura entram no portfólio. A empresa deixa
-            de vender serviços isolados e passa a desenhar ambientes completos.</p>
-          </li>
-          <li>
-            <b>Link.Box</b>
-            <h3>Tecnologia própria</h3>
-            <p>Desenvolvemos a solução de redundância com dois chips 4G/5G para resolver
-            um problema que nenhum fornecedor resolvia bem: continuidade real quando a fibra cai.</p>
-          </li>
-          <li>
-            <b>wcloud</b>
-            <h3>Comunicação em nuvem com IA</h3>
-            <p>PABX virtual, Contact Center e atendimento multicanal integrados,
-            com recursos de inteligência artificial aplicados ao atendimento.</p>
-          </li>
-          <li>
-            <b>Hoje</b>
-            <h3>Mais de 800 empresas</h3>
-            <p>Redes de varejo, farmácias, indústrias, hospitais e instituições de ensino —
-            operações críticas que dependem de estar conectadas.</p>
-          </li>
-        </ul>
+    <div class="section-head center reveal">
+      <span class="eyebrow">O que a conta não mostra</span>
+      <h2 class="display">O prejuízo de uma queda não para no faturamento</h2>
+      <p class="lead">
+        A calculadora acima é deliberadamente conservadora. Estes custos são reais,
+        mas difíceis de estimar sem conhecer sua operação.
+      </p>
+    </div>
+
+    <div class="grid grid--3">
+      <div class="pain reveal">
+        <div class="pain__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+        <div>
+          <h3>Equipe parada, salário correndo</h3>
+          <p>Vinte pessoas sem sistema por duas horas são quarenta horas de trabalho pagas e não entregues.</p>
+        </div>
       </div>
-      <div>
-        <div class="photo-slot" style="aspect-ratio:3/4">
-  <div>
-    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-    <span><b>NOC 24/7 em operação</b>A prova de que o monitoramento proativo existe. Entra em img/noc.jpg.</span>
-  </div>
-</div>
+      <div class="pain reveal" data-d="1">
+        <div class="pain__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg></div>
+        <div>
+          <h3>Cliente que desiste e não volta</h3>
+          <p>Quem ligou e não foi atendido, ou chegou na loja e não conseguiu pagar, raramente tenta de novo.</p>
+        </div>
+      </div>
+      <div class="pain reveal" data-d="2">
+        <div class="pain__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div>
+          <h3>O tempo da TI apagando incêndio</h3>
+          <p>Abrir chamado, cobrar a operadora, explicar para a diretoria. Horas que sairiam de projeto estratégico.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -188,29 +223,28 @@
 
 <section class="section">
   <div class="wrap">
-    <div class="section-head center reveal">
-      <span class="eyebrow">O que nos guia</span>
-      <h2 class="display">Missão, visão e valores</h2>
-    </div>
-    <div class="grid grid--3">
-      <div class="card reveal">
-        <h3 style="font-size:1.1rem;margin-bottom:10px">Missão</h3>
-        <p style="font-size:.94rem;color:var(--tx-2);line-height:1.7">
-          Integrar soluções de TIC que fortalecem a comunicação e impulsionam resultados.
+    <div class="split reveal">
+      <div>
+        <span class="eyebrow">O outro lado da conta</span>
+        <h2 class="display" style="margin-bottom:20px">Redundância é seguro: só parece cara antes de precisar</h2>
+        <p class="lead" style="margin-bottom:22px">
+          Compare o número que apareceu acima com o custo mensal de uma camada de
+          contingência. Na maioria das operações, <strong>uma única ocorrência evitada
+          paga o ano inteiro</strong>.
+        </p>
+        <p class="lead muted">
+          Não colocamos preço nesta página de propósito: cada operação tem uma
+          arquitetura diferente, e um valor genérico aqui não ajudaria você a decidir nada.
+          A proposta sai depois que entendemos sua estrutura.
         </p>
       </div>
-      <div class="card reveal" data-d="1">
-        <h3 style="font-size:1.1rem;margin-bottom:10px">Visão</h3>
-        <p style="font-size:.94rem;color:var(--tx-2);line-height:1.7">
-          Ser referência em soluções de comunicação corporativa inovadoras e estratégicas.
-        </p>
-      </div>
-      <div class="card reveal" data-d="2">
-        <h3 style="font-size:1.1rem;margin-bottom:10px">Valores</h3>
-        <p style="font-size:.94rem;color:var(--tx-2);line-height:1.7">
-          Inovação, excelência técnica, transparência, compromisso com resultados
-          e parceria de longo prazo.
-        </p>
+      <div class="callout">
+        <h3>Como reduzimos essas horas</h3>
+        <p>O Link.Box monitora a conexão principal e, quando ela falha, migra o tráfego
+        para dois chips 4G/5G de operadoras diferentes — em pouco mais de um segundo,
+        sem ninguém precisar agir.</p>
+        <p>As horas paradas que você somou lá em cima deixam de existir na maior parte
+        dos casos. O usuário final nem percebe que houve troca.</p>
       </div>
     </div>
   </div>
@@ -221,14 +255,14 @@
     <div class="cta-band reveal">
       <div class="cta-band__inner">
         <div>
-          <h2 class="display">Vamos conversar sobre sua operação</h2>
+          <h2 class="display">Vamos olhar onde sua rede está vulnerável</h2>
           <p class="lead">
-            Avaliamos sua estrutura atual e mostramos onde existe ponto único de falha,
-            o que dá para centralizar e onde está o retrabalho do seu time.
+            Avaliamos sua estrutura atual e mostramos onde existe ponto único de falha.
+            Sem compromisso.
           </p>
         </div>
         <div class="cta-band__actions">
-          <a href="contato.html" class="btn btn--primary btn--wide">Solicitar uma avaliação <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="solucoes/link-dedicado-empresarial.html#form" class="btn btn--primary btn--wide">Solicitar avaliação <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
           <a href="tel:+551148005000" class="btn btn--ghost btn--wide">Ligar: (11) 4800-5000</a>
         </div>
       </div>

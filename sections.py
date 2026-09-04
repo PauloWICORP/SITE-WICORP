@@ -49,6 +49,7 @@ FAILOVER = f"""
             {ico('<polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>', 17, 2.4)}
           </button>
           <button class="btn btn--ghost" data-fail-reset disabled>Restaurar</button>
+          <a href="calculadora-custo-downtime.html" class="btn btn--ghost">Calcular quanto isso custa</a>
         </div>
 
         <p class="muted" style="font-size:.84rem">
@@ -477,8 +478,11 @@ MARQUEE = f"""
 # ===========================================================================
 
 # O simulador de failover com fundo alternado, para a página do Link.Box
-FAILOVER_ALT = FAILOVER.replace('<section class="section" id="failover">',
-                                '<section class="section section--alt" id="failover">')
+FAILOVER_ALT = (FAILOVER
+                .replace('<section class="section" id="failover">',
+                         '<section class="section section--alt" id="failover">')
+                .replace('href="calculadora-custo-downtime.html"',
+                         'href="../calculadora-custo-downtime.html"'))
 
 
 def mockup_section(titulo, eyebrow, texto, mockup, stats, alt=False, ancora=""):

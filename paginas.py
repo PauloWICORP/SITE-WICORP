@@ -247,7 +247,7 @@ Mas há operações em que ela deixa de ser opcional:</p>
 </ul>
 
 <p>A conta que vale fazer é simples: quanto sua empresa deixa de faturar por hora parada?
-Compare com o custo mensal da camada de redundância. Na maioria dos casos, uma única
+Fizemos uma <a href="../calculadora-custo-downtime.html">calculadora para isso</a> — coloque os números da sua operação e compare com o custo mensal da camada de redundância. Na maioria dos casos, uma única
 ocorrência evitada paga o ano.</p>
 """,
         cta_titulo="Sua operação tem plano B?",
@@ -851,6 +851,225 @@ NAO_ENCONTRADA = f"""
         <h3 style="font-size:1rem;margin-bottom:6px">Blog</h3>
         <p style="font-size:.86rem;color:var(--tx-3)">Conteúdo para quem cuida da operação</p>
       </a>
+    </div>
+  </div>
+</section>
+</main>
+"""
+
+
+# ===========================================================================
+# CALCULADORA DE CUSTO DE DOWNTIME
+#
+# Ideia vinda do material da Gonçalves Rauber ("Calcular Custo de Downtime da
+# Sua Operação", nas recomendações de CTA e no Banco de Copy). Lá era um
+# infográfico estático; aqui virou calculadora — o visitante usa o número
+# da própria empresa.
+#
+# Não exibe preço da solução Wicorp: o posicionamento é proposta
+# personalizada, e comparar com valor inventado seria desonesto.
+# ===========================================================================
+CALCULADORA = f"""
+<main id="main">
+<section class="page-hero" style="padding-bottom:40px">
+  <div class="wrap">
+    <span class="eyebrow">Calculadora · sem cadastro</span>
+    <h1 class="display" style="max-width:22ch">Quanto custa uma hora da sua operação <span class="grad-text">parada?</span></h1>
+    <p class="lead" style="max-width:62ch">
+      Preencha com os números da sua empresa e veja o que a indisponibilidade custa por mês
+      e por ano. O cálculo acontece aqui no seu navegador — nada é enviado.
+    </p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="calc">
+
+      <div class="calc__form">
+
+        <div class="calc__field">
+          <label class="calc__label" for="c-fat">
+            <span>Faturamento mensal da operação</span>
+          </label>
+          <div class="field calc__money" style="margin-bottom:0">
+            <input type="text" id="c-fat" inputmode="numeric" value="500.000" data-calc-fat
+                   aria-describedby="c-fat-hint">
+          </div>
+          <small id="c-fat-hint" style="display:block;font-size:.78rem;color:var(--tx-3);margin-top:8px">
+            Considere só o que depende de estar conectado — vendas, atendimento, produção.
+          </small>
+        </div>
+
+        <div class="calc__field">
+          <label class="calc__label" for="c-horas">
+            <span>Horas de operação por mês</span>
+          </label>
+          <div class="calc__chips" role="group" aria-label="Regime de operação">
+            <button type="button" class="calc__chip" data-calc-regime="176" aria-pressed="true">Comercial · 176h</button>
+            <button type="button" class="calc__chip" data-calc-regime="264" aria-pressed="false">Estendido · 264h</button>
+            <button type="button" class="calc__chip" data-calc-regime="720" aria-pressed="false">24/7 · 720h</button>
+          </div>
+        </div>
+
+        <div class="calc__field">
+          <label class="calc__label" for="c-parada">
+            <span>Horas paradas por mês</span>
+            <small class="calc__val" data-calc-parada-val>2h</small>
+          </label>
+          <input type="range" class="dim__range" id="c-parada" min="0.5" max="16" step="0.5" value="2"
+                 data-calc-parada>
+          <div class="dim__scale"><span>30 min</span><span>4h</span><span>8h</span><span>16h</span></div>
+          <small style="display:block;font-size:.78rem;color:var(--tx-3);margin-top:10px">
+            Some quedas de link, instabilidade e manutenção não programada.
+          </small>
+        </div>
+
+        <div class="calc__field">
+          <label class="calc__label" for="c-unid">
+            <span>Unidades afetadas</span>
+            <small class="calc__val" data-calc-unid-val>1</small>
+          </label>
+          <input type="range" class="dim__range" id="c-unid" min="1" max="40" step="1" value="1"
+                 data-calc-unid>
+          <div class="dim__scale"><span>1</span><span>10</span><span>25</span><span>40</span></div>
+          <small style="display:block;font-size:.78rem;color:var(--tx-3);margin-top:10px">
+            Matriz, filiais ou pontos de venda que param junto quando o link cai.
+          </small>
+        </div>
+
+      </div>
+
+      <aside class="calc__out" aria-live="polite">
+        <div class="calc__out-head">
+          <b>Resultado</b>
+          <span>Estimativa com base nos números que você informou</span>
+        </div>
+        <div class="calc__out-body">
+
+          <div class="calc__hero-num" data-calc-ano>R$ 0</div>
+          <div class="calc__hero-lbl">de faturamento perdido por ano</div>
+
+          <div class="calc__rows">
+            <div class="calc__row">
+              <span>Faturamento por hora</span>
+              <b data-calc-hora>R$ 0</b>
+            </div>
+            <div class="calc__row">
+              <span>Custo de cada hora parada</span>
+              <b data-calc-hora-total>R$ 0</b>
+            </div>
+            <div class="calc__row calc__row--total">
+              <span>Perda estimada por mês</span>
+              <b data-calc-mes>R$ 0</b>
+            </div>
+          </div>
+
+          <div class="calc__note">
+            Esta conta considera apenas o faturamento perdido. Não entram: hora de equipe
+            parada, retrabalho da TI, multa contratual, cliente que desistiu e não voltou,
+            nem o custo do chamado com a operadora.
+            <strong>O prejuízo real costuma ser maior.</strong>
+          </div>
+
+          <div class="calc__actions">
+            <a href="solucoes/link-dedicado-empresarial.html#form" class="btn btn--primary btn--wide">
+              Solicitar avaliação da minha rede {ARROW}
+            </a>
+            <a href="solucoes/link-dedicado-empresarial.html#failover" class="btn btn--ghost btn--wide">
+              Ver como o backup automático funciona
+            </a>
+          </div>
+
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">O que a conta não mostra</span>
+      <h2 class="display">O prejuízo de uma queda não para no faturamento</h2>
+      <p class="lead">
+        A calculadora acima é deliberadamente conservadora. Estes custos são reais,
+        mas difíceis de estimar sem conhecer sua operação.
+      </p>
+    </div>
+
+    <div class="grid grid--3">
+      <div class="pain reveal">
+        <div class="pain__ico">{ico(I_TEAM, 21)}</div>
+        <div>
+          <h3>Equipe parada, salário correndo</h3>
+          <p>Vinte pessoas sem sistema por duas horas são quarenta horas de trabalho pagas e não entregues.</p>
+        </div>
+      </div>
+      <div class="pain reveal" data-d="1">
+        <div class="pain__ico">{ico('<path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>', 21)}</div>
+        <div>
+          <h3>Cliente que desiste e não volta</h3>
+          <p>Quem ligou e não foi atendido, ou chegou na loja e não conseguiu pagar, raramente tenta de novo.</p>
+        </div>
+      </div>
+      <div class="pain reveal" data-d="2">
+        <div class="pain__ico">{ico('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>', 21)}</div>
+        <div>
+          <h3>O tempo da TI apagando incêndio</h3>
+          <p>Abrir chamado, cobrar a operadora, explicar para a diretoria. Horas que sairiam de projeto estratégico.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="split reveal">
+      <div>
+        <span class="eyebrow">O outro lado da conta</span>
+        <h2 class="display" style="margin-bottom:20px">Redundância é seguro: só parece cara antes de precisar</h2>
+        <p class="lead" style="margin-bottom:22px">
+          Compare o número que apareceu acima com o custo mensal de uma camada de
+          contingência. Na maioria das operações, <strong>uma única ocorrência evitada
+          paga o ano inteiro</strong>.
+        </p>
+        <p class="lead muted">
+          Não colocamos preço nesta página de propósito: cada operação tem uma
+          arquitetura diferente, e um valor genérico aqui não ajudaria você a decidir nada.
+          A proposta sai depois que entendemos sua estrutura.
+        </p>
+      </div>
+      <div class="callout">
+        <h3>Como reduzimos essas horas</h3>
+        <p>O Link.Box monitora a conexão principal e, quando ela falha, migra o tráfego
+        para dois chips 4G/5G de operadoras diferentes — em pouco mais de um segundo,
+        sem ninguém precisar agir.</p>
+        <p>As horas paradas que você somou lá em cima deixam de existir na maior parte
+        dos casos. O usuário final nem percebe que houve troca.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt section--tight">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div class="cta-band__inner">
+        <div>
+          <h2 class="display">Vamos olhar onde sua rede está vulnerável</h2>
+          <p class="lead">
+            Avaliamos sua estrutura atual e mostramos onde existe ponto único de falha.
+            Sem compromisso.
+          </p>
+        </div>
+        <div class="cta-band__actions">
+          <a href="solucoes/link-dedicado-empresarial.html#form" class="btn btn--primary btn--wide">Solicitar avaliação {ARROW}</a>
+          <a href="tel:{TEL_HREF}" class="btn btn--ghost btn--wide">Ligar: {TEL}</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>

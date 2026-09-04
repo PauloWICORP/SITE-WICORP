@@ -169,6 +169,7 @@ def footer(prefix, lp=False):
           <li><a href="{prefix}quem-somos.html">Quem somos</a></li>
           <li><a href="{prefix}index.html#diferenciais">Diferenciais</a></li>
           <li><a href="{prefix}blog/index.html">Blog</a></li>
+          <li><a href="{prefix}calculadora-custo-downtime.html">Calculadora de downtime</a></li>
           <li><a href="{prefix}contato.html">Contato</a></li>
           <li><a href="https://wicorp.desk.ms" target="_blank" rel="noopener">Suporte ao cliente</a></li>
         </ul>
@@ -1241,6 +1242,14 @@ PAGES.append(dict(
     desc="Como a Wicorp trata os dados pessoais coletados neste site, conforme a Lei Geral "
          "de Proteção de Dados.",
     canonical="privacidade", noindex=True,
+))
+
+PAGES.append(dict(
+    path="calculadora-custo-downtime.html", prefix="", body=paginas.CALCULADORA,
+    title="Calculadora: quanto custa uma hora de operação parada | Wicorp",
+    desc="Calcule quanto a indisponibilidade de internet custa para sua empresa por mês e "
+         "por ano. Sem cadastro — o cálculo roda no seu navegador.",
+    canonical="calculadora-custo-downtime",
 ))
 
 PAGES.append(dict(

@@ -1121,3 +1121,287 @@ h3.display{font-size:clamp(1.4rem, 2.4vw, 1.9rem)}
   .spark path.area{animation:none; opacity:1}
   .node-pulse,.packet,.marquee__track,.screen__live::before,.route.is-active .route__flow::after{animation:none}
 }
+
+/* ==========================================================================
+   34. DIMENSIONADOR DE RAMAIS
+   ========================================================================== */
+.dim{display:grid; grid-template-columns:.85fr 1.15fr; gap:48px; align-items:center}
+.dim > *{min-width:0}
+@media(max-width:900px){.dim{grid-template-columns:1fr; gap:34px}}
+
+.dim__readout{display:flex; align-items:baseline; gap:10px; margin-bottom:22px}
+.dim__num{
+  font-family:var(--f-display); font-size:clamp(3.4rem,7vw,5rem); line-height:.9;
+  background:var(--w-grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-variant-numeric:tabular-nums;
+}
+.dim__unit{font-size:1.05rem; color:var(--tx-3); font-weight:500}
+
+.dim__range{
+  -webkit-appearance:none; appearance:none;
+  width:100%; height:6px; border-radius:3px; background:var(--surface-3);
+  outline:none; cursor:pointer;
+}
+.dim__range::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none;
+  width:24px; height:24px; border-radius:50%;
+  background:var(--w-grad); border:3px solid var(--bg);
+  box-shadow:0 3px 12px -2px rgba(116,190,154,.7); cursor:grab;
+  transition:transform .18s var(--ease);
+}
+.dim__range::-webkit-slider-thumb:active{transform:scale(1.15); cursor:grabbing}
+.dim__range::-moz-range-thumb{
+  width:22px; height:22px; border-radius:50%;
+  background:#74BE9A; border:3px solid var(--bg);
+  box-shadow:0 3px 12px -2px rgba(116,190,154,.7); cursor:grab;
+}
+.dim__range:focus-visible{outline:2px solid var(--w-teal); outline-offset:6px}
+
+.dim__scale{
+  display:flex; justify-content:space-between; margin-top:10px;
+  font-size:.74rem; color:var(--tx-3); font-variant-numeric:tabular-nums;
+}
+.dim__porte{
+  margin-top:20px; padding-top:18px; border-top:1px solid var(--line);
+  font-size:.94rem; color:var(--tx-2); font-weight:500;
+}
+.dim__result .checklist li{animation:dimIn .3s var(--ease)}
+@keyframes dimIn{from{opacity:0; transform:translateX(-6px)} to{opacity:1; transform:none}}
+
+/* ==========================================================================
+   35. BLOG — listagem
+   ========================================================================== */
+.post-card{
+  display:flex; flex-direction:column; overflow:hidden;
+  background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r-lg);
+  transition:border-color .25s var(--ease), transform .25s var(--ease);
+}
+.post-card:hover{transform:translateY(-4px); border-color:var(--line-strong)}
+.post-card__cover{
+  aspect-ratio:16/9; position:relative; overflow:hidden;
+  background:linear-gradient(140deg,#132025,#0C1418);
+  display:grid; place-items:center;
+}
+.post-card__cover::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(circle at 30% 25%, rgba(91,191,198,.20), transparent 62%);
+}
+.post-card__cover svg{position:relative; z-index:1; color:var(--w-teal); opacity:.75}
+.post-card__body{padding:24px 26px 26px; display:flex; flex-direction:column; flex:1}
+.post-card__meta{
+  display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+  font-size:.74rem; color:var(--tx-3); margin-bottom:12px;
+}
+.post-card__cat{
+  font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+  color:var(--w-lime); font-size:.68rem;
+}
+.post-card h3{font-size:1.14rem; font-weight:700; line-height:1.35; margin-bottom:10px}
+.post-card p{font-size:.9rem; color:var(--tx-2); line-height:1.65; margin-bottom:20px; flex:1}
+.post-card__cta{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.88rem; font-weight:600; color:var(--w-teal);
+  transition:gap .22s var(--ease);
+}
+.post-card:hover .post-card__cta{gap:13px}
+
+/* ==========================================================================
+   36. ARTIGO
+   ========================================================================== */
+.article{max-width:min(72ch, 100%); margin-inline:auto}
+.article__meta{
+  display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+  font-size:.82rem; color:var(--tx-3);
+  padding-bottom:26px; margin-bottom:34px; border-bottom:1px solid var(--line);
+}
+.article__meta .dot{width:3px;height:3px;border-radius:50%;background:var(--tx-3)}
+
+.prose{font-size:1.04rem; line-height:1.85; color:var(--tx-2)}
+.prose > * + *{margin-top:24px}
+.prose h2{
+  font-family:var(--f-display); text-transform:uppercase; letter-spacing:.01em;
+  font-size:1.75rem; line-height:1.1; color:var(--tx);
+  margin-top:52px; padding-top:6px;
+}
+.prose h3{font-size:1.12rem; font-weight:700; color:var(--tx); margin-top:36px}
+.prose strong{color:var(--tx); font-weight:600}
+.prose a{color:var(--w-teal); text-decoration:underline; text-underline-offset:3px}
+.prose a:hover{color:var(--w-lime)}
+.prose ul,.prose ol{padding-left:2px}
+/* Marcador posicionado em absoluto, nao com flex.
+   Com display:flex no li, cada <strong> vira um item de flex separado
+   e o paragrafo quebra em colunas tortas. */
+.prose li{
+  position:relative; padding:7px 0 7px 24px;
+}
+.prose li::before{
+  content:""; position:absolute; left:2px; top:16px;
+  width:6px; height:6px; border-radius:50%; background:var(--w-green);
+}
+.prose ol{counter-reset:n}
+.prose ol li{counter-increment:n; padding-left:30px}
+.prose ol li::before{
+  content:counter(n) "."; position:absolute; left:0; top:7px;
+  width:auto; height:auto; background:none;
+  color:var(--w-lime); font-weight:700; font-variant-numeric:tabular-nums;
+}
+.prose blockquote{
+  border-left:3px solid var(--w-green); padding:4px 0 4px 22px;
+  color:var(--tx); font-size:1.1rem; line-height:1.7;
+}
+.prose .callout{margin-block:32px}
+.prose table{margin-block:28px}
+
+.article__share{
+  display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+  margin-top:48px; padding-top:26px; border-top:1px solid var(--line);
+  font-size:.86rem; color:var(--tx-3);
+}
+
+/* Índice do artigo */
+.toc{
+  background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r);
+  padding:22px 24px; margin-bottom:38px;
+}
+.toc b{
+  display:block; font-size:.72rem; font-weight:700; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--tx-3); margin-bottom:12px;
+}
+.toc li{padding:5px 0}
+.toc a{font-size:.9rem; color:var(--tx-2); transition:color .18s}
+.toc a:hover{color:var(--w-teal)}
+
+/* ==========================================================================
+   37. LINHA DO TEMPO — Quem somos
+   ========================================================================== */
+.timeline{position:relative; padding-left:30px}
+.timeline::before{
+  content:""; position:absolute; left:5px; top:8px; bottom:8px; width:2px;
+  background:linear-gradient(180deg, var(--w-teal), var(--w-lime), transparent);
+}
+.timeline li{position:relative; padding:0 0 34px 4px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{
+  content:""; position:absolute; left:-30px; top:7px;
+  width:12px; height:12px; border-radius:50%;
+  background:var(--w-grad); border:3px solid var(--bg);
+}
+.timeline b{
+  display:block; font-family:var(--f-display); font-size:1.5rem;
+  color:var(--w-lime); line-height:1; margin-bottom:7px;
+}
+.timeline h3{font-size:1.02rem; font-weight:600; margin-bottom:5px}
+.timeline p{font-size:.9rem; color:var(--tx-3); line-height:1.65}
+
+/* Espaço reservado para foto — some quando a imagem entrar */
+.photo-slot{
+  aspect-ratio:4/3; border-radius:var(--r-lg);
+  border:1.5px dashed var(--line-strong); background:var(--surface-2);
+  display:grid; place-items:center; text-align:center; padding:28px;
+}
+.photo-slot svg{color:var(--tx-3); opacity:.45; margin:0 auto 12px}
+.photo-slot span{font-size:.82rem; color:var(--tx-3); line-height:1.6; display:block}
+.photo-slot b{display:block; color:var(--tx-2); font-weight:600; margin-bottom:4px}
+
+/* ==========================================================================
+   38. PÁGINA 404
+   ========================================================================== */
+.err{
+  min-height:calc(100vh - var(--header-h)); display:grid; place-items:center;
+  text-align:center; padding:80px 0;
+}
+.err__code{
+  font-family:var(--f-display); font-size:clamp(6rem,20vw,13rem); line-height:.85;
+  background:var(--w-grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+  margin-bottom:12px;
+}
+
+/* ==========================================================================
+   39. CALCULADORA DE CUSTO DE DOWNTIME
+   ========================================================================== */
+.calc{display:grid; grid-template-columns:.95fr 1.05fr; gap:48px; align-items:start}
+.calc > *{min-width:0}
+@media(max-width:940px){.calc{grid-template-columns:1fr; gap:34px}}
+
+.calc__form{
+  background:var(--surface-2); border:1px solid var(--line-strong);
+  border-radius:var(--r-lg); padding:30px 28px;
+}
+.calc__field{margin-bottom:24px}
+.calc__field:last-child{margin-bottom:0}
+.calc__label{
+  display:flex; justify-content:space-between; align-items:baseline; gap:12px;
+  margin-bottom:9px;
+}
+.calc__label span{font-size:.88rem; font-weight:600}
+.calc__label small{font-size:.76rem; color:var(--tx-3)}
+
+.calc__money{position:relative}
+.calc__money::before{
+  content:"R$"; position:absolute; left:15px; top:50%; transform:translateY(-50%);
+  font-size:.94rem; font-weight:600; color:var(--tx-3); pointer-events:none;
+}
+.calc__money input{padding-left:44px !important; font-variant-numeric:tabular-nums}
+
+.calc__val{
+  font-family:var(--f-display); font-size:1.5rem; line-height:1;
+  color:var(--w-lime); font-variant-numeric:tabular-nums;
+}
+
+.calc__chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+.calc__chip{
+  padding:8px 14px; border-radius:20px; font-size:.8rem; font-weight:500;
+  border:1px solid var(--line-strong); color:var(--tx-2); background:rgba(255,255,255,.03);
+  transition:border-color .2s, background .2s, color .2s;
+}
+.calc__chip:hover{border-color:var(--w-teal); color:var(--tx)}
+.calc__chip[aria-pressed="true"]{
+  border-color:transparent; background:var(--w-grad); color:#04080A; font-weight:700;
+}
+
+/* Painel de resultado */
+.calc__out{
+  position:sticky; top:calc(var(--header-h) + 22px);
+  border-radius:var(--r-lg); overflow:hidden;
+  background:linear-gradient(165deg,#101A1E,#0A1013);
+  border:1px solid var(--line-strong);
+  box-shadow:var(--shadow);
+}
+@media(max-width:940px){.calc__out{position:static}}
+.calc__out-head{
+  padding:22px 26px; border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+}
+.calc__out-head b{display:block; font-size:.72rem; font-weight:700; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--tx-3); margin-bottom:6px}
+.calc__out-head span{font-size:.88rem; color:var(--tx-2)}
+.calc__out-body{padding:28px 26px}
+
+.calc__hero-num{
+  font-family:var(--f-display); line-height:.9;
+  font-size:clamp(2.6rem,6.5vw,4rem);
+  background:linear-gradient(100deg,#E8705F,#E8A05F);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-variant-numeric:tabular-nums; margin-bottom:8px;
+  transition:opacity .2s;
+}
+.calc__hero-lbl{font-size:.86rem; color:var(--tx-3); margin-bottom:28px}
+
+.calc__rows{border-top:1px solid var(--line)}
+.calc__row{
+  display:flex; justify-content:space-between; align-items:baseline; gap:16px;
+  padding:15px 0; border-bottom:1px solid var(--line);
+}
+.calc__row span{font-size:.9rem; color:var(--tx-2)}
+.calc__row b{
+  font-family:var(--f-display); font-size:1.45rem; line-height:1;
+  font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+.calc__row--total b{color:var(--w-lime); font-size:1.8rem}
+
+.calc__note{
+  margin-top:22px; padding:16px 18px; border-radius:var(--r-sm);
+  background:rgba(232,112,95,.09); border:1px solid rgba(232,112,95,.22);
+  font-size:.85rem; color:var(--tx-2); line-height:1.65;
+}
+.calc__actions{margin-top:24px; display:flex; flex-direction:column; gap:11px}

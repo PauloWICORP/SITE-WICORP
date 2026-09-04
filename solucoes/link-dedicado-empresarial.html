@@ -45,8 +45,8 @@
         </div>
       </div>
       <a href="../index.html#diferenciais" class="nav__link">Diferenciais</a>
-      <a href="../index.html#quem-somos" class="nav__link">Quem somos</a>
-      <a href="#" class="nav__link">Blog</a>
+      <a href="../quem-somos.html" class="nav__link">Quem somos</a>
+      <a href="../blog/index.html" class="nav__link">Blog</a>
       <a href="../contato.html" class="nav__link">Contato</a>
     </nav>
     <a href="../contato.html" class="btn btn--primary btn--sm header__cta">Falar com um especialista</a>
@@ -61,8 +61,8 @@
   <a href="../solucoes/firewall-sd-wan.html" class="sub">Firewall e SD-WAN</a>
   <a href="../solucoes/infraestrutura-ti.html" class="sub">Infraestrutura e projetos</a>
   <a href="../index.html#diferenciais">Diferenciais</a>
-  <a href="../index.html#quem-somos">Quem somos</a>
-  <a href="#">Blog</a>
+  <a href="../quem-somos.html">Quem somos</a>
+  <a href="../blog/index.html">Blog</a>
   <a href="../contato.html">Contato</a>
   <a href="../contato.html" class="btn btn--primary btn--wide">Falar com um especialista</a>
 </div>
@@ -142,6 +142,98 @@
       <div class="proof__item"><div class="proof__num grad-text" data-count="800" data-prefix="+">0</div><div class="proof__lbl">clientes ativos<br>em todo o Brasil</div></div>
       <div class="proof__item"><div class="proof__num grad-text" data-count="700" data-prefix="+">0</div><div class="proof__lbl">equipamentos<br>em operação</div></div>
       <div class="proof__item"><div class="proof__num grad-text">24/7</div><div class="proof__lbl">monitoramento<br>proativo da rede</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section section--alt" id="failover">
+  <div class="wrap">
+    <div class="fail">
+
+      <div class="reveal">
+        <span class="eyebrow">Link.Box · tecnologia proprietária</span>
+        <h2 class="display" style="margin-bottom:18px">Veja o que acontece quando a fibra cai</h2>
+        <p class="lead" style="margin-bottom:22px">
+          Este é o teste que fazemos em campo antes de entregar qualquer projeto.
+          Derrube a conexão principal e acompanhe a comutação para os dois chips 4G/5G —
+          sem ninguém precisar agir.
+        </p>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:24px">
+          <button class="btn btn--primary" data-fail-trigger>
+            <span data-fail-label>Simular queda do link</span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          </button>
+          <button class="btn btn--ghost" data-fail-reset disabled>Restaurar</button>
+          <a href="../calculadora-custo-downtime.html" class="btn btn--ghost">Calcular quanto isso custa</a>
+        </div>
+
+        <p class="muted" style="font-size:.84rem">
+          Demonstração fiel ao comportamento real do equipamento. Em campo, a comutação
+          é validada com teste presencial antes da entrega.
+        </p>
+      </div>
+
+      <div class="fail__stage reveal" data-d="1">
+        <div class="screen">
+          <div class="screen__bar">
+            <span class="screen__dot"></span><span class="screen__dot"></span><span class="screen__dot"></span>
+            <span class="screen__title">Link.Box · Matriz São Paulo</span>
+            <span class="screen__live">Ao vivo</span>
+          </div>
+          <div class="screen__body">
+
+            <div class="route is-active" data-route="fibra">
+              <div class="route__ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h4l3-8 4 16 3-8h2"/></svg></div>
+              <div class="route__info">
+                <div class="route__name">Fibra dedicada · 300 Mbps</div>
+                <div class="route__meta" data-route-meta>Latência 8 ms · perda 0,0%</div>
+                <div class="route__flow"></div>
+              </div>
+              <span class="route__state" data-route-state>Ativo</span>
+            </div>
+
+            <div class="route is-standby" data-route="sim1">
+              <div class="route__ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 8h6v5H9z"/></svg></div>
+              <div class="route__info">
+                <div class="route__name">Backup 5G · Operadora A</div>
+                <div class="route__meta" data-route-meta>Em espera · sinal −67 dBm</div>
+                <div class="route__flow"></div>
+              </div>
+              <span class="route__state" data-route-state>Standby</span>
+            </div>
+
+            <div class="route is-standby" data-route="sim2">
+              <div class="route__ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 8h6v5H9z"/></svg></div>
+              <div class="route__info">
+                <div class="route__name">Backup 4G · Operadora B</div>
+                <div class="route__meta" data-route-meta>Em espera · sinal −72 dBm</div>
+                <div class="route__flow"></div>
+              </div>
+              <span class="route__state" data-route-state>Standby</span>
+            </div>
+
+            <div class="fail__status">
+              <span class="fail__badge" data-fail-badge>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span data-fail-badge-txt>Operação conectada</span>
+              </span>
+              <div class="fail__timer">
+                <span data-fail-uptime>99,98%</span>
+                <small data-fail-uptime-lbl>disponibilidade no mês</small>
+              </div>
+            </div>
+
+            <div class="fail__log" data-fail-log>
+              <span>NOC · monitoramento ativo em 3 rotas</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -244,6 +336,74 @@
   </div>
 </section>
 
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Monitoramento 24/7</span>
+      <h2 class="display">Sua rede acompanhada em tempo real</h2>
+      <p class="lead">Nosso NOC acompanha cada link continuamente. Quando algo sai do padrão, o alerta chega para a nossa equipe antes de chegar ao seu usuário.</p>
+    </div>
+    <div class="reveal" data-d="1" style="max-width:760px;margin-inline:auto">
+      
+<div class="screen">
+  <div class="screen__bar">
+    <span class="screen__dot"></span><span class="screen__dot"></span><span class="screen__dot"></span>
+    <span class="screen__title">NOC Wicorp · monitoramento de links</span>
+    <span class="screen__live">24/7</span>
+  </div>
+  <div class="screen__body">
+    <div class="ui">
+      <div class="ui__grid ui__grid--3" style="margin-bottom:18px">
+        <div class="ui__kpi ui__kpi--ok"><b>99,98%</b><span>Disponibilidade</span></div>
+        <div class="ui__kpi ui__kpi--info"><b>8 ms</b><span>Latência média</span></div>
+        <div class="ui__kpi ui__kpi--warn"><b>2</b><span>Alertas hoje</span></div>
+      </div>
+
+      <div style="font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tx-3);margin-bottom:8px">
+        Latência · últimas 24h
+      </div>
+      <svg class="spark" viewBox="0 0 320 78" preserveAspectRatio="none" role="img" aria-label="Gráfico de latência estável nas últimas 24 horas">
+        <defs>
+          <linearGradient id="sparkgrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#5BBFC6"/><stop offset="100%" stop-color="#C7D86E"/>
+          </linearGradient>
+          <linearGradient id="sparkfill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#74BE9A" stop-opacity=".28"/>
+            <stop offset="100%" stop-color="#74BE9A" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path class="area" d="M0,54 L26,50 L52,56 L78,44 L104,48 L130,38 L156,46 L182,34 L208,42 L234,30 L260,40 L286,32 L320,36 L320,78 L0,78 Z"/>
+        <path class="line" d="M0,54 L26,50 L52,56 L78,44 L104,48 L130,38 L156,46 L182,34 L208,42 L234,30 L260,40 L286,32 L320,36"/>
+      </svg>
+
+      <div style="margin-top:14px">
+        <div class="ui__row">
+          <div class="ui__av">SP</div>
+          <div><div class="ui__label">Matriz · São Paulo</div><div class="ui__sub">Fibra 300 Mbps + backup 5G</div></div>
+          <span class="ui__tag ui__tag--ok ui__spacer">Online</span>
+        </div>
+        <div class="ui__row">
+          <div class="ui__av">GU</div>
+          <div><div class="ui__label">Filial · Guarulhos</div><div class="ui__sub">Fibra 200 Mbps + backup 4G</div></div>
+          <span class="ui__tag ui__tag--ok ui__spacer">Online</span>
+        </div>
+        <div class="ui__row">
+          <div class="ui__av ui__av--mut">OS</div>
+          <div><div class="ui__label">Loja · Osasco</div><div class="ui__sub">Comutado para backup há 2 min</div></div>
+          <span class="ui__tag ui__tag--warn ui__spacer">Em backup</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div class="panel__cap"><div class="panel__stat"><b>24/7</b><span>acompanhamento do NOC</span></div><div class="panel__stat"><b>+700</b><span>equipamentos monitorados</span></div><div class="panel__stat"><b>SLA</b><span>prazo em contrato</span></div></div>
+    </div>
+  </div>
+</section>
+
+
 <section class="section">
   <div class="wrap">
     <div class="section-head reveal">
@@ -284,8 +444,8 @@
         <p>Desde 1998, entregando consultoria estratégica em Tecnologia da Informação e Comunicação.</p>
         <div class="social">
           <a href="https://www.instagram.com/wicorpconexoes/" target="_blank" rel="noopener" aria-label="Instagram da Wicorp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-          <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn da Wicorp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-          <a href="#" target="_blank" rel="noopener" aria-label="Facebook da Wicorp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://www.linkedin.com/in/wicorp-conex%C3%B5es-inteligentes-480066185/" target="_blank" rel="noopener" aria-label="LinkedIn da Wicorp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=100081075576327" target="_blank" rel="noopener" aria-label="Facebook da Wicorp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
         </div>
       </div>
       <div>
@@ -302,9 +462,10 @@
       <div>
         <h4>Empresa</h4>
         <ul>
-          <li><a href="../index.html#quem-somos">Quem somos</a></li>
+          <li><a href="../quem-somos.html">Quem somos</a></li>
           <li><a href="../index.html#diferenciais">Diferenciais</a></li>
-          <li><a href="#">Blog</a></li>
+          <li><a href="../blog/index.html">Blog</a></li>
+          <li><a href="../calculadora-custo-downtime.html">Calculadora de downtime</a></li>
           <li><a href="../contato.html">Contato</a></li>
           <li><a href="https://wicorp.desk.ms" target="_blank" rel="noopener">Suporte ao cliente</a></li>
         </ul>
@@ -321,7 +482,7 @@
     </div>
     <div class="footer__bar">
       <span>© 1998–<span data-year>2026</span> Wicorp — Conexões Inteligentes. Todos os direitos reservados.</span>
-      <span>CNPJ · Política de Privacidade · LGPD</span>
+      <span><a href="../privacidade.html">Política de Privacidade</a> · LGPD</span>
     </div>
   </div>
 </footer>
