@@ -1447,3 +1447,73 @@ picture img{
   -webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
   mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
 }
+
+/* ==========================================================================
+   42. CONSULTA DE DISPONIBILIDADE POR CEP
+   ========================================================================== */
+.cep{max-width:560px; margin-inline:auto}
+.cep__box{
+  background:linear-gradient(165deg, var(--surface-2), var(--surface));
+  border:1px solid var(--line-strong); border-radius:var(--r-lg);
+  padding:34px 32px; box-shadow:var(--shadow); position:relative;
+}
+.cep__box::before{
+  content:""; position:absolute; inset:0 0 auto 0; height:3px;
+  background:var(--w-grad); border-radius:var(--r-lg) var(--r-lg) 0 0;
+}
+.cep__campo{display:flex; gap:12px; align-items:flex-start}
+.cep__campo .field{flex:1; margin-bottom:0}
+.cep__campo input{
+  font-size:1.35rem !important; font-variant-numeric:tabular-nums;
+  letter-spacing:.06em; text-align:center; padding:16px 14px !important;
+}
+@media(max-width:520px){
+  .cep__campo{flex-direction:column}
+  .cep__campo .btn{width:100%}
+}
+
+/* Resultado da consulta */
+.cep__res{
+  display:none; margin-top:22px; padding:18px 20px; border-radius:var(--r);
+  border:1px solid rgba(116,190,154,.32); background:rgba(116,190,154,.07);
+}
+.cep__res.is-on{display:block; animation:panelIn .4s var(--ease)}
+.cep__res b{display:flex; align-items:center; gap:9px; font-size:.95rem; margin-bottom:6px}
+.cep__res b svg{color:var(--w-green); flex:0 0 auto}
+.cep__res p{font-size:.88rem; color:var(--tx-2); line-height:1.6}
+.cep__res .end{color:var(--tx); font-weight:500}
+
+/* Formulário que aparece depois do CEP válido */
+.cep__form{display:none; margin-top:24px; padding-top:24px; border-top:1px solid var(--line)}
+.cep__form.is-on{display:block; animation:panelIn .45s var(--ease)}
+
+.cep__passos{
+  display:flex; gap:0; margin-bottom:30px; counter-reset:cp;
+}
+.cep__passo{
+  flex:1; text-align:center; position:relative; counter-increment:cp;
+  font-size:.78rem; color:var(--tx-3); padding-top:38px;
+}
+.cep__passo::before{
+  content:counter(cp); position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:28px; height:28px; border-radius:50%; display:grid; place-items:center;
+  background:var(--surface-3); border:1.5px solid var(--line-strong);
+  font-weight:700; font-size:.8rem; color:var(--tx-3);
+  transition:background .3s, color .3s, border-color .3s;
+}
+.cep__passo::after{
+  content:""; position:absolute; top:14px; left:50%; width:100%; height:1.5px;
+  background:var(--line-strong); z-index:-1;
+}
+.cep__passo:last-child::after{display:none}
+.cep__passo.is-on{color:var(--tx)}
+.cep__passo.is-on::before{
+  background:var(--w-grad); border-color:transparent; color:#04080A;
+}
+
+/* Estado enviado dentro da caixa de consulta de CEP -------------------- */
+.cep__box.is-sent > label,
+.cep__box.is-sent .cep__campo,
+.cep__box.is-sent .cep__res,
+.cep__box.is-sent .cep__form{display:none}
+.cep__box.is-sent .form-success{display:block}

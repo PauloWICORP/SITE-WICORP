@@ -178,6 +178,7 @@ def footer(prefix, lp=False):
           <li><a href="{prefix}quem-somos.html">Quem somos</a></li>
           <li><a href="{prefix}index.html#diferenciais">Diferenciais</a></li>
           <li><a href="{prefix}blog/index.html">Blog</a></li>
+          <li><a href="{prefix}consulta-disponibilidade.html">Consultar disponibilidade</a></li>
           <li><a href="{prefix}calculadora-custo-downtime.html">Calculadora de downtime</a></li>
           <li><a href="{prefix}contato.html">Contato</a></li>
           <li><a href="https://wicorp.desk.ms" target="_blank" rel="noopener">Suporte ao cliente</a></li>
@@ -1188,6 +1189,14 @@ PAGES.append(dict(
     desc="Calcule quanto a indisponibilidade de internet custa para sua empresa por mês e "
          "por ano. Sem cadastro — o cálculo roda no seu navegador.",
     canonical="calculadora-custo-downtime",
+))
+
+PAGES.append(dict(
+    path="consulta-disponibilidade.html", prefix="", body=paginas.CONSULTA_CEP,
+    title="Consulte a disponibilidade de link dedicado no seu endereço | Wicorp",
+    desc="Informe o CEP da sua operação e verificamos a viabilidade técnica de link "
+         "dedicado em fibra ou rádio. Sem compromisso, retorno em até 1 dia útil.",
+    canonical="consulta-disponibilidade",
 ))
 
 PAGES.append(dict(

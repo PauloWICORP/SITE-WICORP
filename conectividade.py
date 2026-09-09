@@ -81,7 +81,7 @@ BODY_DEDICADO = f"""
           Banda simétrica, IP fixo, SLA em contrato e monitoramento 24/7 — em fibra ou rádio.
         </p>
         <div class="hero__actions">
-          <a href="#form" class="btn btn--primary">Consultar disponibilidade no meu endereço {ARROW}</a>
+          <a href="{P}consulta-disponibilidade.html" class="btn btn--primary">Consultar disponibilidade no meu endereço {ARROW}</a>
           <a href="https://wa.me/{WPP_HREF}" data-pos="hero-dedicado" class="btn btn--ghost" target="_blank" rel="noopener">Falar com um especialista</a>
         </div>
         <div class="hero__seals">

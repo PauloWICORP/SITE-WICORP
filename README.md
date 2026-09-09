@@ -3,23 +3,23 @@
 Site institucional da Wicorp — Conexões Inteligentes.
 HTML, CSS e JavaScript puros. Sem framework, sem build obrigatório, sem banco de dados.
 
-**Fase atual:** front-end. Back-end, formulários e segurança entram depois.
+**Fase atual:** front-end concluído — 18 páginas, prontas para avaliação visual do
+time de marketing. Back-end, formulários e segurança entram na fase seguinte.
 
 ---
 
 ## Como abrir no GitHub Codespaces
 
 1. No repositório, clique em **Code** → aba **Codespaces** → **Create codespace on main**
-2. Aguarde o ambiente subir (leva 1–2 minutos na primeira vez)
+2. Aguarde o ambiente subir (1–2 minutos na primeira vez)
 3. O servidor sobe sozinho na porta **8080** e o preview abre automaticamente
 
-Se o preview não abrir, vá na aba **PORTS** do terminal e clique no ícone de globo
-na porta 8080.
+Se o preview não abrir, vá na aba **PORTS** e clique no ícone de globo na porta 8080.
 
-Para reiniciar o servidor manualmente:
+Para subir o servidor manualmente sem prender o terminal:
 
 ```bash
-python3 -m http.server 8080
+nohup python3 -m http.server 8080 > /tmp/servidor.log 2>&1 &
 ```
 
 ---
@@ -36,31 +36,58 @@ Acesse `http://localhost:8000`.
 
 ---
 
-## Estrutura
+## As 18 páginas
 
 ```
 .
-├── index.html                              Home
+├── index.html                                Home
+├── quem-somos.html                           Autoridade: 28 anos, NOC, equipe própria
 ├── contato.html
-├── obrigado.html                           Destino de conversão (dispara generate_lead)
+├── obrigado.html                             Destino de conversão
+├── privacidade.html                          Política de Privacidade / LGPD
+├── 404.html                                  Página não encontrada
+│
+├── consulta-disponibilidade.html             Consulta de CEP → viabilidade de link
+├── calculadora-custo-downtime.html           Calculadora de custo de queda
+│
 ├── solucoes/
-│   ├── link-dedicado-empresarial.html
+│   ├── link-dedicado-empresarial.html        A CONEXÃO (fibra ou rádio, banda garantida)
+│   ├── link-box-redundancia.html             O EQUIPAMENTO (multi-link + 2 chips 4G/5G)
 │   ├── pabx-virtual-nuvem.html
 │   ├── firewall-sd-wan.html
 │   └── infraestrutura-ti.html
-├── lp/
-│   └── centralizar-fornecedores-ti.html    Landing page de centralização
 │
-├── css/style.css                           Design system inteiro
-├── js/main.js                              Interações + camada de rastreamento
-├── img/
-│   ├── logo-wicorp.png                     Versão negativa — usada no site
-│   ├── logo-wicorp-original.png            Cores originais — fundo claro
-│   └── favicon.png
+├── blog/
+│   ├── index.html
+│   ├── pabx-em-nuvem-vale-a-pena.html
+│   ├── link-box-redundancia-internet.html
+│   └── sd-wan-reduzir-custo-link.html
 │
-├── build.py                                Gera as páginas internas
-├── build-preview.py                        Gera HTML único para visualização
-└── sections.py                             Seções visuais e interativas da home
+└── lp/
+    └── centralizar-fornecedores-ti.html      Landing page de centralização
+```
+
+> **Link dedicado e Link.Box são produtos diferentes e têm páginas separadas.**
+> Link dedicado é a conexão. Link.Box é o equipamento que gerencia vários links e
+> comuta para dois chips 4G/5G — funciona inclusive sobre link de outra operadora.
+
+---
+
+## Arquivos de apoio
+
+```
+css/style.css          Design system inteiro (42 seções numeradas)
+js/main.js             Interações + camada de rastreamento (15 blocos numerados)
+img/logo-wicorp.png    Versão negativa — usada no site
+img/logo-wicorp-original.png
+img/favicon.png
+img/fotos/             Fotos reais: NOC, racks, escritório, Link.Box
+img/arte/              Imagens de apoio e texturas
+build.py               Gera todas as páginas, menos a index
+build-preview.py       Gera HTML único com CSS e JS embutidos
+sections.py            Seções visuais e interativas
+paginas.py             Blog, quem somos, privacidade, calculadora, consulta de CEP
+conectividade.py       Páginas de link dedicado e Link.Box
 ```
 
 ### Um detalhe importante sobre os arquivos
@@ -70,14 +97,28 @@ que concentra header, rodapé e `<head>` em um lugar só.
 
 Se você editar `solucoes/pabx-virtual-nuvem.html` direto, a alteração **se perde**
 no próximo `python3 build.py`. Para mudar uma página interna, edite o conteúdo dela
-dentro de `build.py` e rode:
+dentro de `build.py` (ou de `paginas.py` / `conectividade.py`) e rode:
 
 ```bash
 python3 build.py
 ```
 
-O resultado continua sendo HTML estático puro — o script só evita ter que repetir
-o mesmo menu em oito arquivos.
+O resultado continua sendo HTML estático puro — o script só evita repetir o mesmo
+menu em dezoito arquivos.
+
+---
+
+## Recursos interativos
+
+| Onde | O quê |
+|---|---|
+| Home | Abas de soluções, simulador de failover, antes/depois, carrossel de depoimentos |
+| Link.Box | Simulador de queda de link com comutação para 4G/5G |
+| PABX virtual | Dimensionador de ramais (mostra configuração, não preço) |
+| Calculadora | Custo de downtime por hora, a partir dos números da própria empresa |
+| Consulta de CEP | Busca de endereço com liberação progressiva do formulário |
+
+Nenhuma ferramenta exibe preço. Preço é conversa comercial, não número de site.
 
 ---
 
@@ -90,9 +131,10 @@ Estas regras vêm do Pacote de Correção do Site e não são estética — são
 | Nenhum CTA genérico ("Saiba Mais", "Leia mais") | O Google usa o texto do link para entender o destino |
 | Todo formulário tem 4 campos: nome, e-mail, empresa, WhatsApp | CNPJ antes da primeira conversa derruba a taxa de envio |
 | Formulário sempre acima da dobra | Era a causa raiz dos "0 leads do site" |
+| E-mail gratuito é recusado no formulário | Lead B2B qualificado usa e-mail corporativo |
 | H1 com palavra-chave, subtítulo com benefício | Atende busca sem violar o Manual de Copy |
 | Copy em Contexto → Consciência → Educação → Autoridade → Ação | Estrutura obrigatória do Manual de Copy |
-| Sem banco de imagens | Mockups de produto em HTML/CSS, como faz a referência do setor |
+| Imagens em `<picture>` com WebP + fallback e `aspect-ratio` fixo | Peso menor e zero salto de layout |
 
 ### Paleta e tipografia
 
@@ -111,40 +153,48 @@ Mudar lá muda o site inteiro.
 
 ## Rastreamento
 
-O `js/main.js` já empurra os eventos para o `dataLayer`, prontos para o GTM
-criar as tags. Nenhum código de GTM está instalado ainda.
+O `js/main.js` já empurra os eventos para o `dataLayer`, prontos para o GTM criar
+as tags. **Nenhum código de GTM está instalado ainda** — isso é da fase seguinte.
 
 | Evento | Quando dispara |
 |---|---|
 | `generate_lead` | Formulário enviado — **conversão principal** |
 | `form_start` | Primeiro campo recebe foco (mede abandono) |
+| `consulta_cep` | CEP consultado na página de disponibilidade |
 | `click_whatsapp` | Clique em qualquer link do WhatsApp |
 | `click_telefone` | Clique em link `tel:` |
 | `view_solucao` | Troca de aba na home |
+| `view_precos` | Seção de investimento entra na tela |
 | `simulou_failover` | Uso do simulador do Link.Box |
+| `dimensionou_ramais` | Uso do dimensionador de ramais |
+| `calculou_downtime` | Uso da calculadora de custo de queda |
 | `scroll_90` | 90% da página lida |
 
 ---
 
-## O que falta
+## O que falta (fora desta fase)
 
 - [ ] Endpoint do formulário e integração com o funil de entrada do Piperun
-- [ ] Instalar o GTM e marcar os eventos como principais no GA4
-- [ ] Fotos autorais: hardware do Link.Box, NOC 24/7, equipe em campo
-- [ ] Blog
-- [ ] Levar as abas e o simulador para as páginas internas
-- [ ] Publicação e redirects 301 do domínio antigo
+- [ ] Instalar o GTM e marcar `generate_lead` como conversão principal no GA4
+- [ ] Revisão jurídica da Política de Privacidade — os campos `[a definir]`
+      (CNPJ, prazo de retenção, encarregado de dados) precisam ser preenchidos
+- [ ] Fotos de técnico em campo — única lacuna do banco de imagens
+- [ ] 3 landing pages restantes — recomendo só quando a mídia paga começar
+- [ ] Publicação, redirects 301 do domínio antigo e limpeza do spam de SEO
+      injetado no WordPress atual
 
 ---
 
 ## Publicação
 
-Site estático roda em qualquer lugar. As opções gratuitas que aceitam deploy
-direto do GitHub:
+Site estático roda em qualquer lugar. As opções gratuitas com deploy direto do GitHub:
 
 - **Cloudflare Pages** — conecta o repositório, sem comando de build
 - **Netlify** — arrasta a pasta ou conecta o repositório
 - **Vercel** — conecta o repositório
 - **GitHub Pages** — Settings → Pages → branch `main`
+
+Para mostrar rápido ao time de marketing, sem mexer em domínio:
+`app.netlify.com/drop` → arraste a pasta do projeto → sai uma URL temporária.
 
 Em todas: sem PHP, sem banco, sem painel administrativo. Nada para invadir.
