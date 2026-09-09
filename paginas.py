@@ -1113,3 +1113,161 @@ CALCULADORA = f"""
 </section>
 </main>
 """
+
+
+# ===========================================================================
+# CONSULTA DE DISPONIBILIDADE POR CEP
+#
+# CTA de alta intenção previsto no Pacote de Correção do Site, seção 03.
+# O CEP vem primeiro e o formulário só aparece depois: quem digitou o
+# endereço já investiu algo na interação e desiste menos.
+#
+# A busca do endereço usa o ViaCEP, que é público e não exige chave. Se a
+# consulta falhar, o fluxo continua com o CEP digitado — a viabilidade real
+# quem confirma é a equipe técnica, não esta página.
+# ===========================================================================
+CONSULTA_CEP = f"""
+<main id="main">
+<section class="page-hero" style="padding-bottom:44px">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow" style="margin-inline:auto">Consulta rápida</span>
+    <h1 class="display" style="max-width:20ch;margin-inline:auto">
+      Consulte a disponibilidade <span class="grad-text">no seu endereço</span>
+    </h1>
+    <p class="lead" style="max-width:56ch;margin:18px auto 0">
+      Informe o CEP da sua operação e verificamos a viabilidade técnica de
+      link dedicado — em fibra ou rádio — antes de qualquer proposta.
+    </p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="cep">
+
+      <div class="cep__passos">
+        <div class="cep__passo is-on" data-passo="1">Informe o CEP</div>
+        <div class="cep__passo" data-passo="2">Seus dados</div>
+        <div class="cep__passo" data-passo="3">Retorno da equipe</div>
+      </div>
+
+      <div class="cep__box">
+        <label class="calc__label" for="cep-campo" style="margin-bottom:12px">
+          <span>CEP da unidade</span>
+          <small>Matriz, filial ou ponto de venda</small>
+        </label>
+
+        <div class="cep__campo">
+          <div class="field">
+            <input type="text" id="cep-campo" name="cep" placeholder="00000-000"
+                   inputmode="numeric" autocomplete="postal-code" maxlength="9" data-cep>
+            <span class="field__err"></span>
+          </div>
+          <button type="button" class="btn btn--primary" data-cep-btn>
+            <span data-cep-btn-txt>Consultar</span>
+          </button>
+        </div>
+
+        <div class="cep__res" data-cep-res>
+          <b>
+            {ico('<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>', 17, 2.4)}
+            <span data-cep-res-titulo>Endereço localizado</span>
+          </b>
+          <p class="end" data-cep-endereco></p>
+          <p style="margin-top:8px">
+            Este endereço entra na fila de análise. Um especialista confirma a
+            viabilidade em fibra ou rádio e retorna com as opções.
+          </p>
+        </div>
+
+        <div class="cep__form" data-cep-form>
+          <form data-wicorp-form data-form-id="consulta-cep" data-solucao="link-dedicado" novalidate>
+            <div class="field">
+              <label for="cp-nome">Nome</label>
+              <input type="text" id="cp-nome" name="nome" placeholder="Como podemos te chamar" required autocomplete="name">
+              <span class="field__err"></span>
+            </div>
+            <div class="field">
+              <label for="cp-email">E-mail corporativo</label>
+              <input type="email" id="cp-email" name="email" placeholder="voce@suaempresa.com.br" required autocomplete="email">
+              <span class="field__err"></span>
+            </div>
+            <div class="field">
+              <label for="cp-empresa">Empresa</label>
+              <input type="text" id="cp-empresa" name="empresa" placeholder="Razão social ou nome fantasia" required autocomplete="organization">
+              <span class="field__err"></span>
+            </div>
+            <div class="field">
+              <label for="cp-whats">WhatsApp</label>
+              <input type="tel" id="cp-whats" name="whatsapp" placeholder="(11) 90000-0000" required autocomplete="tel" inputmode="numeric">
+              <span class="field__err"></span>
+            </div>
+            <input type="hidden" name="cep_consultado" data-cep-hidden>
+            <input type="hidden" name="endereco" data-endereco-hidden>
+
+            <button type="submit" class="btn btn--primary btn--wide" data-label="Solicitar análise de viabilidade">
+              Solicitar análise de viabilidade
+            </button>
+            <p class="form-note">Retornamos em até 1 dia útil. Seus dados não são compartilhados com terceiros.</p>
+          </form>
+
+          <div class="form-alt">
+            Prefere conversar agora?
+            <a href="https://wa.me/{WPP_HREF}" data-pos="consulta-cep" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="form-success">
+          {ico('<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>', 52, 2)}
+          <h3>Recebemos sua consulta</h3>
+          <p>Um especialista confirma a viabilidade no endereço e retorna em até 1 dia útil.</p>
+        </div>
+      </div>
+
+      <p class="muted" style="font-size:.84rem;text-align:center;margin-top:20px">
+        A consulta não gera compromisso. Atendemos com SLA garantido em
+        São Paulo e Grande São Paulo.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">O que acontece depois</span>
+      <h2 class="display">Da consulta à ativação</h2>
+    </div>
+    <div style="max-width:640px;margin-inline:auto">
+      <ol class="steps reveal">
+        <li><h3>Análise de viabilidade</h3><p>Verificamos o que existe de infraestrutura no endereço — fibra, rádio ou ambas.</p></li>
+        <li><h3>Conversa com um especialista</h3><p>Entendemos o que a operação precisa: banda, criticidade, número de unidades.</p></li>
+        <li><h3>Proposta desenhada para o seu caso</h3><p>Sem pacote pronto. A arquitetura sai do seu cenário, não de um catálogo.</p></li>
+        <li><h3>Instalação e ativação</h3><p>Equipe própria em campo, com testes validados antes da entrega.</p></li>
+        <li><h3>Monitoramento contínuo</h3><p>O NOC passa a acompanhar o link 24/7 e age antes que a falha chegue ao usuário.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div class="cta-band__inner">
+        <div>
+          <h2 class="display">E se este link cair?</h2>
+          <p class="lead">
+            Link dedicado bem dimensionado é estável, mas continua sendo um único caminho.
+            O Link.Box adiciona a segunda rota, com dois chips 4G/5G.
+          </p>
+        </div>
+        <div class="cta-band__actions">
+          <a href="solucoes/link-box-redundancia.html" class="btn btn--primary btn--wide">Conhecer o Link.Box {ARROW}</a>
+          <a href="tel:{TEL_HREF}" class="btn btn--ghost btn--wide">Ligar: {TEL}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+"""

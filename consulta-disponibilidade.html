@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Contato | Wicorp — Infraestrutura de TI e Telecom em São Paulo</title>
-<meta name="description" content="Fale com um especialista da Wicorp. Telefone (11) 4800-5000, WhatsApp e e-mail comercial. Retornamos em até 1 dia útil.">
-<link rel="canonical" href="https://wicorp.com.br/contato">
+<title>Consulte a disponibilidade de link dedicado no seu endereço | Wicorp</title>
+<meta name="description" content="Informe o CEP da sua operação e verificamos a viabilidade técnica de link dedicado em fibra ou rádio. Sem compromisso, retorno em até 1 dia útil.">
+<link rel="canonical" href="https://wicorp.com.br/consulta-disponibilidade">
 <meta name="robots" content="index, follow">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Wicorp">
-<meta property="og:title" content="Contato | Wicorp — Infraestrutura de TI e Telecom em São Paulo">
-<meta property="og:description" content="Fale com um especialista da Wicorp. Telefone (11) 4800-5000, WhatsApp e e-mail comercial. Retornamos em até 1 dia útil.">
-<meta property="og:url" content="https://wicorp.com.br/contato">
+<meta property="og:title" content="Consulte a disponibilidade de link dedicado no seu endereço | Wicorp">
+<meta property="og:description" content="Informe o CEP da sua operação e verificamos a viabilidade técnica de link dedicado em fibra ou rádio. Sem compromisso, retorno em até 1 dia útil.">
+<meta property="og:url" content="https://wicorp.com.br/consulta-disponibilidade">
 <meta property="og:image" content="https://wicorp.com.br/img/arte/og-wicorp.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -52,7 +52,7 @@
       <a href="index.html#diferenciais" class="nav__link">Diferenciais</a>
       <a href="quem-somos.html" class="nav__link">Quem somos</a>
       <a href="blog/index.html" class="nav__link">Blog</a>
-      <a href="contato.html" class="nav__link" style="color:#fff">Contato</a>
+      <a href="contato.html" class="nav__link">Contato</a>
     </nav>
     <a href="contato.html" class="btn btn--primary btn--sm header__cta">Falar com um especialista</a>
     <button class="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><span></span></button>
@@ -74,114 +74,147 @@
 </div>
 
 <main id="main">
-<section class="page-hero">
-  <div class="wrap">
-    <div class="page-hero__grid">
-      <div>
-        <span class="eyebrow">Fale com a Wicorp</span>
-        <h1 class="display">Vamos entender sua <span class="grad-text">operação</span></h1>
-        <p class="lead">Conte o que está acontecendo hoje e um especialista retorna em até 1 dia útil.
-        Se preferir resolver agora, ligue ou chame no WhatsApp.</p>
+<section class="page-hero" style="padding-bottom:44px">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow" style="margin-inline:auto">Consulta rápida</span>
+    <h1 class="display" style="max-width:20ch;margin-inline:auto">
+      Consulte a disponibilidade <span class="grad-text">no seu endereço</span>
+    </h1>
+    <p class="lead" style="max-width:56ch;margin:18px auto 0">
+      Informe o CEP da sua operação e verificamos a viabilidade técnica de
+      link dedicado — em fibra ou rádio — antes de qualquer proposta.
+    </p>
+  </div>
+</section>
 
-        <div class="grid" style="gap:18px; margin-top:34px">
-          <div class="feat">
-            <div class="feat__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-            <div><h3>Comercial</h3><p><a href="tel:+551148005000" style="color:var(--w-teal)">(11) 4800-5000</a> · <a href="https://wa.me/551131817756" data-pos="contato" target="_blank" rel="noopener" style="color:var(--w-teal)">WhatsApp (11) 3181-7756</a></p></div>
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="cep">
+
+      <div class="cep__passos">
+        <div class="cep__passo is-on" data-passo="1">Informe o CEP</div>
+        <div class="cep__passo" data-passo="2">Seus dados</div>
+        <div class="cep__passo" data-passo="3">Retorno da equipe</div>
+      </div>
+
+      <div class="cep__box">
+        <label class="calc__label" for="cep-campo" style="margin-bottom:12px">
+          <span>CEP da unidade</span>
+          <small>Matriz, filial ou ponto de venda</small>
+        </label>
+
+        <div class="cep__campo">
+          <div class="field">
+            <input type="text" id="cep-campo" name="cep" placeholder="00000-000"
+                   inputmode="numeric" autocomplete="postal-code" maxlength="9" data-cep>
+            <span class="field__err"></span>
           </div>
-          <div class="feat">
-            <div class="feat__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22 6 12 13 2 6"/></svg></div>
-            <div><h3>E-mail</h3><p><a href="mailto:comercial@wicorp.com.br" style="color:var(--w-teal)">comercial@wicorp.com.br</a></p></div>
-          </div>
-          <div class="feat">
-            <div class="feat__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <div><h3>Já é cliente?</h3><p>Abertura de chamado pelo portal de suporte: <a href="https://wicorp.desk.ms" target="_blank" rel="noopener" style="color:var(--w-teal)">wicorp.desk.ms</a></p></div>
-          </div>
-          <div class="feat">
-            <div class="feat__ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div><h3>Escritório</h3><p>Av. Luiz Dumont Villares, 2078 — CJ 78<br>Parada Inglesa, São Paulo — SP · 02239-000</p></div>
+          <button type="button" class="btn btn--primary" data-cep-btn>
+            <span data-cep-btn-txt>Consultar</span>
+          </button>
+        </div>
+
+        <div class="cep__res" data-cep-res>
+          <b>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span data-cep-res-titulo>Endereço localizado</span>
+          </b>
+          <p class="end" data-cep-endereco></p>
+          <p style="margin-top:8px">
+            Este endereço entra na fila de análise. Um especialista confirma a
+            viabilidade em fibra ou rádio e retorna com as opções.
+          </p>
+        </div>
+
+        <div class="cep__form" data-cep-form>
+          <form data-wicorp-form data-form-id="consulta-cep" data-solucao="link-dedicado" novalidate>
+            <div class="field">
+              <label for="cp-nome">Nome</label>
+              <input type="text" id="cp-nome" name="nome" placeholder="Como podemos te chamar" required autocomplete="name">
+              <span class="field__err"></span>
+            </div>
+            <div class="field">
+              <label for="cp-email">E-mail corporativo</label>
+              <input type="email" id="cp-email" name="email" placeholder="voce@suaempresa.com.br" required autocomplete="email">
+              <span class="field__err"></span>
+            </div>
+            <div class="field">
+              <label for="cp-empresa">Empresa</label>
+              <input type="text" id="cp-empresa" name="empresa" placeholder="Razão social ou nome fantasia" required autocomplete="organization">
+              <span class="field__err"></span>
+            </div>
+            <div class="field">
+              <label for="cp-whats">WhatsApp</label>
+              <input type="tel" id="cp-whats" name="whatsapp" placeholder="(11) 90000-0000" required autocomplete="tel" inputmode="numeric">
+              <span class="field__err"></span>
+            </div>
+            <input type="hidden" name="cep_consultado" data-cep-hidden>
+            <input type="hidden" name="endereco" data-endereco-hidden>
+
+            <button type="submit" class="btn btn--primary btn--wide" data-label="Solicitar análise de viabilidade">
+              Solicitar análise de viabilidade
+            </button>
+            <p class="form-note">Retornamos em até 1 dia útil. Seus dados não são compartilhados com terceiros.</p>
+          </form>
+
+          <div class="form-alt">
+            Prefere conversar agora?
+            <a href="https://wa.me/551131817756" data-pos="consulta-cep" target="_blank" rel="noopener">Chamar no WhatsApp</a>
           </div>
         </div>
+
+        <div class="form-success">
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h3>Recebemos sua consulta</h3>
+          <p>Um especialista confirma a viabilidade no endereço e retorna em até 1 dia útil.</p>
+        </div>
       </div>
-      
-<aside class="form-card" id="form">
-  <div class="form-card__head">
-    <h3>Fale com um especialista</h3>
-    <p>Retornamos em até 1 dia útil com alguém que entende do seu cenário.</p>
-  </div>
-  <form data-wicorp-form data-form-id="contato" data-solucao="geral" novalidate>
-    <div class="field">
-      <label for="contato-nome">Nome</label>
-      <input type="text" id="contato-nome" name="nome" placeholder="Como podemos te chamar" required autocomplete="name">
-      <span class="field__err"></span>
-    </div>
-    <div class="field">
-      <label for="contato-email">E-mail corporativo</label>
-      <input type="email" id="contato-email" name="email" placeholder="voce@suaempresa.com.br" required autocomplete="email">
-      <span class="field__err"></span>
-    </div>
-    <div class="field">
-      <label for="contato-empresa">Empresa</label>
-      <input type="text" id="contato-empresa" name="empresa" placeholder="Razão social ou nome fantasia" required autocomplete="organization">
-      <span class="field__err"></span>
-    </div>
-    <div class="field">
-      <label for="contato-whats">WhatsApp</label>
-      <input type="tel" id="contato-whats" name="whatsapp" placeholder="(11) 90000-0000" required autocomplete="tel" inputmode="numeric">
-      <span class="field__err"></span>
-    </div>
-    <button type="submit" class="btn btn--primary btn--wide" data-label="Enviar mensagem">Enviar mensagem</button>
-    <p class="form-note">Retornamos em até 1 dia útil. Seus dados não são compartilhados com terceiros.</p>
-  </form>
-  <div class="form-alt">
-    Prefere conversar agora?
-    <a href="https://wa.me/551131817756" data-pos="form-contato" target="_blank" rel="noopener">Chamar no WhatsApp</a>
-  </div>
-  <div class="form-success">
-    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-    <h3>Recebemos sua solicitação</h3>
-    <p>Um especialista da Wicorp entra em contato em até 1 dia útil.</p>
-  </div>
-</aside>
 
+      <p class="muted" style="font-size:.84rem;text-align:center;margin-top:20px">
+        A consulta não gera compromisso. Atendemos com SLA garantido em
+        São Paulo e Grande São Paulo.
+      </p>
     </div>
   </div>
 </section>
 
-<section class="section section--alt section--tight">
+<section class="section section--alt">
   <div class="wrap">
-    <div class="split reveal">
-      <div class="foto-frame">
-        <picture>
-          <source type="image/webp" srcset="img/fotos/recepcao-900.webp 900w, img/fotos/recepcao.webp 1600w" sizes="(max-width:900px) 100vw, 45vw">
-          <source type="image/jpeg" srcset="img/fotos/recepcao-900.jpg 900w, img/fotos/recepcao.jpg 1600w" sizes="(max-width:900px) 100vw, 45vw">
-          <img src="img/fotos/recepcao.jpg" alt="Recepção da Wicorp, com a marca aplicada na parede e poltronas de espera"
-               loading="lazy" decoding="async" style="aspect-ratio:3/2;object-fit:cover;width:100%">
-        </picture>
+    <div class="section-head center reveal">
+      <span class="eyebrow">O que acontece depois</span>
+      <h2 class="display">Da consulta à ativação</h2>
+    </div>
+    <div style="max-width:640px;margin-inline:auto">
+      <ol class="steps reveal">
+        <li><h3>Análise de viabilidade</h3><p>Verificamos o que existe de infraestrutura no endereço — fibra, rádio ou ambas.</p></li>
+        <li><h3>Conversa com um especialista</h3><p>Entendemos o que a operação precisa: banda, criticidade, número de unidades.</p></li>
+        <li><h3>Proposta desenhada para o seu caso</h3><p>Sem pacote pronto. A arquitetura sai do seu cenário, não de um catálogo.</p></li>
+        <li><h3>Instalação e ativação</h3><p>Equipe própria em campo, com testes validados antes da entrega.</p></li>
+        <li><h3>Monitoramento contínuo</h3><p>O NOC passa a acompanhar o link 24/7 e age antes que a falha chegue ao usuário.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div class="cta-band__inner">
+        <div>
+          <h2 class="display">E se este link cair?</h2>
+          <p class="lead">
+            Link dedicado bem dimensionado é estável, mas continua sendo um único caminho.
+            O Link.Box adiciona a segunda rota, com dois chips 4G/5G.
+          </p>
+        </div>
+        <div class="cta-band__actions">
+          <a href="solucoes/link-box-redundancia.html" class="btn btn--primary btn--wide">Conhecer o Link.Box <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a href="tel:+551148005000" class="btn btn--ghost btn--wide">Ligar: (11) 4800-5000</a>
+        </div>
       </div>
-      <div>
-        <span class="eyebrow">Onde estamos</span>
-        <h2 class="display" style="margin-bottom:18px">Nossa casa fica na Parada Inglesa</h2>
-        <p class="lead" style="margin-bottom:20px">
-          Av. Luiz Dumont Villares, 2078 — CJ 78, São Paulo.
-          Se preferir conversar pessoalmente, agende com o comercial e tome um café aqui.
-        </p>
-        <a href="tel:+551148005000" class="btn btn--ghost">Ligar: (11) 4800-5000</a>
     </div>
   </div>
 </section>
-
-
-<section class="proof">
-  <div class="wrap">
-    <div class="proof__grid">
-      <div class="proof__item"><div class="proof__num grad-text" data-count="28">0</div><div class="proof__lbl">anos de mercado<br>desde 1998</div></div>
-      <div class="proof__item"><div class="proof__num grad-text" data-count="800" data-prefix="+">0</div><div class="proof__lbl">clientes ativos<br>em todo o Brasil</div></div>
-      <div class="proof__item"><div class="proof__num grad-text" data-count="700" data-prefix="+">0</div><div class="proof__lbl">equipamentos<br>em operação</div></div>
-      <div class="proof__item"><div class="proof__num grad-text">24/7</div><div class="proof__lbl">monitoramento<br>proativo da rede</div></div>
-    </div>
-  </div>
-</section>
-
 </main>
 
 <footer class="footer">

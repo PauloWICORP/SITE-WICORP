@@ -171,7 +171,7 @@
   }
 
   $$('form[data-wicorp-form]').forEach(function (form) {
-    var card    = form.closest('.form-card');
+    var card    = form.closest('.form-card, .cep__box');
     var formId  = form.getAttribute('data-form-id') || 'form';
     var solucao = form.getAttribute('data-solucao') || 'geral';
     var started = false;
@@ -232,6 +232,9 @@
         if (card) {
           card.classList.add('is-sent');
           card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Página de consulta de CEP: acende o passo 3 do indicador
+          var passo3 = $('.cep__passo[data-passo="3"]');
+          if (passo3) passo3.classList.add('is-on');
         }
         form.reset();
         if (btn) { btn.disabled = false; btn.textContent = btn.getAttribute('data-label') || 'Enviar'; }
@@ -640,6 +643,112 @@
     });
 
     renderCalc();
+  }
+
+
+  /* ----------------------------------------------------------------------
+     15. CONSULTA DE DISPONIBILIDADE POR CEP
+     O CEP vem antes do formulário de propósito: quem já digitou o endereço
+     desiste menos na etapa seguinte.
+     A busca usa o ViaCEP (público, sem chave). Se falhar, o fluxo continua
+     com o CEP digitado — quem confirma viabilidade é a equipe, não a página.
+     ---------------------------------------------------------------------- */
+  var cepInput = $('[data-cep]');
+  if (cepInput) {
+    var cepBtn    = $('[data-cep-btn]');
+    var cepBtnTxt = $('[data-cep-btn-txt]');
+    var cepRes    = $('[data-cep-res]');
+    var cepForm   = $('[data-cep-form]');
+    var cepEnd    = $('[data-cep-endereco]');
+    var cepTitulo = $('[data-cep-res-titulo]');
+    var passos    = $$('[data-passo]');
+
+    function maskCep(v) {
+      var d = v.replace(/\D/g, '').slice(0, 8);
+      return d.length > 5 ? d.slice(0, 5) + '-' + d.slice(5) : d;
+    }
+
+    function marcarPasso(n) {
+      passos.forEach(function (p, i) {
+        p.classList.toggle('is-on', i < n);
+      });
+    }
+
+    function erroCep(msg) {
+      var f = cepInput.closest('.field');
+      f.classList.add('has-error');
+      $('.field__err', f).textContent = msg;
+    }
+
+    cepInput.addEventListener('input', function () {
+      cepInput.value = maskCep(cepInput.value);
+      cepInput.closest('.field').classList.remove('has-error');
+    });
+    cepInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); cepBtn.click(); }
+    });
+
+    cepBtn.addEventListener('click', function () {
+      var digitos = cepInput.value.replace(/\D/g, '');
+      if (digitos.length !== 8) {
+        erroCep('Informe os 8 dígitos do CEP.');
+        cepInput.focus();
+        return;
+      }
+
+      cepBtn.disabled = true;
+      cepBtnTxt.textContent = 'Consultando...';
+
+      /** Mostra o resultado e libera o formulário. */
+      function concluir(endereco) {
+        cepEnd.textContent = endereco;
+        cepRes.classList.add('is-on');
+        cepForm.classList.add('is-on');
+        marcarPasso(2);
+        var h = $('[data-cep-hidden]'); if (h) h.value = cepInput.value;
+        var e = $('[data-endereco-hidden]'); if (e) e.value = endereco;
+        cepBtn.disabled = false;
+        cepBtnTxt.textContent = 'Trocar CEP';
+        var primeiro = $('#cp-nome');
+        if (primeiro) primeiro.focus({ preventScroll: true });
+        track('consulta_cep', { cep: cepInput.value, encontrado: endereco.indexOf('CEP ') !== 0 });
+      }
+
+      // Se o ViaCEP demorar, seguimos sem ele
+      var respondeu = false;
+      var prazo = setTimeout(function () {
+        if (respondeu) return;
+        respondeu = true;
+        cepTitulo.textContent = 'CEP registrado';
+        concluir('CEP ' + cepInput.value);
+      }, 4000);
+
+      fetch('https://viacep.com.br/ws/' + digitos + '/json/')
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (respondeu) return;
+          respondeu = true; clearTimeout(prazo);
+          if (d.erro) {
+            cepBtn.disabled = false;
+            cepBtnTxt.textContent = 'Consultar';
+            erroCep('CEP não encontrado. Confira os números.');
+            return;
+          }
+          cepTitulo.textContent = 'Endereço localizado';
+          var partes = [d.logradouro, d.bairro].filter(Boolean).join(', ');
+          concluir((partes ? partes + ' — ' : '') + d.localidade + '/' + d.uf);
+        })
+        .catch(function () {
+          if (respondeu) return;
+          respondeu = true; clearTimeout(prazo);
+          cepTitulo.textContent = 'CEP registrado';
+          concluir('CEP ' + cepInput.value);
+        });
+    });
+
+    // Ao enviar o formulário, marca a última etapa
+    var f = $('form[data-form-id="consulta-cep"]');
+    if (f) f.addEventListener('submit', function () { setTimeout(function(){ marcarPasso(3); }, 700); });
   }
 
 })();
