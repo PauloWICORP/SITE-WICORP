@@ -970,19 +970,9 @@ BODY_LP = f"""
       <span class="eyebrow">Quem já centralizou</span>
       <h2 class="display">O que mudou para eles</h2>
     </div>
-    <div class="grid grid--2">
-      <figure class="quote quote--feat reveal">
-        <div class="quote__logo"><span>Medtec</span></div>
-        <div class="quote__mark">"</div>
-        <p>Iniciamos a parceria em 2018 e trouxe economia absurda. O valor caiu drasticamente, com melhorias em processos.</p>
-        <figcaption class="quote__who"><div class="quote__av">VT</div><div><b>Vitória Teixeira</b><span>Gerente Financeira · Medtec</span></div></figcaption>
-      </figure>
-      <figure class="quote quote--feat reveal" data-d="1">
-        <div class="quote__logo"><span>Kadão</span></div>
-        <div class="quote__mark">"</div>
-        <p>Grande eficiência e seriedade em soluções de comunicação, infraestrutura e outsourcing. Ágil e rápida.</p>
-        <figcaption class="quote__who"><div class="quote__av">OS</div><div><b>Osmar Silva</b><span>Supervisor de TI · Kadão</span></div></figcaption>
-      </figure>
+    <div class="avali">
+      {sections.avali_card(sections.AVALIACOES[1], prefix="../")}
+      {sections.avali_card(sections.AVALIACOES[2], prefix="../", d=1)}
     </div>
   </div>
 </section>

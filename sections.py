@@ -613,3 +613,83 @@ def foto(nome, alt, ratio="16/9", ext="jpg", prefix="", larguras=(900, 1600),
   <img src="{p}.{ext}" alt="{alt}" loading="{loading}" decoding="async"
        style="aspect-ratio:{ratio};object-fit:{'contain' if ext == 'png' else 'cover'};width:100%;border-radius:{radius}">
 </picture>"""
+
+
+# ==========================================================================
+# AVALIAÇÕES DE CLIENTES
+# Textos integrais, do jeito que cada cliente escreveu — não editados.
+# As logos ficam em img/logos/. Enquanto o arquivo não existe, o card mostra
+# o nome da empresa em uma placa, e o layout não muda quando a logo entrar.
+# ==========================================================================
+
+ESTRELA = ('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3-5.8 3 1.1-6.5'
+           'L2.6 9.4l6.5-.9L12 2.6z"/></svg>')
+
+AVALIACOES = [
+    dict(empresa="Udiaço", logo="udiaco", nome="Edson F. Boa Sorte", cargo="Gestor de TI",
+         texto="Atendimento humanizado, tratamento com respeito e empatia onde as necessidades "
+               "de nossa empresa são colocadas em primeiro lugar. Muito importante se sentir "
+               "compreendido, e ter alguém em que possa confiar."),
+    dict(empresa="Medtec", logo="medtec", nome="Vitória Teixeira", cargo="Gerente Financeira",
+         texto="Iniciamos a parceria com a Wicorp no ano de 2018 e ela trouxe uma economia absurda "
+               "para o nosso negócio. Antes de firmar esta parceria, pagávamos valores altíssimos de "
+               "contas de telefonia e com a Wicorp, além deste valor cair drasticamente de forma "
+               "positiva, tivemos melhorias em processos. O time de suporte é ágil e conta com pessoas "
+               "preparadas para solucionar os problemas e falhas operacionais."),
+    dict(empresa="Kadão Alimentos", logo="kadao", nome="Osmar Silva", cargo="Supervisor de TI",
+         texto="A Wicorp tem nos atendido com grande eficiência e seriedade, tanto nas soluções de "
+               "comunicação, infraestrutura e outsourcing, uma empresa competente, comprometida, ágil "
+               "e rápida nas respostas. Entendem muito do que fazem e realizam muito bem os projetos, "
+               "com a personalização e foco adequados à área de atuação do cliente. Só temos a elogiar "
+               "a sensibilidade e solidez deste convívio que entre nós foi estabelecido."),
+    dict(empresa="Nova Página", logo="nova-pagina", nome="Fábio Pinheiro", cargo="Coordenador de TI",
+         texto="Wicorp está sempre nos ajudando a melhorar os serviços de telefonia em nuvem e internet "
+               "dedicada, oferecendo várias alternativas e sempre visando a entrega do melhor custo, "
+               "sem perda de qualidade dos serviços."),
+]
+
+
+def _avali_logo(a, prefix=""):
+    """Placa da empresa. Troque o <span> por <img> quando a logo chegar."""
+    return (f'<div class="avali__logo" data-logo="{a["logo"]}">'
+            f'<span>{a["empresa"]}</span></div>')
+
+
+def avali_card(a, prefix="", d=0):
+    atraso = f' data-d="{d}"' if d else ""
+    return f"""
+      <figure class="avali__card reveal"{atraso}>
+        <div class="avali__stars" role="img" aria-label="Avaliação 5 de 5">
+          {ESTRELA * 5}
+        </div>
+        <blockquote>{a['texto']}</blockquote>
+        <figcaption class="avali__quem">
+          {_avali_logo(a, prefix)}
+          <div class="avali__nome">
+            <b>{a['nome']}</b>
+            <span>{a['cargo']} · {a['empresa']}</span>
+          </div>
+        </figcaption>
+      </figure>"""
+
+
+def avaliacoes(prefix="", titulo="O que nossos clientes dizem",
+               eyebrow="Quem já opera com a gente", quantos=None):
+    lista = AVALIACOES if quantos is None else AVALIACOES[:quantos]
+    cards = "".join(avali_card(a, prefix, i) for i, a in enumerate(lista))
+    return f"""
+<section class="section sec-tex" id="avaliacoes">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="margin-inline:auto">{eyebrow}</span>
+      <h2 class="display">{titulo}</h2>
+      <p class="lead">
+        Mais de 800 empresas em todo o Brasil. Estes são depoimentos reais,
+        assinados por quem responde pela TI de cada operação — publicados
+        na íntegra, sem corte.
+      </p>
+    </div>
+    <div class="avali">{cards}
+    </div>
+  </div>
+</section>"""

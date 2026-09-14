@@ -1670,3 +1670,84 @@ a.sup-card:hover{border-color:var(--line-strong); transform:translateY(-3px)}
   mask-image:radial-gradient(120% 90% at 50% 0%,#000 0%,transparent 72%);
 }
 .sec-tex > .wrap{position:relative; z-index:1}
+
+/* ==========================================================================
+   45. AVALIAÇÕES DE CLIENTES
+   Prova social é a seção que mais pesa na decisão — por isso ela tem
+   tratamento próprio, e não o card padrão.
+   ========================================================================== */
+.avali{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:24px;
+  align-items:start;
+}
+.avali > *{min-width:0}
+
+.avali__card{
+  position:relative; overflow:hidden;
+  display:flex; flex-direction:column;
+  padding:34px 32px 28px;
+  border-radius:var(--r-lg);
+  border:1px solid var(--line-strong);
+  background:linear-gradient(158deg, var(--surface-3) 0%, #101C1F 100%);
+  box-shadow:var(--shadow-sm);
+  transition:border-color .22s, transform .22s var(--ease), box-shadow .22s;
+}
+.avali__card::before{
+  content:""; position:absolute; top:0; left:0; right:0; height:4px;
+  background:var(--w-grad);
+}
+.avali__card::after{
+  content:""; position:absolute; top:-150px; right:-120px;
+  width:400px; height:400px; border-radius:50%;
+  background:radial-gradient(circle, rgba(91,191,198,.26), transparent 64%);
+  filter:blur(26px); pointer-events:none;
+}
+.avali__card > *{position:relative; z-index:1}
+.avali__card:hover{
+  border-color:var(--w-teal); transform:translateY(-4px);
+  box-shadow:0 22px 46px -18px rgba(0,0,0,.8);
+}
+
+.avali__stars{display:flex; gap:5px; margin-bottom:20px}
+.avali__stars svg{
+  width:19px; height:19px; flex:0 0 19px;
+  fill:var(--w-lime); stroke:none;
+  filter:drop-shadow(0 0 6px rgba(199,216,110,.35));
+}
+
+.avali__card blockquote{
+  font-size:1.02rem; line-height:1.72; color:var(--tx);
+  margin:0 0 26px; flex:1; quotes:'"' '"';
+}
+.avali__card blockquote::before{content:open-quote}
+.avali__card blockquote::after{content:close-quote}
+
+.avali__quem{
+  display:flex; align-items:center; gap:16px;
+  padding-top:20px; border-top:1px solid var(--line);
+}
+.avali__logo{
+  flex:0 0 auto; height:52px; min-width:88px; padding:0 14px;
+  display:grid; place-items:center;
+  border:1px solid var(--line); border-radius:12px;
+  background:rgba(255,255,255,.05);
+}
+.avali__logo span{
+  font-family:var(--f-display); font-size:1.1rem; letter-spacing:.05em;
+  color:var(--tx-2); white-space:nowrap; line-height:1;
+}
+/* Quando a logo real entrar: fundo claro para logos coloridas respirarem */
+.avali__logo:has(img){background:#fff; border-color:transparent; padding:0 12px}
+.avali__logo img{max-height:34px; max-width:108px; width:auto; object-fit:contain}
+
+.avali__nome b{display:block; font-size:1rem; font-weight:600; margin-bottom:3px}
+.avali__nome span{display:block; font-size:.84rem; color:var(--tx-3)}
+
+@media (max-width:900px){
+  .avali{grid-template-columns:1fr; gap:20px}
+  .avali__card{padding:28px 22px 24px}
+  .avali__card blockquote{font-size:.98rem}
+}
+@media (max-width:480px){
+  .avali__quem{flex-direction:column; align-items:flex-start; gap:12px}
+}

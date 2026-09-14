@@ -1,13 +1,29 @@
-Logos dos clientes que aparecem nos depoimentos.
+Logos dos clientes que aparecem nas avaliações da home.
 
-Quando a autorização de cada cliente sair, coloque o arquivo aqui
-(PNG com fundo transparente, altura mínima 120px) e troque, no HTML:
+Coloque os arquivos aqui com EXATAMENTE estes nomes:
 
-    <div class="quote__logo"><span>Medtec</span></div>
+    udiaco.png
+    medtec.png
+    kadao.png
+    nova-pagina.png
+
+(PNG com fundo transparente, altura mínima 120px. WebP também serve —
+ nesse caso troque a extensão no HTML.)
+
+Depois, em index.html e em lp/centralizar-fornecedores-ti.html, troque:
+
+    <div class="avali__logo" data-logo="medtec"><span>Medtec</span></div>
 
 por:
 
-    <div class="quote__logo"><img src="img/logos/medtec.png" alt="Medtec"></div>
+    <div class="avali__logo" data-logo="medtec"><img src="img/logos/medtec.png" alt="Medtec"></div>
 
-Nas páginas dentro de pastas (solucoes/, blog/, lp/) o caminho é ../img/logos/.
-O CSS já limita altura e largura — não precisa redimensionar o arquivo antes.
+Nas páginas dentro de pastas (lp/, solucoes/, blog/) o caminho é ../img/logos/.
+
+O CSS já cuida do resto: quando existe <img> dentro da placa, o fundo vira
+branco automaticamente, para logo colorida não sumir no fundo escuro.
+Altura e largura máximas também já estão limitadas — não precisa
+redimensionar o arquivo antes.
+
+As logos já estão publicadas no site atual, em:
+    wicorp.com.br/wp-content/uploads/2026/03/
