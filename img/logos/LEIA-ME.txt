@@ -1,0 +1,13 @@
+Logos dos clientes que aparecem nos depoimentos.
+
+Quando a autorização de cada cliente sair, coloque o arquivo aqui
+(PNG com fundo transparente, altura mínima 120px) e troque, no HTML:
+
+    <div class="quote__logo"><span>Medtec</span></div>
+
+por:
+
+    <div class="quote__logo"><img src="img/logos/medtec.png" alt="Medtec"></div>
+
+Nas páginas dentro de pastas (solucoes/, blog/, lp/) o caminho é ../img/logos/.
+O CSS já limita altura e largura — não precisa redimensionar o arquivo antes.
