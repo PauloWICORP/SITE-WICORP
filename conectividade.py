@@ -20,8 +20,8 @@ e por isso cada página aponta para a outra.
 from sections import ico, foto, FAILOVER, MOCK_NOC, mockup_section
 
 P = "../"
-WPP_HREF = "551131817756"
-TEL, TEL_HREF = "(11) 4800-5000", "+551148005000"
+WPP_HREF = "551150287515"
+TEL, TEL_HREF = "(11) 5028-7515", "+551150287515"
 
 CHECK = ('<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
          'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'

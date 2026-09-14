@@ -138,7 +138,8 @@ Estas regras vêm do Pacote de Correção do Site e não são estética — são
 | H1 com palavra-chave, subtítulo com benefício | Atende busca sem violar o Manual de Copy |
 | Copy em Contexto → Consciência → Educação → Autoridade → Ação | Estrutura obrigatória do Manual de Copy |
 | Imagens em `<picture>` com WebP + fallback e `aspect-ratio` fixo | Peso menor e zero salto de layout |
-| Capas do blog são fotos reais da operação, não arte genérica | Foto de verdade sustenta a autoridade que o texto afirma |
+| Capas do blog priorizam foto real da operação | Foto de verdade sustenta a autoridade que o texto afirma |
+| Telefone e WhatsApp são o mesmo número, com o canal rotulado | Um número só evita o lead escolher errado e cair na fila errada |
 
 ### Paleta e tipografia
 
@@ -188,6 +189,17 @@ as tags. **Nenhum código de GTM está instalado ainda** — isso é da fase seg
 - [ ] 3 landing pages restantes — recomendo só quando a mídia paga começar
 - [ ] Publicação, redirects 301 do domínio antigo e limpeza do spam de SEO
       injetado no WordPress atual
+
+---
+
+## Contato oficial
+
+Telefone e WhatsApp usam **o mesmo número**: `(11) 5028-7515` (`+55 11 5028-7515`).
+
+Ele vive em um lugar só por arquivo — `TEL`, `TEL_HREF` e `WPP_HREF`, no topo de
+`build.py`, `paginas.py`, `conectividade.py` e `sections.py`. Trocar o número é
+editar essas linhas e rodar `python3 build.py`. O `index.html`, por ser editado
+à mão, tem os valores escritos direto.
 
 ---
 
