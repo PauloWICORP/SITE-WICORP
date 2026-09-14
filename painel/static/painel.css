@@ -154,3 +154,19 @@ h2{font-size:1.15rem; margin:0 0 8px}
   .tabela td{display:block; border-bottom:none}
   .tabela tr{display:block; border-bottom:1px solid var(--linha)}
 }
+
+/* Bloco destacado dentro do formulario — o botao do card mora aqui */
+.bloco{
+  border:1px solid var(--linha-forte); border-radius:var(--r);
+  padding:22px 22px 6px; margin:0 0 22px; background:#FAFCFC;
+}
+.bloco legend{
+  font-weight:700; font-size:.94rem; padding:0 8px; color:var(--tinta);
+}
+.bloco__sub{margin:0 0 18px; font-size:.87rem; color:var(--tinta-2); line-height:1.6}
+.campo select{
+  width:100%; padding:10px 13px; border:1px solid var(--linha-forte);
+  border-radius:var(--r); font:inherit; color:var(--tinta); background:var(--branco);
+}
+.campo select:focus{outline:none; border-color:var(--teal); box-shadow:0 0 0 3px rgba(46,154,163,.15)}
+.campo small code{background:rgba(0,0,0,.06); padding:1px 5px; border-radius:4px; font-size:.95em}

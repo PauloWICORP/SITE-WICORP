@@ -97,7 +97,6 @@ def header(prefix, active=""):
       <a href="{prefix}index.html#diferenciais" class="nav__link">Diferenciais</a>
       <a href="{prefix}quem-somos.html" class="nav__link">Quem somos</a>
       <a href="{prefix}blog/index.html" class="nav__link">Blog</a>
-      <a href="{prefix}novidades.html" class="nav__link"{cls('novidades')}>Novidades</a>
       <a href="{prefix}suporte.html" class="nav__link"{cls('suporte')}>Suporte</a>
       <a href="{prefix}contato.html" class="nav__link"{cls('contato')}>Contato</a>
     </nav>
@@ -116,7 +115,6 @@ def header(prefix, active=""):
   <a href="{prefix}index.html#diferenciais">Diferenciais</a>
   <a href="{prefix}quem-somos.html">Quem somos</a>
   <a href="{prefix}blog/index.html">Blog</a>
-  <a href="{prefix}novidades.html">Novidades</a>
   <a href="{prefix}suporte.html">Suporte</a>
   <a href="{prefix}contato.html">Contato</a>
   <a href="{prefix}contato.html" class="btn btn--primary btn--wide">Falar com um especialista</a>

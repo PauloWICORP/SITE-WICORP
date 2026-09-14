@@ -123,6 +123,57 @@ def situacao(item):
     return ("no-ar", "No ar")
 
 
+def paginas_do_site():
+    """Lista as paginas do site, para o painel oferecer no seletor de link.
+
+    Assim ninguem precisa decorar caminho de arquivo — e ninguem digita
+    errado e publica um card que leva a lugar nenhum.
+    """
+    nomes = {
+        "index.html": "Home",
+        "quem-somos.html": "Quem somos",
+        "contato.html": "Contato",
+        "suporte.html": "Suporte",
+        "novidades.html": "Novidades",
+        "privacidade.html": "Política de Privacidade",
+        "consulta-disponibilidade.html": "Consulta de disponibilidade (CEP)",
+        "calculadora-custo-downtime.html": "Calculadora de custo de downtime",
+        "blog/index.html": "Blog",
+        "solucoes/link-dedicado-empresarial.html": "Solução · Link dedicado",
+        "solucoes/link-box-redundancia.html": "Solução · Link.Box",
+        "solucoes/pabx-virtual-nuvem.html": "Solução · PABX virtual com IA",
+        "solucoes/firewall-sd-wan.html": "Solução · Firewall e SD-WAN",
+        "solucoes/infraestrutura-ti.html": "Solução · Infraestrutura e projetos",
+    }
+    achadas = [(c, n) for c, n in nomes.items() if (RAIZ / c).is_file()]
+
+    # Artigos do blog entram sozinhos conforme forem criados
+    blog = RAIZ / "blog"
+    if blog.is_dir():
+        for arq in sorted(blog.glob("*.html")):
+            if arq.name == "index.html":
+                continue
+            achadas.append((f"blog/{arq.name}", f"Artigo · {arq.stem.replace('-', ' ')}"))
+    return achadas
+
+
+def link_valido(link):
+    """Aceita http(s) ou caminho de uma pagina que existe. Rejeita o resto."""
+    link = (link or "").strip()
+    if not link:
+        return True, ""
+    baixo = link.lower()
+    if baixo.startswith(("http://", "https://")):
+        return True, ""
+    # Esquema esquisito, caminho absoluto ou subida de pasta: fora.
+    if ":" in link.split("/")[0] or link.startswith(("/", "..")):
+        return False, "Use uma página do site (pelo seletor) ou um endereço começando com https://"
+    alvo = (RAIZ / link.split("#")[0].split("?")[0])
+    if alvo.is_file():
+        return True, ""
+    return False, f"A página “{link}” não existe no site. Escolha uma da lista."
+
+
 # --------------------------------------------------------------- imagem ---
 
 def salvar_imagem(arquivo, nome_base):
@@ -317,6 +368,11 @@ def editar(item_id=None):
         if inicio and fim and fim < inicio:
             erros.append("A data final não pode ser anterior à inicial.")
 
+        link = request.form.get("link", "").strip()
+        ok_link, erro_link = link_valido(link)
+        if not ok_link:
+            erros.append(erro_link)
+
         novo = dict(item) if item else {}
         arquivo = request.files.get("imagem")
         if arquivo and arquivo.filename:
@@ -337,7 +393,8 @@ def editar(item_id=None):
                         etiqueta=request.form.get("etiqueta", "").strip(),
                         link=request.form.get("link", "").strip(),
                         link_texto=request.form.get("link_texto", "").strip())
-            return render_template("form.html", item=novo, novo=item is None)
+            return render_template("form.html", item=novo, novo=item is None,
+                                   paginas=paginas_do_site())
 
         novo.update(
             titulo=titulo, resumo=resumo, inicio=inicio, fim=fim,
@@ -367,7 +424,8 @@ def editar(item_id=None):
 
     vazio = {"etiqueta": "Novidade", "inicio": date.today().isoformat(),
              "link_texto": "Saber mais"}
-    return render_template("form.html", item=item or vazio, novo=item is None)
+    return render_template("form.html", item=item or vazio, novo=item is None,
+                           paginas=paginas_do_site())
 
 
 @app.route("/admin/novidade/<item_id>/remover", methods=["POST"])

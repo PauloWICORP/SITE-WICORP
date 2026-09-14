@@ -518,6 +518,10 @@ def blog_index():
       Conectividade, telefonia e segurança explicadas sem jargão — para o gestor decidir
       com informação, não com achismo.
     </p>
+    <p style="margin-top:20px">
+      <a href="../novidades.html" class="btn btn--ghost btn--sm"
+         data-label="Ver as novidades da Wicorp">Ver as novidades da Wicorp {ARROW}</a>
+    </p>
   </div>
 </section>
 

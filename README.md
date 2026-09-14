@@ -47,6 +47,8 @@ Acesse `http://localhost:8000`.
 ├── obrigado.html                             Destino de conversão
 ├── suporte.html                              Canais de suporte para quem já é cliente
 ├── novidades.html                            Lançamentos e avisos, publicados pelo painel
+│                                             (fora do menu do topo — entra pelo rodapé,
+│                                              pela faixa da home e pelo blog)
 ├── privacidade.html                          Política de Privacidade / LGPD
 ├── 404.html                                  Página não encontrada
 │
@@ -207,9 +209,14 @@ img/novidades/           Imagens das novidades (o painel grava e apaga)
 ```
 
 Pelo painel dá para criar, editar e remover novidades, com imagem, etiqueta,
-link e **período de exibição**: data de entrada e data de saída. Item agendado
-entra sozinho; item vencido some. Ao salvar, o painel roda o `build.py` e o
-site já sai atualizado.
+botão de destino e **período de exibição**: data de entrada e data de saída.
+Item agendado entra sozinho; item vencido some. Ao salvar, o painel roda o
+`build.py` e o site já sai atualizado.
+
+O botão do card tem bloco próprio no formulário: um seletor com todas as
+páginas do site (sem precisar decorar caminho), um campo para endereço externo
+e o texto do botão. Link para página que não existe é recusado na hora, e
+`javascript:` e afins nem chegam a ser gravados.
 
 Quando não há nenhuma novidade dentro do período, a faixa some da home e a
 página mostra um aviso no lugar — o site nunca fica com buraco.
