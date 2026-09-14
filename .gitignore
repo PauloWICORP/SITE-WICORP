@@ -20,3 +20,14 @@ desktop.ini
 
 # O pacote nao entra no repositorio: os arquivos ja estao aqui
 wicorp-site.zip
+
+# Conteudo publicado pelo painel — vive no servidor, nao no repositorio.
+# Se isso entrar no Git, um "git pull" apaga novidade que esta no ar.
+conteudo.json
+!conteudo.exemplo.json
+img/novidades/*
+!img/novidades/LEIA-ME.txt
+
+# Senha do painel
+painel/config.json
+.venv/

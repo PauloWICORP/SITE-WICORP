@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block titulo %}Novidades{% endblock %}
+{% block corpo %}
+
+<div class="cabecalho">
+  <div>
+    <h1>Novidades</h1>
+    <p class="sub">O que aparece na home e na página de novidades do site.</p>
+  </div>
+  <div class="cabecalho__acoes">
+    <form method="post" action="{{ url_for('publicar') }}">
+      <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+      <button class="btn" title="Regera o site sem mudar conteúdo">Republicar site</button>
+    </form>
+    <a href="{{ url_for('editar') }}" class="btn btn--primario">+ Nova novidade</a>
+  </div>
+</div>
+
+{% if not itens %}
+  <div class="vazio">
+    <h2>Nenhuma novidade cadastrada</h2>
+    <p>Enquanto não houver nada aqui, a faixa de novidades não aparece na home
+       e a página de novidades mostra um aviso no lugar. O site não fica com
+       espaço vazio.</p>
+    <a href="{{ url_for('editar') }}" class="btn btn--primario">Criar a primeira</a>
+  </div>
+{% else %}
+  <table class="tabela">
+    <thead>
+      <tr><th>Card</th><th>Período</th><th>Situação</th><th></th></tr>
+    </thead>
+    <tbody>
+    {% for i in itens %}
+      <tr>
+        <td class="col-card">
+          {% if i.imagem %}<img src="/{{ i.imagem }}" alt="" class="mini">{% endif %}
+          <div>
+            <b>{{ i.titulo }}</b>
+            <span class="etiqueta">{{ i.etiqueta or 'Novidade' }}</span>
+            <p>{{ i.resumo[:120] }}{% if i.resumo|length > 120 %}…{% endif %}</p>
+          </div>
+        </td>
+        <td class="col-data">
+          <span>de {{ i.inicio or '—' }}</span>
+          <span>{% if i.fim %}até {{ i.fim }}{% else %}sem data final{% endif %}</span>
+        </td>
+        <td><span class="selo selo--{{ i._estado }}">{{ i._rotulo }}</span></td>
+        <td class="col-acoes">
+          <a href="{{ url_for('editar', item_id=i.id) }}" class="btn btn--pequeno">Editar</a>
+          <form method="post" action="{{ url_for('remover', item_id=i.id) }}"
+                onsubmit="return confirm('Remover “{{ i.titulo }}”? A imagem também é apagada.')">
+            <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+            <button class="btn btn--pequeno btn--risco">Remover</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <p class="rodape-nota">
+    Hoje é {{ hoje }}. Quem está <b>Agendada</b> entra sozinha na data de início;
+    quem está <b>Fora do ar</b> já passou da data final e não aparece mais no site,
+    mas continua aqui caso você queira reaproveitar.
+  </p>
+{% endif %}
+
+{% endblock %}

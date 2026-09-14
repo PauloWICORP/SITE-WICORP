@@ -17,6 +17,7 @@ import pathlib
 import sections
 import paginas
 import conectividade
+import novidades as nov
 
 ROOT = pathlib.Path(__file__).parent
 SITE = "https://wicorp.com.br"
@@ -96,6 +97,7 @@ def header(prefix, active=""):
       <a href="{prefix}index.html#diferenciais" class="nav__link">Diferenciais</a>
       <a href="{prefix}quem-somos.html" class="nav__link">Quem somos</a>
       <a href="{prefix}blog/index.html" class="nav__link">Blog</a>
+      <a href="{prefix}novidades.html" class="nav__link"{cls('novidades')}>Novidades</a>
       <a href="{prefix}suporte.html" class="nav__link"{cls('suporte')}>Suporte</a>
       <a href="{prefix}contato.html" class="nav__link"{cls('contato')}>Contato</a>
     </nav>
@@ -114,6 +116,7 @@ def header(prefix, active=""):
   <a href="{prefix}index.html#diferenciais">Diferenciais</a>
   <a href="{prefix}quem-somos.html">Quem somos</a>
   <a href="{prefix}blog/index.html">Blog</a>
+  <a href="{prefix}novidades.html">Novidades</a>
   <a href="{prefix}suporte.html">Suporte</a>
   <a href="{prefix}contato.html">Contato</a>
   <a href="{prefix}contato.html" class="btn btn--primary btn--wide">Falar com um especialista</a>
@@ -180,6 +183,7 @@ def footer(prefix, lp=False):
           <li><a href="{prefix}quem-somos.html">Quem somos</a></li>
           <li><a href="{prefix}index.html#diferenciais">Diferenciais</a></li>
           <li><a href="{prefix}blog/index.html">Blog</a></li>
+          <li><a href="{prefix}novidades.html">Novidades</a></li>
           <li><a href="{prefix}consulta-disponibilidade.html">Consultar disponibilidade</a></li>
           <li><a href="{prefix}calculadora-custo-downtime.html">Calculadora de downtime</a></li>
           <li><a href="{prefix}contato.html">Contato</a></li>
@@ -1195,6 +1199,14 @@ PAGES.append(dict(
 ))
 
 PAGES.append(dict(
+    path="novidades.html", prefix="", body=nov.pagina(), active="novidades",
+    title="Novidades da Wicorp — lançamentos, avisos e atualizações",
+    desc="Lançamentos de solução, avisos de operação e novidades da Wicorp. "
+         "O que está valendo agora, sem conteúdo vencido ocupando espaço.",
+    canonical="novidades",
+))
+
+PAGES.append(dict(
     path="suporte.html", prefix="", body=paginas.SUPORTE, active="suporte",
     title="Suporte técnico Wicorp — portal de chamados, telefone e WhatsApp",
     desc="Já é cliente Wicorp? Abra chamado no portal, ligue ou chame no WhatsApp. "
@@ -1241,6 +1253,33 @@ def main():
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(html, encoding="utf-8")
         print("  gerado  %-46s %7s bytes" % (pg["path"], format(len(html), ",")))
+
+    atualizar_novidades_na_home()
+
+
+def atualizar_novidades_na_home():
+    """A index.html e editada a mao, mas o trecho de novidades e gerado.
+
+    O painel roda o build depois de cada publicacao; e aqui que a home
+    recebe as novidades novas sem virar um arquivo gerado por inteiro.
+    """
+    alvo = ROOT / "index.html"
+    if not alvo.exists():
+        return
+    html = alvo.read_text(encoding="utf-8")
+    ini, fim = "<!--INICIO-NOVIDADES-->", "<!--FIM-NOVIDADES-->"
+    if ini not in html or fim not in html:
+        print("  aviso   index.html sem os marcadores de novidades — pulei")
+        return
+    a = html.index(ini) + len(ini)
+    b = html.index(fim)
+    novo_trecho = "\n" + (nov.faixa_home().strip() or
+                          "<!-- nenhuma novidade dentro do periodo -->") + "\n"
+    if html[a:b] == novo_trecho:
+        print("  home    novidades sem alteracao")
+        return
+    alvo.write_text(html[:a] + novo_trecho + html[b:], encoding="utf-8")
+    print("  home    novidades atualizadas (%d no ar)" % len(nov.ativas()))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>{% block titulo %}Painel{% endblock %} · Wicorp</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='painel.css') }}">
+</head>
+<body>
+
+{% if session.get('ok') %}
+<header class="topo">
+  <div class="topo__wrap">
+    <a href="{{ url_for('lista') }}" class="marca">Wicorp <span>painel</span></a>
+    <nav>
+      <a href="{{ url_for('lista') }}">Novidades</a>
+      <a href="/" target="_blank" rel="noopener">Ver o site</a>
+      <a href="{{ url_for('sair') }}" class="sair">Sair</a>
+    </nav>
+  </div>
+</header>
+{% endif %}
+
+<main class="conteudo">
+  {% with msgs = get_flashed_messages(with_categories=true) %}
+    {% if msgs %}
+      <div class="avisos">
+        {% for cat, m in msgs %}<div class="aviso aviso--{{ cat }}">{{ m }}</div>{% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  {% block corpo %}{% endblock %}
+</main>
+
+</body>
+</html>

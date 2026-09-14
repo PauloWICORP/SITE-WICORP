@@ -3,7 +3,7 @@
 Site institucional da Wicorp — Conexões Inteligentes.
 HTML, CSS e JavaScript puros. Sem framework, sem build obrigatório, sem banco de dados.
 
-**Fase atual:** front-end concluído — 19 páginas, no ar em preview pelo GitHub Pages:
+**Fase atual:** front-end concluído — 20 páginas, no ar em preview pelo GitHub Pages:
 https://paulowicorp.github.io/SITE-WICORP/ (todo `git push` atualiza o link sozinho).
 Back-end, formulários e segurança entram na fase seguinte.
 
@@ -37,7 +37,7 @@ Acesse `http://localhost:8000`.
 
 ---
 
-## As 19 páginas
+## As 20 páginas
 
 ```
 .
@@ -46,6 +46,7 @@ Acesse `http://localhost:8000`.
 ├── contato.html
 ├── obrigado.html                             Destino de conversão
 ├── suporte.html                              Canais de suporte para quem já é cliente
+├── novidades.html                            Lançamentos e avisos, publicados pelo painel
 ├── privacidade.html                          Política de Privacidade / LGPD
 ├── 404.html                                  Página não encontrada
 │
@@ -107,7 +108,7 @@ python3 build.py
 ```
 
 O resultado continua sendo HTML estático puro — o script só evita repetir o mesmo
-menu em dezenove arquivos.
+menu em vinte arquivos.
 
 ---
 
@@ -189,6 +190,33 @@ as tags. **Nenhum código de GTM está instalado ainda** — isso é da fase seg
 - [ ] 3 landing pages restantes — recomendo só quando a mídia paga começar
 - [ ] Publicação, redirects 301 do domínio antigo e limpeza do spam de SEO
       injetado no WordPress atual
+
+---
+
+## Painel de conteúdo (/admin)
+
+Roda no servidor Linux da Wicorp. É a **única** parte do projeto que executa
+código — o site que o visitante acessa continua sendo arquivo estático.
+
+```
+painel/app.py            Aplicação Flask
+painel/criar-senha.py    Cria ou troca a senha de acesso
+painel/INSTALAR.md       Passo a passo no servidor: systemd, nginx, cron
+conteudo.json            O conteúdo publicado (fica no servidor, fora do Git)
+img/novidades/           Imagens das novidades (o painel grava e apaga)
+```
+
+Pelo painel dá para criar, editar e remover novidades, com imagem, etiqueta,
+link e **período de exibição**: data de entrada e data de saída. Item agendado
+entra sozinho; item vencido some. Ao salvar, o painel roda o `build.py` e o
+site já sai atualizado.
+
+Quando não há nenhuma novidade dentro do período, a faixa some da home e a
+página mostra um aviso no lugar — o site nunca fica com buraco.
+
+`conteudo.json` e `img/novidades/` **não entram no Git** de propósito: são
+conteúdo, e vivem no servidor. Um `git pull` nunca apaga uma novidade
+publicada. O `conteudo.exemplo.json` serve de modelo para um servidor novo.
 
 ---
 
