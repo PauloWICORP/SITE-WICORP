@@ -55,19 +55,52 @@
         <option>Aviso</option><option>Manutenção</option><option>Parceria</option>
       </datalist>
     </div>
-    <div class="campo">
-      <label for="link_texto">Texto do botão</label>
-      <input id="link_texto" name="link_texto" value="{{ item.link_texto or 'Saber mais' }}" maxlength="40">
-      <small>Evite "saiba mais" solto — diga para onde leva.</small>
-    </div>
   </div>
 
-  <div class="campo">
-    <label for="link">Link <span class="opcional">(opcional)</span></label>
-    <input id="link" name="link" value="{{ item.link or '' }}"
-           placeholder="solucoes/link-box-redundancia.html ou https://...">
-    <small>Página do próprio site (caminho relativo) ou endereço completo de fora. Vazio = card sem botão.</small>
-  </div>
+  <fieldset class="bloco">
+    <legend>Botão do card — para onde a pessoa vai</legend>
+    <p class="bloco__sub">
+      É o que acontece quando alguém clica. Deixe os dois campos vazios e o card
+      fica só informativo, sem botão.
+    </p>
+
+    <div class="campo">
+      <label for="pagina">Página do site</label>
+      <select id="pagina" onchange="if(this.value) document.getElementById('link').value = this.value">
+        <option value="">— escolher uma página —</option>
+        {% for caminho, nome in paginas %}
+          <option value="{{ caminho }}" {% if item.link == caminho %}selected{% endif %}>{{ nome }}</option>
+        {% endfor %}
+      </select>
+      <small>Escolher aqui preenche o campo abaixo. É o jeito seguro: não tem como digitar errado.</small>
+    </div>
+
+    <div class="campo">
+      <label for="link">Endereço de destino</label>
+      <input id="link" name="link" value="{{ item.link or '' }}"
+             placeholder="solucoes/link-box-redundancia.html  ou  https://wa.me/551150287515">
+      <small>Preenchido pelo seletor acima, ou digite um endereço de fora
+             começando com <code>https://</code> — um link de WhatsApp, um PDF, um formulário.</small>
+    </div>
+
+    <div class="campo">
+      <label for="link_texto">Texto do botão</label>
+      <input id="link_texto" name="link_texto" value="{{ item.link_texto or 'Saber mais' }}"
+             maxlength="40" list="frases">
+      <datalist id="frases">
+        <option>Conhecer o Link.Box</option>
+        <option>Ver como funciona</option>
+        <option>Falar com um especialista</option>
+        <option>Consultar disponibilidade</option>
+        <option>Ler o artigo completo</option>
+        <option>Garantir minha vaga</option>
+        <option>Chamar no WhatsApp</option>
+      </datalist>
+      <small><b>Evite "Saiba mais".</b> O texto do botão diz para onde a pessoa vai —
+             "Conhecer o Link.Box" converte mais e o Google usa essa frase para
+             entender o destino do link.</small>
+    </div>
+  </fieldset>
 
   <div class="acoes-form">
     <button type="submit" class="btn btn--primario">
