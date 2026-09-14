@@ -543,6 +543,59 @@ h3.display{font-size:clamp(1.4rem, 2.4vw, 1.9rem)}
 .quote__who b{display:block; font-size:.9rem; font-weight:600}
 .quote__who span{display:block; font-size:.78rem; color:var(--tx-3)}
 
+/* Placa da empresa — hoje mostra o nome, recebe a logo quando ela chegar.
+   Basta trocar o <span> por <img src="img/logos/empresa.png" alt="Empresa">  */
+.quote__logo{
+  position:absolute; top:22px; right:22px; z-index:2;
+  height:40px; min-width:76px; padding:0 13px;
+  display:grid; place-items:center;
+  border:1px solid var(--line); border-radius:10px;
+  background:rgba(255,255,255,.04);
+}
+.quote__logo span{
+  font-family:var(--f-display); font-size:1.02rem; letter-spacing:.055em;
+  color:var(--tx-2); white-space:nowrap; line-height:1;
+}
+.quote__logo img{max-height:24px; max-width:118px; width:auto; object-fit:contain}
+
+/* Variante em destaque — usada no carrossel da home */
+.quote--feat{
+  position:relative; overflow:hidden;
+  padding:38px 34px 32px;
+  border-radius:var(--r-lg);
+  border:1px solid var(--line-strong);
+  background:linear-gradient(158deg, var(--surface-3) 0%, #101C1F 100%);
+  box-shadow:var(--shadow-sm);
+}
+.quote--feat::before{
+  content:""; position:absolute; top:0; left:0; right:0; height:4px;
+  background:var(--w-grad);
+}
+.quote--feat::after{
+  content:""; position:absolute; top:-150px; right:-120px;
+  width:400px; height:400px; border-radius:50%;
+  background:radial-gradient(circle, rgba(91,191,198,.30), transparent 64%);
+  filter:blur(26px); pointer-events:none;
+}
+.quote--feat > *:not(.quote__logo){position:relative; z-index:1}
+.quote--feat .quote__logo{z-index:2}
+.quote--feat .quote__mark{font-size:3.6rem; opacity:.65; margin-bottom:12px}
+.quote--feat p{
+  font-size:1.16rem; line-height:1.62; color:var(--tx);
+  font-weight:400; margin-bottom:26px; max-width:52ch;
+}
+.quote--feat .quote__av{width:48px; height:48px; flex-basis:48px; font-size:1rem}
+.quote--feat .quote__who b{font-size:.96rem}
+.quote--feat .quote__who span{font-size:.82rem}
+
+@media (max-width:700px){
+  .quote--feat{padding:30px 22px 26px}
+  .quote--feat p{font-size:1.02rem}
+  .quote__logo{position:static; margin-bottom:18px; align-self:flex-start;
+               display:inline-grid; height:36px}
+  .quote--feat .quote__mark{font-size:2.8rem}
+}
+
 /* --------------------------------------------------------------------------
    15. CTA FINAL
    -------------------------------------------------------------------------- */
@@ -1517,3 +1570,53 @@ picture img{
 .cep__box.is-sent .cep__res,
 .cep__box.is-sent .cep__form{display:none}
 .cep__box.is-sent .form-success{display:block}
+
+/* ==========================================================================
+   43. PÁGINA DE SUPORTE
+   ========================================================================== */
+.sup-hero{
+  display:grid; grid-template-columns:auto 1fr auto; gap:26px; align-items:center;
+  padding:32px 34px; border-radius:var(--r-lg);
+  border:1px solid var(--line-strong);
+  background:linear-gradient(135deg, rgba(91,191,198,.10), rgba(116,190,154,.06));
+  position:relative; overflow:hidden;
+}
+.sup-hero::before{
+  content:""; position:absolute; inset:0 auto 0 0; width:4px;
+  background:var(--w-grad);
+}
+.sup-hero > *{min-width:0}
+.sup-hero__ico{
+  width:58px; height:58px; border-radius:16px; display:grid; place-items:center;
+  background:rgba(91,191,198,.14); color:var(--w-teal); flex:0 0 58px;
+}
+.sup-hero h2{font-size:1.24rem; font-weight:700; margin-bottom:7px}
+.sup-hero p{font-size:.92rem; color:var(--tx-2); line-height:1.68; max-width:62ch}
+
+.sup-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:22px}
+.sup-grid > *{min-width:0}
+.sup-card{
+  display:block; padding:26px 24px; border-radius:var(--r-lg);
+  border:1px solid var(--line); background:var(--surface);
+  transition:border-color .2s, transform .2s;
+}
+a.sup-card:hover{border-color:var(--line-strong); transform:translateY(-3px)}
+.sup-card__ico{
+  width:44px; height:44px; border-radius:12px; display:grid; place-items:center;
+  background:rgba(116,190,154,.12); color:var(--w-green); margin-bottom:16px;
+}
+.sup-card h3{font-size:.82rem; text-transform:uppercase; letter-spacing:.08em;
+  color:var(--tx-3); font-weight:600; margin-bottom:7px}
+.sup-card b{display:block; font-size:1.12rem; font-weight:700; margin-bottom:9px}
+.sup-card span{display:block; font-size:.87rem; color:var(--tx-3); line-height:1.62}
+.sup-card--info{background:transparent; border-style:dashed}
+
+@media (max-width:900px){
+  .sup-hero{grid-template-columns:auto 1fr; gap:18px 20px}
+  .sup-hero .btn{grid-column:1/-1; justify-content:center}
+  .sup-grid{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .sup-hero{padding:26px 22px}
+  .sup-hero__ico{width:48px; height:48px; flex-basis:48px}
+}

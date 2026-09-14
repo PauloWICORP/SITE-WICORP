@@ -50,7 +50,7 @@ def head(title, desc, canonical, prefix):
 <meta property="og:image" content="{SITE}/img/arte/og-wicorp.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Wicorp — infraestrutura de TI, conectividade e telefonia para empresas de São Paulo">
+<meta property="og:image:alt" content="Wicorp — infraestrutura de TI, conectividade e telefonia para empresas de todo o Brasil">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{SITE}/img/arte/og-wicorp.jpg">
 <meta name="theme-color" content="#080C0E">
@@ -96,6 +96,7 @@ def header(prefix, active=""):
       <a href="{prefix}index.html#diferenciais" class="nav__link">Diferenciais</a>
       <a href="{prefix}quem-somos.html" class="nav__link">Quem somos</a>
       <a href="{prefix}blog/index.html" class="nav__link">Blog</a>
+      <a href="{prefix}suporte.html" class="nav__link"{cls('suporte')}>Suporte</a>
       <a href="{prefix}contato.html" class="nav__link"{cls('contato')}>Contato</a>
     </nav>
     <a href="{prefix}contato.html" class="btn btn--primary btn--sm header__cta">Falar com um especialista</a>
@@ -113,6 +114,7 @@ def header(prefix, active=""):
   <a href="{prefix}index.html#diferenciais">Diferenciais</a>
   <a href="{prefix}quem-somos.html">Quem somos</a>
   <a href="{prefix}blog/index.html">Blog</a>
+  <a href="{prefix}suporte.html">Suporte</a>
   <a href="{prefix}contato.html">Contato</a>
   <a href="{prefix}contato.html" class="btn btn--primary btn--wide">Falar com um especialista</a>
 </div>
@@ -181,7 +183,7 @@ def footer(prefix, lp=False):
           <li><a href="{prefix}consulta-disponibilidade.html">Consultar disponibilidade</a></li>
           <li><a href="{prefix}calculadora-custo-downtime.html">Calculadora de downtime</a></li>
           <li><a href="{prefix}contato.html">Contato</a></li>
-          <li><a href="https://wicorp.desk.ms" target="_blank" rel="noopener">Suporte ao cliente</a></li>
+          <li><a href="{prefix}suporte.html">Suporte ao cliente</a></li>
         </ul>
       </div>
       <div>
@@ -274,7 +276,7 @@ def proof_band():
     <div class="proof__grid">
       <div class="proof__item"><div class="proof__num grad-text" data-count="28">0</div><div class="proof__lbl">anos de mercado<br>desde 1998</div></div>
       <div class="proof__item"><div class="proof__num grad-text" data-count="800" data-prefix="+">0</div><div class="proof__lbl">clientes ativos<br>em todo o Brasil</div></div>
-      <div class="proof__item"><div class="proof__num grad-text" data-count="700" data-prefix="+">0</div><div class="proof__lbl">equipamentos<br>em operação</div></div>
+      <div class="proof__item"><div class="proof__num grad-text" data-count="2000" data-prefix="+">0</div><div class="proof__lbl">equipamentos<br>em operação</div></div>
       <div class="proof__item"><div class="proof__num grad-text">24/7</div><div class="proof__lbl">monitoramento<br>proativo da rede</div></div>
     </div>
   </div>
@@ -698,8 +700,9 @@ FAQ_INFRA = [
      "Projeto as-built, identificação de pontos, certificação dos cabos, diagrama lógico e inventário dos "
      "equipamentos instalados. É o que permite que qualquer técnico entenda a rede depois."),
     ("Vocês atendem fora de São Paulo?",
-     "Nossa operação com SLA garantido é concentrada em São Paulo e Grande São Paulo. Projetos fora dessa "
-     "região são avaliados caso a caso, para não prometer um nível de atendimento que não conseguimos manter."),
+     "Sim. Atendemos empresas em todo o Brasil — inclusive redes de varejo com dezenas de unidades espalhadas "
+     "pelo país. A engenharia, o NOC e a gestão do contrato ficam centralizados em São Paulo; o atendimento "
+     "presencial em cada praça é combinado no desenho do projeto."),
 ]
 
 BODY_INFRA = f"""
@@ -856,7 +859,7 @@ BODY_LP = f"""
   <div class="wrap">
     <div class="page-hero__grid">
       <div>
-        <span class="eyebrow">Para gestores de TI · São Paulo e Grande SP</span>
+        <span class="eyebrow">Para gestores de TI · Atendimento em todo o Brasil</span>
         <h1 class="display">Quantos fornecedores sua equipe precisa acionar <span class="grad-text">quando algo para?</span></h1>
         <p class="lead">Internet, telefonia, firewall, suporte e infraestrutura com um único contrato,
         um único contato e uma equipe que conhece sua operação inteira.</p>
@@ -968,12 +971,14 @@ BODY_LP = f"""
       <h2 class="display">O que mudou para eles</h2>
     </div>
     <div class="grid grid--2">
-      <figure class="quote reveal">
+      <figure class="quote quote--feat reveal">
+        <div class="quote__logo"><span>Medtec</span></div>
         <div class="quote__mark">"</div>
         <p>Iniciamos a parceria em 2018 e trouxe economia absurda. O valor caiu drasticamente, com melhorias em processos.</p>
         <figcaption class="quote__who"><div class="quote__av">VT</div><div><b>Vitória Teixeira</b><span>Gerente Financeira · Medtec</span></div></figcaption>
       </figure>
-      <figure class="quote reveal" data-d="1">
+      <figure class="quote quote--feat reveal" data-d="1">
+        <div class="quote__logo"><span>Kadão</span></div>
         <div class="quote__mark">"</div>
         <p>Grande eficiência e seriedade em soluções de comunicação, infraestrutura e outsourcing. Ágil e rápida.</p>
         <figcaption class="quote__who"><div class="quote__av">OS</div><div><b>Osmar Silva</b><span>Supervisor de TI · Kadão</span></div></figcaption>
@@ -1101,7 +1106,7 @@ BODY_OBRIGADO = f"""
 PAGES = [
     dict(path="solucoes/link-dedicado-empresarial.html", prefix=P, body=BODY_DEDICADO,
          faq=conectividade.FAQ_DEDICADO,
-         title="Link Dedicado Empresarial em São Paulo — Fibra e Rádio | Wicorp",
+         title="Link Dedicado Empresarial — Fibra e Rádio com SLA | Wicorp",
          desc="Link dedicado com banda garantida e simétrica, IP fixo, SLA em contrato e "
               "monitoramento 24/7. Em fibra ou rádio. Consulte a disponibilidade no seu endereço.",
          canonical="solucoes/link-dedicado-empresarial"),
@@ -1128,7 +1133,7 @@ PAGES = [
     dict(path="solucoes/infraestrutura-ti.html", prefix=P, body=BODY_INFRA, faq=FAQ_INFRA,
          title="Infraestrutura de TI, Cabeamento Estruturado e Suporte | Wicorp",
          desc="Projetos de infraestrutura de TI, cabeamento estruturado, Wi-Fi corporativo, CFTV e suporte "
-              "técnico especializado em São Paulo. Solicite uma avaliação da sua estrutura.",
+              "técnico especializado para empresas em todo o Brasil. Solicite uma avaliação da sua estrutura.",
          canonical="solucoes/infraestrutura-ti"),
 
     dict(path="lp/centralizar-fornecedores-ti.html", prefix=P, body=BODY_LP, lp=True,
@@ -1138,7 +1143,7 @@ PAGES = [
          canonical="lp/centralizar-fornecedores-ti"),
 
     dict(path="contato.html", prefix="", body=BODY_CONTATO, active="contato",
-         title="Contato | Wicorp — Infraestrutura de TI e Telecom em São Paulo",
+         title="Contato | Wicorp — Infraestrutura de TI e Telecom",
          desc="Fale com um especialista da Wicorp. Telefone (11) 4800-5000, WhatsApp e e-mail comercial. "
               "Retornamos em até 1 dia útil.",
          canonical="contato"),
@@ -1169,9 +1174,9 @@ PAGES.append(dict(
 
 PAGES.append(dict(
     path="quem-somos.html", prefix="", body=paginas.QUEM_SOMOS,
-    title="Quem somos | Wicorp — 28 anos em TI e Telecom em São Paulo",
+    title="Quem somos | Wicorp — 28 anos em TI e Telecom",
     desc="Desde 1998 transformando tecnologia em conexão estratégica. Mais de 800 clientes "
-         "e 700 equipamentos em operação em São Paulo e Grande São Paulo.",
+         "e mais de 2.000 equipamentos em operação em todo o Brasil.",
     canonical="quem-somos",
 ))
 
@@ -1197,6 +1202,14 @@ PAGES.append(dict(
     desc="Informe o CEP da sua operação e verificamos a viabilidade técnica de link "
          "dedicado em fibra ou rádio. Sem compromisso, retorno em até 1 dia útil.",
     canonical="consulta-disponibilidade",
+))
+
+PAGES.append(dict(
+    path="suporte.html", prefix="", body=paginas.SUPORTE, active="suporte",
+    title="Suporte técnico Wicorp — portal de chamados, telefone e WhatsApp",
+    desc="Já é cliente Wicorp? Abra chamado no portal, ligue ou chame no WhatsApp. "
+         "NOC monitorando links e infraestrutura 24 horas por dia, 7 dias por semana.",
+    canonical="suporte",
 ))
 
 PAGES.append(dict(

@@ -553,7 +553,7 @@ QUEM_SOMOS = f"""
         <h1 class="display">Transformar tecnologia em <span class="grad-text">conexão estratégica</span></h1>
         <p class="lead">
           A Wicorp nasceu em 1998 com um propósito claro. Vinte e oito anos depois,
-          atendemos mais de 800 empresas e mantemos cerca de 700 equipamentos em operação —
+          atendemos mais de 800 empresas e mantemos mais de 2.000 equipamentos em operação —
           a maior parte em operações que não podem parar.
         </p>
         <div class="hero__actions">
@@ -589,7 +589,7 @@ QUEM_SOMOS = f"""
     <div class="proof__grid">
       <div class="proof__item"><div class="proof__num grad-text" data-count="28">0</div><div class="proof__lbl">anos de mercado<br>desde 1998</div></div>
       <div class="proof__item"><div class="proof__num grad-text" data-count="800" data-prefix="+">0</div><div class="proof__lbl">clientes ativos<br>em todo o Brasil</div></div>
-      <div class="proof__item"><div class="proof__num grad-text" data-count="700" data-prefix="+">0</div><div class="proof__lbl">equipamentos<br>em operação</div></div>
+      <div class="proof__item"><div class="proof__num grad-text" data-count="2000" data-prefix="+">0</div><div class="proof__lbl">equipamentos<br>em operação</div></div>
       <div class="proof__item"><div class="proof__num grad-text">24/7</div><div class="proof__lbl">monitoramento<br>proativo da rede</div></div>
     </div>
   </div>
@@ -613,12 +613,13 @@ QUEM_SOMOS = f"""
         </p>
       </div>
       <div class="callout">
-        <h3>Por que só São Paulo e Grande São Paulo</h3>
-        <p>Poderíamos vender para o Brasil inteiro. Não vendemos — porque SLA que não se
-        cumpre não é SLA, é texto em contrato.</p>
-        <p>Concentramos a operação onde conseguimos garantir suporte presencial,
-        monitoramento e tempo de resposta. A expansão acontece de forma seletiva,
-        quando conseguimos manter o mesmo padrão.</p>
+        <h3>Uma operação, o país inteiro</h3>
+        <p>A sede e o NOC ficam em São Paulo. A operação, não. Atendemos redes de varejo
+        com unidades espalhadas pelo Brasil, levando Link.Box, conectividade e telefonia
+        para cada praça sob um contrato só.</p>
+        <p>É isso que o gestor de TI ganha: em vez de negociar com um provedor diferente
+        em cada estado, ele tem um interlocutor, um SLA e um painel onde todas as
+        unidades aparecem juntas.</p>
       </div>
     </div>
   </div>
@@ -1225,8 +1226,8 @@ CONSULTA_CEP = f"""
       </div>
 
       <p class="muted" style="font-size:.84rem;text-align:center;margin-top:20px">
-        A consulta não gera compromisso. Atendemos com SLA garantido em
-        São Paulo e Grande São Paulo.
+        A consulta não gera compromisso. Atendemos empresas em todo o Brasil,
+        com engenharia e monitoramento próprios.
       </p>
     </div>
   </div>
@@ -1265,6 +1266,125 @@ CONSULTA_CEP = f"""
           <a href="solucoes/link-box-redundancia.html" class="btn btn--primary btn--wide">Conhecer o Link.Box {ARROW}</a>
           <a href="tel:{TEL_HREF}" class="btn btn--ghost btn--wide">Ligar: {TEL}</a>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+"""
+
+
+# ==========================================================================
+# PÁGINA DE SUPORTE — quem já é cliente entra por aqui.
+# O portal wicorp.desk.ms continua sendo o canal oficial de chamado;
+# esta página existe para que "Suporte" tenha lugar no menu e para que
+# ninguém precise adivinhar qual canal usar em uma parada de operação.
+# ==========================================================================
+
+I_TICKET = ('<path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v1a2 2 0 0 0 0 4v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1'
+            'a2 2 0 0 0 0-4V9z"/><line x1="13" y1="7" x2="13" y2="17"/>')
+I_PHONE2 = ('<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 '
+            '19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81'
+            'a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 '
+            '2.81.7A2 2 0 0 1 22 16.92z"/>')
+I_WPP2   = ('<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21'
+            'l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/>')
+I_CLOCK2 = '<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>'
+
+SUPORTE = f"""
+<main id="main">
+<section class="page-hero" style="padding-bottom:44px">
+  <div class="wrap" style="text-align:center">
+    <span class="eyebrow" style="margin-inline:auto">Já é cliente Wicorp</span>
+    <h1 class="display" style="max-width:19ch;margin-inline:auto">
+      Suporte técnico <span class="grad-text">24 horas por dia</span>
+    </h1>
+    <p class="lead" style="max-width:58ch;margin:18px auto 0">
+      Abra um chamado pelo portal ou fale direto com a equipe. Nosso NOC acompanha
+      os links e a infraestrutura continuamente — em muitos casos, já estamos
+      atuando antes de você abrir o chamado.
+    </p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+
+    <div class="sup-hero">
+      <div class="sup-hero__ico">{ico(I_TICKET, 26, 2)}</div>
+      <div>
+        <h2>Portal de chamados</h2>
+        <p>
+          Canal oficial de atendimento. O chamado fica registrado, recebe número de
+          protocolo e você acompanha cada resposta pelo histórico — sem depender de
+          quem atendeu o telefone naquele dia.
+        </p>
+      </div>
+      <a href="https://wicorp.desk.ms" target="_blank" rel="noopener"
+         class="btn btn--primary" data-label="Abrir chamado no portal">
+        Abrir chamado {ARROW}
+      </a>
+    </div>
+
+    <div class="sup-grid">
+      <a class="sup-card" href="tel:{TEL_HREF}">
+        <div class="sup-card__ico">{ico(I_PHONE2, 21, 2)}</div>
+        <h3>Telefone</h3>
+        <b>{TEL}</b>
+        <span>Para parada total de operação, ligue. É o caminho mais curto.</span>
+      </a>
+
+      <a class="sup-card" href="https://wa.me/{WPP_HREF}" data-pos="suporte"
+         target="_blank" rel="noopener">
+        <div class="sup-card__ico">{ico(I_WPP2, 21, 2)}</div>
+        <h3>WhatsApp</h3>
+        <b>(11) 3181-7756</b>
+        <span>Dúvida rápida, status de chamado ou envio de print do erro.</span>
+      </a>
+
+      <div class="sup-card sup-card--info">
+        <div class="sup-card__ico">{ico(I_CLOCK2, 21, 2)}</div>
+        <h3>Monitoramento</h3>
+        <b>24 horas, 7 dias</b>
+        <span>O NOC acompanha links e infraestrutura fora do horário comercial,
+        inclusive fins de semana e feriados.</span>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:34px">
+      <h3>Antes de abrir o chamado, dois minutos que aceleram tudo</h3>
+      <p>Tenha à mão: <b>a unidade ou endereço afetado</b>, <b>o que parou</b> (internet,
+      telefonia, um sistema específico), <b>desde quando</b> e se o problema atinge
+      todos os usuários ou apenas alguns.</p>
+      <p>Com isso a equipe já abre o chamado no nível certo de prioridade, em vez de
+      gastar a primeira meia hora descobrindo o que está acontecendo.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="split reveal">
+      <div>
+        <span class="eyebrow">Ainda não é cliente</span>
+        <h2 class="display" style="margin-bottom:18px">
+          A gente também assume o que <span class="grad-text">já está montado</span>
+        </h2>
+        <p class="lead">
+          Atendemos ambientes que já existem. O primeiro passo é entender o que está
+          montado hoje — quais links, qual telefonia, quais fornecedores — antes de
+          propor qualquer mudança.
+        </p>
+      </div>
+      <div class="callout">
+        <h3>Como começa</h3>
+        <p>Uma conversa com um especialista, sem compromisso, para mapear a operação
+        e identificar onde estão os pontos frágeis.</p>
+        <p style="margin-top:18px">
+          <a href="contato.html" class="btn btn--primary btn--wide"
+             data-label="Falar com um especialista">Falar com um especialista {ARROW}</a>
+        </p>
       </div>
     </div>
   </div>

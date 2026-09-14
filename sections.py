@@ -424,7 +424,7 @@ TABS = f"""
           {MOCK_LINKBOX}
           <div class="panel__cap">
             <div class="panel__stat"><b>~1s</b><span>para comutar a rota</span></div>
-            <div class="panel__stat"><b>+700</b><span>equipamentos em campo</span></div>
+            <div class="panel__stat"><b>+2.000</b><span>equipamentos em campo</span></div>
             <div class="panel__stat" style="margin-left:auto">
               <a href="solucoes/link-box-redundancia.html" class="sol__cta">Conhecer o Link.Box
                 {ico('<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>', 15, 2.5)}
@@ -494,7 +494,7 @@ MARQUEE = f"""
 <section class="section--tight" style="padding:44px 0; border-block:1px solid var(--line)">
   <div class="wrap" style="margin-bottom:22px; text-align:center">
     <p class="muted" style="font-size:.82rem; letter-spacing:.1em; text-transform:uppercase">
-      Operações que não podem parar — em São Paulo e Grande São Paulo
+      Operações que não podem parar — de norte a sul do país
     </p>
   </div>
   <div class="marquee">

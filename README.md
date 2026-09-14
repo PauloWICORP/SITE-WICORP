@@ -3,8 +3,9 @@
 Site institucional da Wicorp — Conexões Inteligentes.
 HTML, CSS e JavaScript puros. Sem framework, sem build obrigatório, sem banco de dados.
 
-**Fase atual:** front-end concluído — 18 páginas, prontas para avaliação visual do
-time de marketing. Back-end, formulários e segurança entram na fase seguinte.
+**Fase atual:** front-end concluído — 19 páginas, no ar em preview pelo GitHub Pages:
+https://paulowicorp.github.io/SITE-WICORP/ (todo `git push` atualiza o link sozinho).
+Back-end, formulários e segurança entram na fase seguinte.
 
 ---
 
@@ -36,7 +37,7 @@ Acesse `http://localhost:8000`.
 
 ---
 
-## As 18 páginas
+## As 19 páginas
 
 ```
 .
@@ -44,6 +45,7 @@ Acesse `http://localhost:8000`.
 ├── quem-somos.html                           Autoridade: 28 anos, NOC, equipe própria
 ├── contato.html
 ├── obrigado.html                             Destino de conversão
+├── suporte.html                              Canais de suporte para quem já é cliente
 ├── privacidade.html                          Política de Privacidade / LGPD
 ├── 404.html                                  Página não encontrada
 │
@@ -83,10 +85,11 @@ img/logo-wicorp-original.png
 img/favicon.png
 img/fotos/             Fotos reais: NOC, racks, escritório, Link.Box
 img/arte/              Imagens de apoio e texturas
+img/logos/             Logos de clientes nos depoimentos (ver LEIA-ME.txt)
 build.py               Gera todas as páginas, menos a index
 build-preview.py       Gera HTML único com CSS e JS embutidos
 sections.py            Seções visuais e interativas
-paginas.py             Blog, quem somos, privacidade, calculadora, consulta de CEP
+paginas.py             Blog, quem somos, privacidade, calculadora, consulta de CEP, suporte
 conectividade.py       Páginas de link dedicado e Link.Box
 ```
 
@@ -104,7 +107,7 @@ python3 build.py
 ```
 
 O resultado continua sendo HTML estático puro — o script só evita repetir o mesmo
-menu em dezoito arquivos.
+menu em dezenove arquivos.
 
 ---
 
@@ -179,9 +182,33 @@ as tags. **Nenhum código de GTM está instalado ainda** — isso é da fase seg
 - [ ] Revisão jurídica da Política de Privacidade — os campos `[a definir]`
       (CNPJ, prazo de retenção, encarregado de dados) precisam ser preenchidos
 - [ ] Fotos de técnico em campo — única lacuna do banco de imagens
+- [ ] Logos dos clientes nos depoimentos, após autorização de cada um
 - [ ] 3 landing pages restantes — recomendo só quando a mídia paga começar
 - [ ] Publicação, redirects 301 do domínio antigo e limpeza do spam de SEO
       injetado no WordPress atual
+
+---
+
+## Depoimentos e logos de clientes
+
+Cada depoimento tem uma placa com o nome da empresa, no canto superior do card.
+Essa placa é o lugar da logo. Enquanto a autorização do cliente não sai, ela mostra
+o nome em texto; quando o arquivo chegar, troque
+
+```html
+<div class="quote__logo"><span>Medtec</span></div>
+```
+
+por
+
+```html
+<div class="quote__logo"><img src="img/logos/medtec.png" alt="Medtec"></div>
+```
+
+O CSS já limita altura e largura. Detalhes em `img/logos/LEIA-ME.txt`.
+
+**Usar logo de cliente exige autorização dele.** Depoimento assinado não implica
+permissão de uso de marca — são coisas separadas.
 
 ---
 

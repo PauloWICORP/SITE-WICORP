@@ -255,7 +255,7 @@ BODY_LINKBOX = f"""
         <div class="hero__seals">
           <div class="seal">{CHECK} Comutação automática</div>
           <div class="seal">{CHECK} Duas operadoras diferentes</div>
-          <div class="seal">{CHECK} +700 em operação</div>
+          <div class="seal">{CHECK} +2.000 em operação</div>
         </div>
       </div>
       {{FORM_LINKBOX}}
@@ -339,7 +339,7 @@ BODY_LINKBOX = f"""
                 ratio="4/3", prefix=P, larguras=(600, 600))}
         </div>
         <p class="foto-cap">
-          São mais de 700 equipamentos em operação em redes de varejo, indústrias
+          São mais de 2.000 equipamentos em operação em redes de varejo, indústrias
           e instituições de ensino.
         </p>
       </div>
