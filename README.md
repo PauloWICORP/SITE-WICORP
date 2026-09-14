@@ -84,7 +84,7 @@ img/logo-wicorp.png    Versão negativa — usada no site
 img/logo-wicorp-original.png
 img/favicon.png
 img/fotos/             Fotos reais: NOC, racks, escritório, Link.Box
-img/arte/              Imagens de apoio e texturas
+img/arte/              Texturas de fundo (fibra e malha) e imagem de compartilhamento
 img/logos/             Logos de clientes nos depoimentos (ver LEIA-ME.txt)
 build.py               Gera todas as páginas, menos a index
 build-preview.py       Gera HTML único com CSS e JS embutidos
@@ -138,6 +138,7 @@ Estas regras vêm do Pacote de Correção do Site e não são estética — são
 | H1 com palavra-chave, subtítulo com benefício | Atende busca sem violar o Manual de Copy |
 | Copy em Contexto → Consciência → Educação → Autoridade → Ação | Estrutura obrigatória do Manual de Copy |
 | Imagens em `<picture>` com WebP + fallback e `aspect-ratio` fixo | Peso menor e zero salto de layout |
+| Capas do blog são fotos reais da operação, não arte genérica | Foto de verdade sustenta a autoridade que o texto afirma |
 
 ### Paleta e tipografia
 
@@ -181,7 +182,8 @@ as tags. **Nenhum código de GTM está instalado ainda** — isso é da fase seg
 - [ ] Instalar o GTM e marcar `generate_lead` como conversão principal no GA4
 - [ ] Revisão jurídica da Política de Privacidade — os campos `[a definir]`
       (CNPJ, prazo de retenção, encarregado de dados) precisam ser preenchidos
-- [ ] Fotos de técnico em campo — única lacuna do banco de imagens
+- [ ] Fotos de técnico em campo e de um segundo grupo de pessoas —
+      hoje só existem duas fotos com gente e são da mesma equipe
 - [ ] Logos dos clientes nos depoimentos, após autorização de cada um
 - [ ] 3 landing pages restantes — recomendo só quando a mídia paga começar
 - [ ] Publicação, redirects 301 do domínio antigo e limpeza do spam de SEO

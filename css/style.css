@@ -1620,3 +1620,53 @@ a.sup-card:hover{border-color:var(--line-strong); transform:translateY(-3px)}
   .sup-hero{padding:26px 22px}
   .sup-hero__ico{width:48px; height:48px; flex-basis:48px}
 }
+
+/* ==========================================================================
+   44. TEXTURA DE FUNDO EM SEÇÕES CHAPADAS
+   O url() aqui é resolvido a partir do próprio style.css (/css/), por isso
+   o ../ funciona igual na raiz e dentro de solucoes/, blog/ e lp/.
+   Regra geral: textura entra onde o fundo seria liso e o olho não tem
+   onde descansar. Nunca atrás de texto corrido de artigo.
+   ========================================================================== */
+.page-hero::after,
+.cta-band::after,
+.proof::after,
+.sec-tex::after{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background-image:url(../img/arte/textura-fibra-1200.webp);
+  background-size:cover; background-position:center;
+}
+
+/* Hero de página interna — a fibra corre por trás do título */
+.page-hero::after{
+  opacity:.42;
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 55%,transparent 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 55%,transparent 100%);
+}
+
+/* Faixa de CTA — reforça o bloco mais importante da página */
+.cta-band{isolation:isolate}
+.cta-band::after{
+  opacity:.62;
+  -webkit-mask-image:linear-gradient(100deg,#000 0%,rgba(0,0,0,.35) 55%,transparent 88%);
+  mask-image:linear-gradient(100deg,#000 0%,rgba(0,0,0,.35) 55%,transparent 88%);
+}
+
+/* Barra de prova social — malha, para diferenciar da fibra dos heros */
+.proof{position:relative; overflow:hidden; isolation:isolate}
+.proof::after{
+  background-image:url(../img/arte/textura-malha-1200.webp);
+  opacity:.26;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 30%,#000 70%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 30%,#000 70%,transparent);
+}
+.proof__grid{position:relative; z-index:1}
+
+/* Utilitário para aplicar em qualquer <section> pelo HTML */
+.sec-tex{position:relative; overflow:hidden; isolation:isolate}
+.sec-tex::after{
+  opacity:.30;
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 0%,#000 0%,transparent 72%);
+  mask-image:radial-gradient(120% 90% at 50% 0%,#000 0%,transparent 72%);
+}
+.sec-tex > .wrap{position:relative; z-index:1}

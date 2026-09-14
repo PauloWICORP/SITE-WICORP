@@ -374,12 +374,22 @@ por links que ninguém está usando direito.</p>
 ]
 
 
-def capa_img(nome, alt, prefix="", loading="lazy", ratio="16/9"):
+# Capas dos artigos: caminho dentro de img/ e as duas larguras que existem
+# em disco. Fotos reais da Wicorp — não usar arte genérica aqui.
+CAPAS = {
+    "pabx-em-nuvem-vale-a-pena":     ("fotos/noc-sala",      900, 1600),
+    "link-box-redundancia-internet": ("fotos/link-box-mesa", 600,  732),
+    "sd-wan-reduzir-custo-link":     ("fotos/rack-cliente",  800, 1200),
+}
+
+
+def capa_img(slug, alt, prefix="", loading="lazy", ratio="16/9"):
     """Capa de artigo. WebP com fallback JPEG e proporção fixa."""
-    c = f"{prefix}img/arte/{nome}"
+    nome, pequena, grande = CAPAS[slug]
+    c = f"{prefix}img/{nome}"
     return f'''<picture>
-  <source type="image/webp" srcset="{c}-800.webp 800w, {c}.webp 1400w" sizes="(max-width:900px) 100vw, 50vw">
-  <source type="image/jpeg" srcset="{c}-800.jpg 800w, {c}.jpg 1400w" sizes="(max-width:900px) 100vw, 50vw">
+  <source type="image/webp" srcset="{c}-{pequena}.webp {pequena}w, {c}.webp {grande}w" sizes="(max-width:900px) 100vw, 50vw">
+  <source type="image/jpeg" srcset="{c}-{pequena}.jpg {pequena}w, {c}.jpg {grande}w" sizes="(max-width:900px) 100vw, 50vw">
   <img src="{c}.jpg" alt="{alt}" loading="{loading}" decoding="async"
        style="aspect-ratio:{ratio};object-fit:cover;width:100%">
 </picture>'''
@@ -396,7 +406,7 @@ def post_body(p, outros):
     toc = "".join(f'<li><a href="#{i}">{t}</a></li>' for t, i in p["toc"])
     rel = "".join(f"""
       <a class="post-card" href="{o['slug']}.html">
-        <div class="post-card__cover">{capa_img(o['capa'], o['titulo'], prefix='../')}</div>
+        <div class="post-card__cover">{capa_img(o['slug'], o['titulo'], prefix='../')}</div>
         <div class="post-card__body">
           <div class="post-card__meta"><span class="post-card__cat">{o['cat']}</span><span>·</span><span>{o['leitura']}</span></div>
           <h3>{o['titulo']}</h3>
@@ -421,7 +431,7 @@ def post_body(p, outros):
       <h1 class="display" style="margin-bottom:20px">{p['h1']}</h1>
       <p class="lead" style="margin-bottom:34px">{p['resumo']}</p>
       <div class="foto-frame">
-        {capa_img(p['capa'], p['titulo'], prefix='../', loading='eager')}
+        {capa_img(p['slug'], p['titulo'], prefix='../', loading='eager')}
       </div>
     </div>
   </div>
@@ -486,7 +496,7 @@ def post_body(p, outros):
 def blog_index():
     cards = "".join(f"""
       <a class="post-card reveal" href="{p['slug']}.html">
-        <div class="post-card__cover">{capa_img(p['capa'], p['titulo'], prefix='../')}</div>
+        <div class="post-card__cover">{capa_img(p['slug'], p['titulo'], prefix='../')}</div>
         <div class="post-card__body">
           <div class="post-card__meta">
             <span class="post-card__cat">{p['cat']}</span><span>·</span>
@@ -573,9 +583,9 @@ QUEM_SOMOS = f"""
         <p class="foto-cap">O NOC da Wicorp, em São Paulo.</p>
         <div class="foto-frame" style="margin-top:18px">
           <picture>
-            <source type="image/webp" srcset="img/fotos/escritorio-900.webp 900w, img/fotos/escritorio.webp 1600w" sizes="(max-width:980px) 100vw, 45vw">
-            <source type="image/jpeg" srcset="img/fotos/escritorio-900.jpg 900w, img/fotos/escritorio.jpg 1600w" sizes="(max-width:980px) 100vw, 45vw">
-            <img src="img/fotos/escritorio.jpg" alt="Equipe da Wicorp trabalhando no escritório, em mesas com computadores e divisórias de vidro"
+            <source type="image/webp" srcset="img/fotos/recepcao-900.webp 900w, img/fotos/recepcao.webp 1600w" sizes="(max-width:980px) 100vw, 45vw">
+            <source type="image/jpeg" srcset="img/fotos/recepcao-900.jpg 900w, img/fotos/recepcao.jpg 1600w" sizes="(max-width:980px) 100vw, 45vw">
+            <img src="img/fotos/recepcao.jpg" alt="Recepção da Wicorp, com a marca aplicada na parede e poltronas de espera"
                  loading="lazy" decoding="async" style="aspect-ratio:3/2;object-fit:cover;width:100%">
           </picture>
         </div>
