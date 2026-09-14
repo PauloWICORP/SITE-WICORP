@@ -1751,3 +1751,9 @@ a.sup-card:hover{border-color:var(--line-strong); transform:translateY(-3px)}
 @media (max-width:480px){
   .avali__quem{flex-direction:column; align-items:flex-start; gap:12px}
 }
+
+/* Mesmo número atende ligação e WhatsApp — o rótulo evita parecer repetição */
+.footer__contact .canal{
+  font-size:.72rem; text-transform:uppercase; letter-spacing:.07em;
+  color:var(--tx-3); opacity:.75; margin-left:6px;
+}

@@ -8,7 +8,7 @@ de tela. Não usam banco de imagens: mostram o próprio ecossistema Wicorp,
 que é o que o diagnóstico de criativos apontou como ausente.
 """
 
-WPP_HREF = "551131817756"
+WPP_HREF = "551150287515"
 
 
 def ico(path, size=18, sw=2.1):

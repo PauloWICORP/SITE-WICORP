@@ -10,8 +10,8 @@ Contexto → Consciência → Educação → Autoridade → Ação.
 
 from sections import ico
 
-WPP_HREF = "551131817756"
-TEL, TEL_HREF = "(11) 4800-5000", "+551148005000"
+WPP_HREF = "551150287515"
+TEL, TEL_HREF = "(11) 5028-7515", "+551150287515"
 
 I_CLOUD  = '<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>'
 I_WIFI   = '<path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>'
@@ -377,7 +377,7 @@ por links que ninguém está usando direito.</p>
 # Capas dos artigos: caminho dentro de img/ e as duas larguras que existem
 # em disco. Fotos reais da Wicorp — não usar arte genérica aqui.
 CAPAS = {
-    "pabx-em-nuvem-vale-a-pena":     ("fotos/noc-sala",      900, 1600),
+    "pabx-em-nuvem-vale-a-pena":     ("arte/blog-telefonia", 800, 1400),
     "link-box-redundancia-internet": ("fotos/link-box-mesa", 600,  732),
     "sd-wan-reduzir-custo-link":     ("fotos/rack-cliente",  800, 1200),
 }
@@ -1348,8 +1348,9 @@ SUPORTE = f"""
          target="_blank" rel="noopener">
         <div class="sup-card__ico">{ico(I_WPP2, 21, 2)}</div>
         <h3>WhatsApp</h3>
-        <b>(11) 3181-7756</b>
-        <span>Dúvida rápida, status de chamado ou envio de print do erro.</span>
+        <b>{TEL}</b>
+        <span>Mesmo número do telefone. Dúvida rápida, status de chamado ou
+        envio de print do erro.</span>
       </a>
 
       <div class="sup-card sup-card--info">
