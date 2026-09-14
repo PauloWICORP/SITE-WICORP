@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block titulo %}{{ 'Nova novidade' if novo else 'Editar novidade' }}{% endblock %}
+{% block corpo %}
+
+<div class="cabecalho">
+  <div>
+    <h1>{{ 'Nova novidade' if novo else 'Editar novidade' }}</h1>
+    <p class="sub">Ao salvar, o site é regerado automaticamente.</p>
+  </div>
+  <a href="{{ url_for('lista') }}" class="btn">Voltar</a>
+</div>
+
+<form method="post" enctype="multipart/form-data" class="formulario">
+  <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+
+  <div class="campo">
+    <label for="titulo">Título</label>
+    <input id="titulo" name="titulo" value="{{ item.titulo or '' }}" required maxlength="120">
+    <small>Aparece em destaque no card. Direto ao ponto.</small>
+  </div>
+
+  <div class="campo">
+    <label for="resumo">Resumo</label>
+    <textarea id="resumo" name="resumo" rows="4" required maxlength="400">{{ item.resumo or '' }}</textarea>
+    <small>Duas ou três linhas. É o texto do card — não precisa repetir o título.</small>
+  </div>
+
+  <div class="campo">
+    <label for="imagem">Imagem {% if not novo %}<span class="opcional">(deixe vazio para manter a atual)</span>{% endif %}</label>
+    {% if item.imagem %}<img src="/{{ item.imagem }}" alt="" class="previa">{% endif %}
+    <input id="imagem" name="imagem" type="file" accept=".jpg,.jpeg,.png,.webp" {% if novo %}required{% endif %}>
+    <small>JPG, PNG ou WebP, até 8 MB. O corte em 16/9 e os tamanhos menores são feitos aqui — pode mandar a original.</small>
+  </div>
+
+  <div class="linha">
+    <div class="campo">
+      <label for="inicio">Entra no ar em</label>
+      <input id="inicio" name="inicio" type="date" value="{{ item.inicio or '' }}" required>
+      <small>Data futura agenda a publicação.</small>
+    </div>
+    <div class="campo">
+      <label for="fim">Sai do ar em <span class="opcional">(opcional)</span></label>
+      <input id="fim" name="fim" type="date" value="{{ item.fim or '' }}">
+      <small>Vazio = fica no ar até você remover.</small>
+    </div>
+  </div>
+
+  <div class="linha">
+    <div class="campo">
+      <label for="etiqueta">Etiqueta</label>
+      <input id="etiqueta" name="etiqueta" value="{{ item.etiqueta or 'Novidade' }}" maxlength="24"
+             list="etiquetas">
+      <datalist id="etiquetas">
+        <option>Novidade</option><option>Lançamento</option><option>Evento</option>
+        <option>Aviso</option><option>Manutenção</option><option>Parceria</option>
+      </datalist>
+    </div>
+    <div class="campo">
+      <label for="link_texto">Texto do botão</label>
+      <input id="link_texto" name="link_texto" value="{{ item.link_texto or 'Saber mais' }}" maxlength="40">
+      <small>Evite "saiba mais" solto — diga para onde leva.</small>
+    </div>
+  </div>
+
+  <div class="campo">
+    <label for="link">Link <span class="opcional">(opcional)</span></label>
+    <input id="link" name="link" value="{{ item.link or '' }}"
+           placeholder="solucoes/link-box-redundancia.html ou https://...">
+    <small>Página do próprio site (caminho relativo) ou endereço completo de fora. Vazio = card sem botão.</small>
+  </div>
+
+  <div class="acoes-form">
+    <button type="submit" class="btn btn--primario">
+      {{ 'Criar e publicar' if novo else 'Salvar e publicar' }}
+    </button>
+    <a href="{{ url_for('lista') }}" class="btn">Cancelar</a>
+  </div>
+</form>
+
+{% endblock %}

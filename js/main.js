@@ -751,4 +751,31 @@
     if (f) f.addEventListener('submit', function () { setTimeout(function(){ marcarPasso(3); }, 700); });
   }
 
+
+  /* ----------------------------------------------------------------------
+     16. NOVIDADES — some com o que saiu do prazo
+
+     O build ja filtra pelo periodo, mas entre um build e outro uma data
+     pode virar. Esta trava garante que ninguem veja aviso vencido, mesmo
+     que o site fique dias sem ser regerado.
+     ---------------------------------------------------------------------- */
+  (function () {
+    var cards = $$('[data-nov]');
+    if (!cards.length) return;
+
+    var hoje = new Date().toISOString().slice(0, 10);
+
+    cards.forEach(function (card) {
+      var ini = (card.getAttribute('data-inicio') || '').trim();
+      var fim = (card.getAttribute('data-fim') || '').trim();
+      var fora = (ini && hoje < ini) || (fim && hoje > fim);
+      if (fora) card.remove();
+    });
+
+    // Se a secao ficou sem nenhum card, ela inteira sai de cena
+    $$('[data-nov-secao]').forEach(function (sec) {
+      if (!$('[data-nov]', sec) && !$('.callout', sec)) sec.remove();
+    });
+  })();
+
 })();

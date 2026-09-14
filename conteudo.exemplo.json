@@ -1,0 +1,5 @@
+{
+  "_leia_me": "Editado pelo painel em /admin. Datas no formato AAAA-MM-DD. 'fim' vazio = fica no ar ate alguem remover. Enquanto 'novidades' estiver vazio, a faixa nao aparece na home e a pagina mostra um aviso no lugar.",
+  "novidades": [],
+  "artigos": []
+}

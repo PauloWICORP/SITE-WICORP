@@ -1,0 +1,7 @@
+Imagens das novidades.
+
+Nao coloque arquivo aqui a mao. Quem grava nesta pasta e o painel (/admin):
+ele recorta em 16/9, gera as versoes de 1400 e 800 pixels em JPG e WebP, e
+apaga tudo junto quando a novidade e removida.
+
+Arquivo solto aqui vira lixo que ninguem lembra de limpar.

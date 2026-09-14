@@ -377,9 +377,9 @@ por links que ninguém está usando direito.</p>
 # Capas dos artigos: caminho dentro de img/ e as duas larguras que existem
 # em disco. Fotos reais da Wicorp — não usar arte genérica aqui.
 CAPAS = {
-    "pabx-em-nuvem-vale-a-pena":     ("arte/blog-telefonia", 800, 1400),
-    "link-box-redundancia-internet": ("fotos/link-box-mesa", 600,  732),
-    "sd-wan-reduzir-custo-link":     ("fotos/rack-cliente",  800, 1200),
+    "pabx-em-nuvem-vale-a-pena":     ("arte/blog-pabx",      800, 1400),
+    "link-box-redundancia-internet": ("arte/blog-linkbox",   800, 1400),
+    "sd-wan-reduzir-custo-link":     ("arte/blog-seguranca", 800, 1400),
 }
 
 
