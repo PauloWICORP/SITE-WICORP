@@ -3,7 +3,7 @@
 Site institucional da Wicorp — Conexões Inteligentes.
 HTML, CSS e JavaScript puros. Sem framework, sem build obrigatório, sem banco de dados.
 
-**Fase atual:** front-end concluído — 20 páginas, no ar em preview pelo GitHub Pages:
+**Fase atual:** front-end concluído — 21 páginas, no ar em preview pelo GitHub Pages:
 https://paulowicorp.github.io/SITE-WICORP/ (todo `git push` atualiza o link sozinho).
 Back-end, formulários e segurança entram na fase seguinte.
 
@@ -37,7 +37,7 @@ Acesse `http://localhost:8000`.
 
 ---
 
-## As 20 páginas
+## As 21 páginas
 
 ```
 .
@@ -69,6 +69,7 @@ Acesse `http://localhost:8000`.
 │   └── sd-wan-reduzir-custo-link.html
 │
 └── lp/
+    ├── link-dedicado.html                    LP de campanha — Link Dedicado
     └── centralizar-fornecedores-ti.html      Landing page de centralização
 ```
 
@@ -93,7 +94,8 @@ build.py               Gera todas as páginas, menos a index
 build-preview.py       Gera HTML único com CSS e JS embutidos
 sections.py            Seções visuais e interativas
 paginas.py             Blog, quem somos, privacidade, calculadora, consulta de CEP, suporte
-conectividade.py       Páginas de link dedicado e Link.Box
+conectividade.py       Página do Link.Box
+produtos.py            Gerador de páginas de produto (ver abaixo)
 ```
 
 ### Um detalhe importante sobre os arquivos
@@ -114,6 +116,38 @@ menu em vinte arquivos.
 
 ---
 
+## Páginas de produto — um conteúdo, duas páginas
+
+`produtos.py` é o gerador. Cada produto é preenchido **uma vez** num dicionário
+e vira duas páginas:
+
+| Arquivo | Menu | Google | Para quê |
+|---|---|---|---|
+| `solucoes/<produto>.html` | sim | indexada | busca orgânica, navegação do site |
+| `lp/<produto>.html` | não | `noindex` | campanha, link do comercial, bio do Instagram |
+
+Mesmo texto, mesma prova, mesmos números — corrigiu um, corrigiu os dois. E como
+a LP fica fora da busca, as duas nunca competem entre si no Google.
+
+Na LP **nem o logo é clicável**: o ponto de uma página de campanha é não existir
+rota de fuga. Quem chegou pelo anúncio converte ou fecha a aba.
+
+Para adicionar um produto: copie um bloco de `PRODUTOS` em `produtos.py`, troque
+o conteúdo e registre no `build.py`. Não se escreve HTML.
+
+### Regra que não pode ser quebrada
+
+**A Wicorp é representante, não operadora.** O link dedicado é entregue sobre a
+rede de operadoras parceiras. Nenhum texto do site pode afirmar rede, backbone
+ou infraestrutura própria — seria falso e quebra na primeira pergunta técnica.
+
+O diferencial real é o contrário disso: **não estar presa a uma operadora só**.
+Uma operadora só vende a própria rede; a Wicorp analisa o endereço e indica a
+que atende melhor ali, mantendo contrato, monitoramento e suporte sob a mesma
+casa. É mais forte do que fingir dona de fibra, e tem a vantagem de ser verdade.
+
+---
+
 ## Recursos interativos
 
 | Onde | O quê |
@@ -123,6 +157,7 @@ menu em vinte arquivos.
 | PABX virtual | Dimensionador de ramais (mostra configuração, não preço) |
 | Calculadora | Custo de downtime por hora, a partir dos números da própria empresa |
 | Consulta de CEP | Busca de endereço com liberação progressiva do formulário |
+| LP de produto | Formulário com campos extras (endereço e velocidade) |
 
 Nenhuma ferramenta exibe preço. Preço é conversa comercial, não número de site.
 

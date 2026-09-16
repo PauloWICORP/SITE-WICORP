@@ -100,6 +100,10 @@ h1,h2,h3,h4,p{margin:0}
   line-height:.95;
   letter-spacing:.005em;
   text-transform:uppercase;
+  /* Palavra comprida em caixa alta ("VIDEOCONFERÊNCIA") estoura a tela
+     do celular. Hifeniza em vez de vazar para fora da coluna. */
+  overflow-wrap:anywhere;
+  hyphens:auto;
 }
 h1.display{font-size:clamp(2.15rem, 4.3vw, 3.45rem)}
 h2.display{font-size:clamp(1.85rem, 3.6vw, 2.7rem)}
@@ -730,6 +734,9 @@ h3.display{font-size:clamp(1.4rem, 2.4vw, 1.9rem)}
 }
 .page-hero .wrap{position:relative; z-index:1}
 .page-hero__grid{display:grid; grid-template-columns:1.08fr .92fr; gap:58px; align-items:start}
+/* Item de grid tem min-width:auto por padrao: um titulo comprido empurra
+   a coluna e leva a pagina inteira junto. Esta linha impede isso. */
+.page-hero__grid > *{min-width:0}
 .page-hero h1{margin-bottom:20px}
 .page-hero .lead{max-width:56ch; margin-bottom:28px}
 @media(max-width:980px){
@@ -1809,4 +1816,87 @@ a.sup-card:hover{border-color:var(--line-strong); transform:translateY(-3px)}
 @media (max-width:900px){
   .nov{grid-template-columns:1fr}
   .nov__head{flex-direction:column; align-items:flex-start; gap:18px}
+}
+
+/* ==========================================================================
+   47. PÁGINAS DE PRODUTO (solução e landing page)
+   ========================================================================== */
+.prod-sobre{max-width:64ch}
+.prod-sobre p{font-size:1.02rem; line-height:1.75; color:var(--tx-2)}
+.prod-sobre p + p{margin-top:16px}
+
+/* Grade de diferenciais — o bloco que mais pesa na LP */
+.prod-difs{display:grid; grid-template-columns:repeat(5,1fr); gap:26px}
+.prod-difs > *{min-width:0}
+.prod-dif{text-align:center}
+.prod-dif__ico{
+  width:62px; height:62px; margin:0 auto 18px; border-radius:50%;
+  display:grid; place-items:center;
+  color:var(--w-teal); border:1px solid var(--line-strong);
+  background:rgba(91,191,198,.08);
+}
+.prod-dif h3{font-size:1rem; font-weight:600; margin-bottom:9px}
+.prod-dif p{font-size:.87rem; color:var(--tx-3); line-height:1.65}
+
+/* Tecnologias / variantes do produto */
+.prod-vars{display:grid; grid-template-columns:repeat(2,1fr); gap:24px; align-items:start}
+.prod-vars > *{min-width:0}
+.prod-var{
+  padding:32px 30px; border-radius:var(--r-lg);
+  border:1px solid var(--line-strong); background:var(--surface-2);
+  transition:border-color .22s, transform .22s var(--ease);
+}
+.prod-var:hover{border-color:var(--w-teal); transform:translateY(-3px)}
+.prod-var__ico{
+  width:52px; height:52px; border-radius:14px; display:grid; place-items:center;
+  background:rgba(116,190,154,.12); color:var(--w-green); margin-bottom:18px;
+}
+.prod-var h3{font-size:1.2rem; font-weight:700; margin-bottom:10px}
+.prod-var p{font-size:.92rem; color:var(--tx-2); line-height:1.7; margin-bottom:20px}
+.prod-var .checklist{margin:0}
+.prod-var__fecho{
+  margin-top:28px; text-align:center; font-size:.95rem; color:var(--tx-2);
+  max-width:64ch; margin-inline:auto; line-height:1.7;
+}
+
+/* Hero da LP: sem menu, o topo pode respirar menos */
+.lp-hero{padding-top:calc(var(--header-h) + 44px)}
+
+@media (max-width:1100px){
+  .prod-difs{grid-template-columns:repeat(3,1fr); gap:30px 24px}
+}
+@media (max-width:760px){
+  .prod-difs{grid-template-columns:repeat(2,1fr)}
+  .prod-vars{grid-template-columns:1fr}
+  .prod-var{padding:26px 22px}
+}
+@media (max-width:420px){
+  .prod-difs{grid-template-columns:1fr; gap:26px}
+  .prod-dif{display:grid; grid-template-columns:auto 1fr; gap:16px; text-align:left; align-items:start}
+  .prod-dif__ico{width:48px; height:48px; margin:0}
+}
+
+/* Campo opcional e select dentro do formulário do site */
+.field .opt{color:var(--tx-3); font-weight:400; font-size:.85em}
+.field select{
+  width:100%; padding:13px 15px; border-radius:var(--r);
+  border:1px solid var(--line-strong); background:var(--surface-2);
+  color:var(--tx); font:inherit; font-size:.94rem;
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%237C8C94' stroke-width='2'%3E%3Cpolyline points='1,1 6,6 11,1'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 15px center;
+  padding-right:40px;
+}
+.field select:focus{outline:none; border-color:var(--w-teal); box-shadow:0 0 0 3px rgba(91,191,198,.16)}
+
+
+/* Em telas estreitas o título grande precisa ceder um pouco */
+@media (max-width:430px){
+  /* "VIDEOCONFERÊNCIA" em caixa alta precisa caber inteira: quebrar palavra
+     no meio de um título de campanha fica pior do que um corpo menor. */
+  h1.display{font-size:clamp(1.55rem, 7.1vw, 2.05rem)}
+}
+
+@media (max-width:340px){
+  h1.display{font-size:1.42rem}
 }
