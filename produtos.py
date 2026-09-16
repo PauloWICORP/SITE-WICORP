@@ -72,7 +72,7 @@ PRODUTOS["link-dedicado"] = dict(
         "100% da velocidade contratada, em download e upload",
         "IP fixo e SLA definido em contrato",
         "Fibra óptica ou rádio, conforme o que atende seu endereço",
-        "Monitoramento e suporte com equipe própria",
+        "Suporte técnico com equipe própria, sem fila de operadora",
     ],
 
     # --- um pouco sobre o produto, sem virar aula ---
@@ -93,15 +93,18 @@ PRODUTOS["link-dedicado"] = dict(
         dict(icone=I_LUPA, titulo="Análise antes da proposta",
              texto="Consultamos a viabilidade em fibra e em rádio no endereço da sua operação e "
                    "mostramos o que existe ali. Sem pacote pronto, sem promessa que a obra não cumpre."),
-        dict(icone=I_CONTRA, titulo="Um contrato, um interlocutor",
-             texto="Link, equipamento, monitoramento e suporte no mesmo contrato. Quando algo "
-                   "acontece, você aciona um número — não descobre de quem é a culpa entre quatro fornecedores."),
-        dict(icone=I_RELOGIO, titulo="Monitoramento 24/7",
-             texto="Nosso NOC acompanha o link continuamente. Na maior parte dos casos a equipe "
-                   "já está agindo antes de a falha chegar ao seu usuário."),
-        dict(icone=I_ESCUDO, titulo="Redundância que é redundância",
-             texto="Fibra e rádio por caminhos independentes, ou link principal somado ao Link.Box "
-                   "com dois chips 4G/5G. Dois contratos da mesma operadora caem juntos."),
+        dict(icone=I_ESCUDO, titulo="Quem cobra a operadora somos nós",
+             texto="Deu problema, você abre chamado com a Wicorp. Nossa equipe fala com a "
+                   "operadora em linguagem técnica e cobra a solução. Você não entra na fila "
+                   "de um 0800 explicando o problema de novo a cada atendente."),
+        dict(icone=I_RELOGIO, titulo="Da viabilidade à ativação, sem você no meio",
+             texto="Consulta de viabilidade, contrato, agendamento e acompanhamento da "
+                   "instalação: conduzimos o processo com a operadora. Seu time cuida da "
+                   "operação, não de cobrar prazo de terceiro."),
+        dict(icone=I_RAIO, titulo="28 anos sabendo quem entrega",
+             texto="Mapa de cobertura promete; entrega é outra coisa. Com quase 800 empresas "
+                   "atendidas desde 1998, sabemos na prática qual operadora cumpre o combinado "
+                   "em cada região — e é essa que indicamos."),
     ],
 
     # --- tecnologias / variantes do produto ---
@@ -121,6 +124,27 @@ PRODUTOS["link-dedicado"] = dict(
     ],
     variantes_fecho=("Combinar tecnologias diferentes reduz o risco de ficar offline: uma falha "
                      "que derruba a fibra raramente derruba o rádio no mesmo instante."),
+
+    # --- como funciona a contratação ---
+    etapas_titulo="Da consulta à ativação",
+    etapas_sub="O que acontece depois que você pede a consulta de disponibilidade.",
+    etapas=[
+        ("Consulta de viabilidade",
+         "Verificamos o que existe de fibra e de rádio no endereço da sua operação — inclusive "
+         "quando a resposta é que ali só uma das duas atende."),
+        ("Comparação entre operadoras",
+         "Mostramos quais atendem aquele endereço e a diferença entre elas em prazo, banda e SLA. "
+         "Com a recomendação de qual faz mais sentido para o seu caso."),
+        ("Proposta por escrito",
+         "Condições, prazo de ativação e SLA no papel antes de qualquer assinatura. Sem surpresa "
+         "depois que o contrato está fechado."),
+        ("Instalação acompanhada",
+         "Agendamento e acompanhamento da instalação junto à operadora. Seu time não precisa "
+         "cobrar prazo de terceiro."),
+        ("Ativação e suporte",
+         "Link no ar, e a Wicorp passa a ser o seu canal: chamado aberto com a gente, cobrança "
+         "feita por nós."),
+    ],
 
     # --- formulário ---
     form_titulo="Consulte a disponibilidade",
@@ -146,7 +170,7 @@ PRODUTOS["link-dedicado"] = dict(
          "Não. A Wicorp é integradora: o link é entregue sobre a rede de operadoras parceiras, e nós "
          "escolhemos qual delas atende melhor o seu endereço. Na prática, isso significa que não "
          "estamos presos a uma rede só — se a melhor opção ali for outra operadora, é ela que "
-         "indicamos. O contrato, o monitoramento e o suporte continuam sendo com a Wicorp."),
+         "indicamos. O contrato, o relacionamento e o suporte continuam sendo com a Wicorp."),
         ("Qual a diferença entre link dedicado e banda larga comum?",
          "Banda larga é compartilhada com outros assinantes e a velocidade contratada é um teto, "
          "não uma garantia — no horário de pico ela cai. O link dedicado entrega banda garantida e "
@@ -167,6 +191,11 @@ PRODUTOS["link-dedicado"] = dict(
          "Depende da viabilidade técnica no endereço e da operadora que atende ali. Onde já existe "
          "fibra instalada, a ativação costuma ocorrer em poucos dias; em rádio, geralmente é mais "
          "rápido. O prazo exato vai junto com a proposta, não antes dela."),
+        ("A Wicorp monitora o meu link?",
+         "Em um link contratado avulso, o monitoramento da rede é da operadora — a Wicorp atua no "
+         "suporte, abrindo e cobrando o chamado por você. O acompanhamento contínuo pelo nosso NOC "
+         "entra quando o link opera com o Link.Box: aí passamos a enxergar a conexão em tempo real "
+         "e agir antes que a falha chegue ao seu usuário."),
         ("E se eu já tiver link de outra operadora?",
          "Dá para manter. O Link.Box gerencia múltiplos links, inclusive de operadoras diferentes, "
          "e comuta automaticamente para dois chips 4G/5G quando todos caem. Nesse caso o link que "
@@ -256,6 +285,26 @@ def _variantes(p, alt=False):
 </section>"""
 
 
+def _etapas(p, alt=False):
+    if not p.get("etapas"):
+        return ""
+    li = "".join(f"<li><h3>{t}</h3><p>{d}</p></li>" for t, d in p["etapas"])
+    classe = "section section--alt" if alt else "section"
+    return f"""
+<section class="{classe}">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="margin-inline:auto">Como funciona</span>
+      <h2 class="display">{p['etapas_titulo']}</h2>
+      <p class="lead">{p.get('etapas_sub','')}</p>
+    </div>
+    <div style="max-width:640px;margin-inline:auto">
+      <ol class="steps reveal">{li}</ol>
+    </div>
+  </div>
+</section>"""
+
+
 def corpo_solucao(p, form_html, proof_html, faq_html, cta_html, extra_html=""):
     """Página com menu, indexada — a que responde na busca."""
     return f"""
@@ -278,6 +327,7 @@ def corpo_solucao(p, form_html, proof_html, faq_html, cta_html, extra_html=""):
 {_sobre(p, alt=True)}
 {_diferenciais(p, alt=False)}
 {_variantes(p, alt=True)}
+{_etapas(p)}
 {extra_html}
 {faq_html}
 {cta_html}
@@ -304,7 +354,8 @@ def corpo_lp(p, form_html, faq_html, cta_html):
 
 {_diferenciais(p, alt=True)}
 {_variantes(p, alt=False)}
-{_sobre(p, alt=True)}
+{_etapas(p, alt=True)}
+{_sobre(p)}
 {faq_html}
 {cta_html}
 </main>"""
