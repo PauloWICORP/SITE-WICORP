@@ -311,15 +311,24 @@ def form(form_id, solucao, titulo, sub, botao, prefix="", extras=None):
 """
 
 
-def proof_band():
-    return """
+def proof_band(monitoramento=True):
+    """Barra de numeros da empresa.
+
+    Em pagina de produto REPRESENTADO o item de monitoramento 24/7 sai: o
+    numero e verdadeiro para a Wicorp, mas colado num produto que ela so
+    revende ele e lido como promessa de servico que nao existe ali.
+    """
+    mon = ('      <div class="proof__item"><div class="proof__num grad-text">24/7</div>'
+           '<div class="proof__lbl">monitoramento<br>proativo da rede</div></div>'
+           ) if monitoramento else ""
+    return f"""
 <section class="proof">
   <div class="wrap">
     <div class="proof__grid">
       <div class="proof__item"><div class="proof__num grad-text" data-count="28">0</div><div class="proof__lbl">anos de mercado<br>desde 1998</div></div>
       <div class="proof__item"><div class="proof__num grad-text" data-count="800" data-prefix="+">0</div><div class="proof__lbl">clientes ativos<br>em todo o Brasil</div></div>
       <div class="proof__item"><div class="proof__num grad-text" data-count="2000" data-prefix="+">0</div><div class="proof__lbl">equipamentos<br>em operação</div></div>
-      <div class="proof__item"><div class="proof__num grad-text">24/7</div><div class="proof__lbl">monitoramento<br>proativo da rede</div></div>
+{mon}
     </div>
   </div>
 </section>
@@ -388,24 +397,6 @@ P = "../"   # prefixo para páginas em subpasta
 #    Link Dedicado é a conexão; Link.Box é a redundância. São produtos
 #    diferentes e cada um tem página própria.
 # --------------------------------------------------------------------------
-BODY_DEDICADO = (conectividade.BODY_DEDICADO
-    .replace("{FORM_DEDICADO}", form("dedicado", "link-dedicado", "Consulte a disponibilidade",
-             "Informe seus dados e verificamos a viabilidade técnica no endereço da sua operação.",
-             "Consultar disponibilidade"))
-    .replace("{PROOF}", proof_band())
-    .replace("{MOCK_NOC}", sections.mockup_section(
-             "Sua conexão acompanhada em tempo real", "Monitoramento 24/7",
-             "Nosso NOC acompanha cada link continuamente. Quando algo sai do padrão, o alerta "
-             "chega para a nossa equipe antes de chegar ao seu usuário.",
-             sections.MOCK_NOC,
-             [("24/7", "acompanhamento do NOC"), ("SLA", "prazo em contrato"),
-              ("Equipe própria", "sem fila de operadora")]))
-    .replace("{FAQ_DEDICADO}", faq(conectividade.FAQ_DEDICADO))
-    .replace("{CTA_DEDICADO}", cta_band(
-             "Consulte a disponibilidade no seu endereço",
-             "Verificamos a viabilidade técnica antes de qualquer proposta — em fibra ou rádio.",
-             "Consultar disponibilidade")))
-
 BODY_LINKBOX = (conectividade.BODY_LINKBOX
     .replace("{FORM_LINKBOX}", form("linkbox", "link-box", "Simule sua arquitetura de redundância",
              "Nossa equipe avalia sua estrutura atual e mostra onde existe ponto único de falha.",
@@ -1151,7 +1142,7 @@ def montar_produto(chave):
         lista.extend([f_html, faq_html, cta_html])
 
     corpo_sol = produtos.corpo_solucao(
-        p, solucao[0], proof_band(), solucao[1], solucao[2])
+        p, solucao[0], proof_band(monitoramento=False), solucao[1], solucao[2])
     corpo_lp = produtos.corpo_lp(p, lp[0], lp[1], lp[2])
     return p, corpo_sol, corpo_lp
 

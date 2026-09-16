@@ -1240,8 +1240,8 @@ CONSULTA_CEP = f"""
       </div>
 
       <p class="muted" style="font-size:.84rem;text-align:center;margin-top:20px">
-        A consulta não gera compromisso. Atendemos empresas em todo o Brasil,
-        com engenharia e suporte próprios.
+        A consulta não gera compromisso. Consultamos as operadoras que atendem
+        o endereço e voltamos com as opções comparadas.
       </p>
     </div>
   </div>
@@ -1255,11 +1255,11 @@ CONSULTA_CEP = f"""
     </div>
     <div style="max-width:640px;margin-inline:auto">
       <ol class="steps reveal">
-        <li><h3>Análise de viabilidade</h3><p>Verificamos o que existe de infraestrutura no endereço — fibra, rádio ou ambas.</p></li>
+        <li><h3>Análise de viabilidade</h3><p>Consultamos as operadoras e verificamos o que existe no endereço — fibra, rádio ou ambas.</p></li>
         <li><h3>Conversa com um especialista</h3><p>Entendemos o que a operação precisa: banda, criticidade, número de unidades.</p></li>
         <li><h3>Comparação entre operadoras</h3><p>Mostramos quais atendem o endereço e a diferença entre elas em prazo, banda e SLA.</p></li>
-        <li><h3>Proposta por escrito</h3><p>Condições, prazo e SLA no papel antes de qualquer assinatura.</p></li>
-        <li><h3>Instalação acompanhada</h3><p>Agendamos e acompanhamos a instalação junto à operadora. Depois, o chamado é aberto com a gente.</p></li>
+        <li><h3>Proposta por escrito</h3><p>Condições, prazo e SLA da operadora no papel, antes de qualquer assinatura.</p></li>
+        <li><h3>Contratação e instalação</h3><p>A operadora escolhida instala, ativa e passa a responder pelo serviço e pelo suporte do link.</p></li>
       </ol>
     </div>
   </div>
@@ -1314,9 +1314,9 @@ SUPORTE = f"""
       Suporte técnico <span class="grad-text">24 horas por dia</span>
     </h1>
     <p class="lead" style="max-width:58ch;margin:18px auto 0">
-      Abra um chamado pelo portal ou fale direto com a equipe. Nosso NOC acompanha
-      os links e a infraestrutura continuamente — em muitos casos, já estamos
-      atuando antes de você abrir o chamado.
+      Abra um chamado pelo portal ou fale direto com a equipe. Este canal atende os
+      serviços prestados pela Wicorp — nos produtos operados por parceiros, o
+      atendimento técnico corre pelo canal da própria operadora.
     </p>
   </div>
 </section>
@@ -1361,12 +1361,22 @@ SUPORTE = f"""
         <div class="sup-card__ico">{ico(I_CLOCK2, 21, 2)}</div>
         <h3>Monitoramento</h3>
         <b>24 horas, 7 dias</b>
-        <span>O NOC acompanha links e infraestrutura fora do horário comercial,
-        inclusive fins de semana e feriados.</span>
+        <span>O NOC acompanha os ambientes sob gestão da Wicorp fora do horário
+        comercial, inclusive fins de semana e feriados.</span>
       </div>
     </div>
 
     <div class="callout" style="margin-top:34px">
+      <h3>Antes de abrir, confira se o chamado é aqui</h3>
+      <p>Este canal atende os <b>serviços prestados pela Wicorp</b>. Alguns produtos que
+      vendemos são operados por parceiros — o <b>link dedicado</b> é o caso mais comum: o
+      serviço, o SLA e o suporte técnico são da operadora contratada, e o atendimento corre
+      pelo canal dela, com os prazos do contrato que você assinou.</p>
+      <p>Na dúvida sobre qual canal usar, ligue para nós. A gente diz em um minuto com quem
+      falar — é mais rápido do que esperar resposta na fila errada.</p>
+    </div>
+
+    <div class="callout" style="margin-top:22px">
       <h3>Antes de abrir o chamado, dois minutos que aceleram tudo</h3>
       <p>Tenha à mão: <b>a unidade ou endereço afetado</b>, <b>o que parou</b> (internet,
       telefonia, um sistema específico), <b>desde quando</b> e se o problema atinge

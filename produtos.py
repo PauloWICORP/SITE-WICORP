@@ -15,7 +15,26 @@ Para adicionar um produto: copie um bloco de PRODUTOS, troque o conteúdo,
 registre no build.py. Não precisa escrever HTML.
 
 --------------------------------------------------------------------------
-IMPORTANTE — a Wicorp é REPRESENTANTE, não operadora.
+IMPORTANTE — REGRA QUE NAO PODE SER QUEBRADA
+
+Em produto REPRESENTADO, a Wicorp VENDE. Só isso.
+Instalação, suporte, monitoramento, SLA e manutenção são da operadora.
+
+Nenhum texto de produto representado pode dizer, nem sugerir, que a Wicorp:
+  - monitora o serviço
+  - abre, acompanha ou cobra chamado
+  - acompanha a instalação
+  - garante o SLA
+  - atende depois da entrega
+
+O valor da Wicorp nesses produtos está ANTES da venda: escolher a operadora
+certa para aquele endereço, comparar as opções e apresentar a proposta.
+Depois da assinatura, quem responde é a operadora — e o site diz isso.
+
+A exceção é o que é da Wicorp (Link.Box, por exemplo). Ali o monitoramento
+pelo NOC é verdade e pode ser dito.
+--------------------------------------------------------------------------
+A Wicorp é REPRESENTANTE, não operadora.
 O link dedicado é entregue sobre a rede de operadoras parceiras. Nenhum texto
 aqui pode afirmar rede, backbone ou infraestrutura própria. O diferencial real
 é o oposto disso: não estar presa a uma operadora só.
@@ -72,7 +91,7 @@ PRODUTOS["link-dedicado"] = dict(
         "100% da velocidade contratada, em download e upload",
         "IP fixo e SLA definido em contrato",
         "Fibra óptica ou rádio, conforme o que atende seu endereço",
-        "Suporte técnico com equipe própria, sem fila de operadora",
+        "Consulta de viabilidade em fibra e em rádio antes da proposta",
     ],
 
     # --- um pouco sobre o produto, sem virar aula ---
@@ -93,18 +112,18 @@ PRODUTOS["link-dedicado"] = dict(
         dict(icone=I_LUPA, titulo="Análise antes da proposta",
              texto="Consultamos a viabilidade em fibra e em rádio no endereço da sua operação e "
                    "mostramos o que existe ali. Sem pacote pronto, sem promessa que a obra não cumpre."),
-        dict(icone=I_ESCUDO, titulo="Quem cobra a operadora somos nós",
-             texto="Deu problema, você abre chamado com a Wicorp. Nossa equipe fala com a "
-                   "operadora em linguagem técnica e cobra a solução. Você não entra na fila "
-                   "de um 0800 explicando o problema de novo a cada atendente."),
-        dict(icone=I_RELOGIO, titulo="Da viabilidade à ativação, sem você no meio",
-             texto="Consulta de viabilidade, contrato, agendamento e acompanhamento da "
-                   "instalação: conduzimos o processo com a operadora. Seu time cuida da "
-                   "operação, não de cobrar prazo de terceiro."),
+        dict(icone=I_CONTRA, titulo="Uma proposta, várias operadoras",
+             texto="Em vez de pedir cotação a quatro operadoras e montar planilha para "
+                   "comparar, você recebe as opções que atendem o seu endereço lado a lado, "
+                   "com a diferença de prazo, banda e SLA já explicada."),
         dict(icone=I_RAIO, titulo="28 anos sabendo quem entrega",
              texto="Mapa de cobertura promete; entrega é outra coisa. Com quase 800 empresas "
                    "atendidas desde 1998, sabemos na prática qual operadora cumpre o combinado "
                    "em cada região — e é essa que indicamos."),
+        dict(icone=I_ESCUDO, titulo="O link é o começo, não o fim",
+             texto="Link é sempre um caminho só, de uma operadora só. Quando a continuidade "
+                   "não pode depender disso, o Link.Box entra por cima — e esse é equipamento "
+                   "da Wicorp, monitorado pelo nosso NOC."),
     ],
 
     # --- tecnologias / variantes do produto ---
@@ -126,24 +145,21 @@ PRODUTOS["link-dedicado"] = dict(
                      "que derruba a fibra raramente derruba o rádio no mesmo instante."),
 
     # --- como funciona a contratação ---
-    etapas_titulo="Da consulta à ativação",
-    etapas_sub="O que acontece depois que você pede a consulta de disponibilidade.",
+    etapas_titulo="Da consulta à proposta",
+    etapas_sub="O que a Wicorp faz depois que você pede a consulta de disponibilidade.",
     etapas=[
         ("Consulta de viabilidade",
-         "Verificamos o que existe de fibra e de rádio no endereço da sua operação — inclusive "
-         "quando a resposta é que ali só uma das duas atende."),
+         "Verificamos com as operadoras o que existe de fibra e de rádio no endereço da sua "
+         "operação — inclusive quando a resposta é que ali só uma das duas atende."),
         ("Comparação entre operadoras",
-         "Mostramos quais atendem aquele endereço e a diferença entre elas em prazo, banda e SLA. "
-         "Com a recomendação de qual faz mais sentido para o seu caso."),
+         "Mostramos quais atendem aquele endereço e a diferença entre elas em prazo, banda e "
+         "SLA, com a recomendação de qual faz mais sentido para o seu caso."),
         ("Proposta por escrito",
-         "Condições, prazo de ativação e SLA no papel antes de qualquer assinatura. Sem surpresa "
-         "depois que o contrato está fechado."),
-        ("Instalação acompanhada",
-         "Agendamento e acompanhamento da instalação junto à operadora. Seu time não precisa "
-         "cobrar prazo de terceiro."),
-        ("Ativação e suporte",
-         "Link no ar, e a Wicorp passa a ser o seu canal: chamado aberto com a gente, cobrança "
-         "feita por nós."),
+         "Condições, prazo de ativação e SLA da operadora no papel, antes de qualquer "
+         "assinatura. Sem surpresa depois do contrato fechado."),
+        ("Contratação e instalação",
+         "Fechada a escolha, a operadora contratada faz a instalação e a ativação, e passa a "
+         "ser a responsável pelo serviço, pelo SLA e pelo suporte técnico do link."),
     ],
 
     # --- formulário ---
@@ -167,10 +183,11 @@ PRODUTOS["link-dedicado"] = dict(
     # --- perguntas ---
     faq=[
         ("A Wicorp é a operadora do link?",
-         "Não. A Wicorp é integradora: o link é entregue sobre a rede de operadoras parceiras, e nós "
-         "escolhemos qual delas atende melhor o seu endereço. Na prática, isso significa que não "
-         "estamos presos a uma rede só — se a melhor opção ali for outra operadora, é ela que "
-         "indicamos. O contrato, o relacionamento e o suporte continuam sendo com a Wicorp."),
+         "Não. A Wicorp representa operadoras: consultamos a viabilidade, comparamos quem atende "
+         "o seu endereço e apresentamos a proposta. A partir da contratação, o serviço é prestado "
+         "pela operadora escolhida — é dela a instalação, o SLA e o suporte técnico do link. "
+         "O ganho de comprar conosco está na escolha: não estamos presos a uma rede só, então "
+         "indicamos a que realmente entrega naquele endereço, e não a que precisamos vender."),
         ("Qual a diferença entre link dedicado e banda larga comum?",
          "Banda larga é compartilhada com outros assinantes e a velocidade contratada é um teto, "
          "não uma garantia — no horário de pico ela cai. O link dedicado entrega banda garantida e "
@@ -186,20 +203,28 @@ PRODUTOS["link-dedicado"] = dict(
          "qual das duas atende o seu endereço."),
         ("O que o SLA garante na prática?",
          "Prazo máximo de atendimento e de solução em caso de falha, além do compromisso de "
-         "disponibilidade mensal. É o que separa um contrato empresarial de um plano residencial."),
+         "disponibilidade mensal. É o que separa um contrato empresarial de um plano residencial. "
+         "O SLA é da operadora e está no contrato dela — e nós mostramos qual é o de cada opção "
+         "antes de você escolher."),
         ("Em quanto tempo o link é ativado?",
          "Depende da viabilidade técnica no endereço e da operadora que atende ali. Onde já existe "
          "fibra instalada, a ativação costuma ocorrer em poucos dias; em rádio, geralmente é mais "
-         "rápido. O prazo exato vai junto com a proposta, não antes dela."),
-        ("A Wicorp monitora o meu link?",
-         "Em um link contratado avulso, o monitoramento da rede é da operadora — a Wicorp atua no "
-         "suporte, abrindo e cobrando o chamado por você. O acompanhamento contínuo pelo nosso NOC "
-         "entra quando o link opera com o Link.Box: aí passamos a enxergar a conexão em tempo real "
-         "e agir antes que a falha chegue ao seu usuário."),
+         "rápido. Quem executa e informa o prazo é a operadora, e ele vai por escrito junto com "
+         "a proposta — não antes dela."),
+        ("Quem dá suporte depois que o link está instalado?",
+         "A operadora contratada. O link é serviço dela: monitoramento, SLA, chamado técnico e "
+         "manutenção correm pelo canal de atendimento da operadora, com os prazos do contrato "
+         "que você assinou com ela."),
+        ("Então em que a Wicorp continua ajudando?",
+         "No que é nosso. O Link.Box é equipamento da Wicorp e vem com monitoramento do nosso "
+         "NOC: ele acompanha a conexão principal e comuta sozinho para os chips 4G/5G quando "
+         "ela cai. Quem contrata o link com o Link.Box tem a operadora cuidando do link e a "
+         "Wicorp cuidando da continuidade — que é justamente o que para a operação quando falha."),
         ("E se eu já tiver link de outra operadora?",
          "Dá para manter. O Link.Box gerencia múltiplos links, inclusive de operadoras diferentes, "
          "e comuta automaticamente para dois chips 4G/5G quando todos caem. Nesse caso o link que "
-         "você já tem vira parte da redundância em vez de ser substituído."),
+         "você já tem vira parte da redundância em vez de ser substituído — e o suporte de cada "
+         "link continua sendo com a operadora dele."),
     ],
 
     # --- SEO ---

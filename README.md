@@ -135,16 +135,34 @@ rota de fuga. Quem chegou pelo anúncio converte ou fecha a aba.
 Para adicionar um produto: copie um bloco de `PRODUTOS` em `produtos.py`, troque
 o conteúdo e registre no `build.py`. Não se escreve HTML.
 
-### Regra que não pode ser quebrada
+### REGRA ZERO — produto representado
 
-**A Wicorp é representante, não operadora.** O link dedicado é entregue sobre a
-rede de operadoras parceiras. Nenhum texto do site pode afirmar rede, backbone
-ou infraestrutura própria — seria falso e quebra na primeira pergunta técnica.
+**Em produto representado, a Wicorp VENDE. Só isso.** Instalação, ativação,
+monitoramento, SLA, chamado e manutenção são da operadora contratada.
 
-O diferencial real é o contrário disso: **não estar presa a uma operadora só**.
-Uma operadora só vende a própria rede; a Wicorp analisa o endereço e indica a
-que atende melhor ali, mantendo contrato, monitoramento e suporte sob a mesma
-casa. É mais forte do que fingir dona de fibra, e tem a vantagem de ser verdade.
+Nenhum texto de produto representado pode dizer, nem sugerir, que a Wicorp
+monitora o serviço, abre ou cobra chamado, acompanha a instalação, garante o
+SLA ou atende depois da entrega. Também não pode afirmar rede, backbone ou
+infraestrutura própria.
+
+O valor da Wicorp nesses produtos está **antes** da venda: escolher a operadora
+certa para aquele endereço, comparar as opções e apresentar a proposta. Depois
+da assinatura quem responde é a operadora — e o site diz isso, na FAQ, em duas
+perguntas que não podem sair: "Quem dá suporte depois que está instalado?" e
+"Então em que a Wicorp continua ajudando?".
+
+| Produto | Situação |
+|---|---|
+| Link dedicado | **Representado** — suporte e SLA da operadora |
+| Link.Box | **Da Wicorp**, com monitoramento do NOC próprio |
+| Demais | Sem aviso de representação — confirme antes de afirmar pós-venda |
+
+Em página de produto representado a barra de números entra sem o item de
+monitoramento: `proof_band(monitoramento=False)`.
+
+A página de suporte (`wicorp.desk.ms`) atende **só o que é serviço da Wicorp**,
+e isso está escrito lá — para o cliente de produto representado não abrir
+chamado no canal errado.
 
 ---
 
