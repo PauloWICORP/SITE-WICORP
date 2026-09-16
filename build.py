@@ -1151,14 +1151,7 @@ def montar_produto(chave):
         lista.extend([f_html, faq_html, cta_html])
 
     corpo_sol = produtos.corpo_solucao(
-        p, solucao[0], proof_band(), solucao[1], solucao[2],
-        extra_html=sections.mockup_section(
-            "Sua conexão acompanhada em tempo real", "Monitoramento 24/7",
-            "Nosso NOC acompanha cada link continuamente. Quando algo sai do padrão, o alerta "
-            "chega para a nossa equipe antes de chegar ao seu usuário.",
-            sections.MOCK_NOC,
-            [("24/7", "acompanhamento do NOC"), ("SLA", "prazo em contrato"),
-             ("Equipe própria", "sem fila de operadora")]))
+        p, solucao[0], proof_band(), solucao[1], solucao[2])
     corpo_lp = produtos.corpo_lp(p, lp[0], lp[1], lp[2])
     return p, corpo_sol, corpo_lp
 
