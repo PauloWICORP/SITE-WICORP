@@ -17,6 +17,7 @@ import pathlib
 import sections
 import paginas
 import conectividade
+import produtos
 import novidades as nov
 
 ROOT = pathlib.Path(__file__).parent
@@ -67,10 +68,19 @@ def head(title, desc, canonical, prefix):
 """
 
 
-def logo(prefix, cls=""):
+def logo(prefix, cls="", link=True):
+    """Em landing page o logo NAO leva a lugar nenhum.
+
+    O ponto da LP e nao existir rota de fuga. Um logo clicavel manda para a
+    home justamente quem acabou de chegar pelo anuncio — e ali ele se perde
+    entre cinco solucoes em vez de preencher o formulario.
+    """
+    img = (f'<img src="{prefix}img/logo-wicorp.png" alt="Wicorp — Conexões Inteligentes" '
+           f'width="208" height="197">')
+    if not link:
+        return f'<span class="logo {cls}">{img}</span>'
     return (f'<a href="{prefix}index.html" class="logo {cls}" aria-label="Wicorp — página inicial">'
-            f'<img src="{prefix}img/logo-wicorp.png" alt="Wicorp — Conexões Inteligentes" width="208" height="197">'
-            f'</a>')
+            f'{img}</a>')
 
 
 def header(prefix, active=""):
@@ -127,7 +137,7 @@ def header_lp(prefix):
     return f"""
 <header class="header is-stuck">
   <div class="wrap">
-    {logo(prefix)}
+    {logo(prefix, link=False)}
     <a href="tel:{TEL_HREF}" class="btn btn--ghost btn--sm" style="margin-left:auto">{TEL}</a>
   </div>
 </header>
@@ -226,7 +236,36 @@ def crumb(prefix, label):
             f'<a href="{prefix}index.html#solucoes">Soluções</a>{sep}<span>{label}</span></nav>')
 
 
-def form(form_id, solucao, titulo, sub, botao, prefix=""):
+def campos_extras(form_id, extras):
+    """Campos adicionais de um formulario especifico.
+
+    O padrao do site sao 4 campos. Estes entram so quando o produto exige —
+    consulta de link precisa do endereco, senao nao ha o que consultar.
+    """
+    if not extras:
+        return ""
+    saida = []
+    for e in extras:
+        idc = form_id + "-" + e["campo"]
+        req = " required" if e.get("obrigatorio") else ""
+        opc = "" if e.get("obrigatorio") else ' <span class="opt">(opcional)</span>'
+        if e.get("tipo") == "select":
+            ops = "".join('<option value="%s">%s</option>' % (o, o) for o in e["opcoes"])
+            campo = ('<select id="%s" name="%s"%s><option value="">Selecione</option>%s</select>'
+                     % (idc, e["campo"], req, ops))
+        else:
+            campo = ('<input type="text" id="%s" name="%s" placeholder="%s"%s>'
+                     % (idc, e["campo"], e.get("placeholder", ""), req))
+        saida.append(
+            '\n    <div class="field">'
+            '\n      <label for="%s">%s%s</label>'
+            '\n      %s'
+            '\n      <span class="field__err"></span>'
+            '\n    </div>' % (idc, e["rotulo"], opc, campo))
+    return "".join(saida)
+
+
+def form(form_id, solucao, titulo, sub, botao, prefix="", extras=None):
     p = form_id
     return f"""
 <aside class="form-card" id="form">
@@ -255,6 +294,7 @@ def form(form_id, solucao, titulo, sub, botao, prefix=""):
       <input type="tel" id="{p}-whats" name="whatsapp" placeholder="(11) 90000-0000" required autocomplete="tel" inputmode="numeric">
       <span class="field__err"></span>
     </div>
+{campos_extras(form_id, extras)}
     <button type="submit" class="btn btn--primary btn--wide" data-label="{botao}">{botao}</button>
     <p class="form-note">Retornamos em até 1 dia útil. Seus dados não são compartilhados com terceiros.</p>
   </form>
@@ -1092,16 +1132,52 @@ BODY_OBRIGADO = f"""
 """
 
 
+
+# --------------------------------------------------------------------------
+# 1b. PRODUTOS GERADOS — o mesmo conteudo vira duas paginas
+#     solucoes/<produto>.html  com menu, indexada, e a do Google
+#     lp/<produto>.html        sem menu, noindex, e a de campanha
+#     Fonte unica: produtos.py. Corrigir um texto corrige as duas.
+# --------------------------------------------------------------------------
+def montar_produto(chave):
+    p = produtos.PRODUTOS[chave]
+    solucao, lp = [], []
+
+    for destino, prefixo, lista in (("solucao", P, solucao), ("lp", P, lp)):
+        f_html = form(f"{chave}-{destino}", chave, p["form_titulo"], p["form_sub"],
+                      p["form_botao"], extras=p.get("form_extras"))
+        faq_html = faq(p["faq"])
+        cta_html = cta_band(p["cta_titulo"], p["cta_texto"], p["cta_botao"])
+        lista.extend([f_html, faq_html, cta_html])
+
+    corpo_sol = produtos.corpo_solucao(
+        p, solucao[0], proof_band(), solucao[1], solucao[2],
+        extra_html=sections.mockup_section(
+            "Sua conexão acompanhada em tempo real", "Monitoramento 24/7",
+            "Nosso NOC acompanha cada link continuamente. Quando algo sai do padrão, o alerta "
+            "chega para a nossa equipe antes de chegar ao seu usuário.",
+            sections.MOCK_NOC,
+            [("24/7", "acompanhamento do NOC"), ("SLA", "prazo em contrato"),
+             ("Equipe própria", "sem fila de operadora")]))
+    corpo_lp = produtos.corpo_lp(p, lp[0], lp[1], lp[2])
+    return p, corpo_sol, corpo_lp
+
+
+PROD_DEDICADO, CORPO_DEDICADO_SOL, CORPO_DEDICADO_LP = montar_produto("link-dedicado")
+
 # ===========================================================================
 # GERAÇÃO DOS ARQUIVOS
 # ===========================================================================
 PAGES = [
-    dict(path="solucoes/link-dedicado-empresarial.html", prefix=P, body=BODY_DEDICADO,
-         faq=conectividade.FAQ_DEDICADO,
-         title="Link Dedicado Empresarial — Fibra e Rádio com SLA | Wicorp",
-         desc="Link dedicado com banda garantida e simétrica, IP fixo, SLA em contrato e "
-              "monitoramento 24/7. Em fibra ou rádio. Consulte a disponibilidade no seu endereço.",
+    dict(path=PROD_DEDICADO["arquivo_solucao"], prefix=P, body=CORPO_DEDICADO_SOL,
+         faq=PROD_DEDICADO["faq"], title=PROD_DEDICADO["title"], desc=PROD_DEDICADO["desc"],
          canonical="solucoes/link-dedicado-empresarial"),
+
+    # Landing page de campanha: sem menu, sem rota de fuga, fora da busca
+    # para nao competir com a pagina de solucao acima.
+    dict(path=PROD_DEDICADO["arquivo_lp"], prefix=P, body=CORPO_DEDICADO_LP, lp=True,
+         title=PROD_DEDICADO["title_lp"], desc=PROD_DEDICADO["desc_lp"],
+         canonical="lp/link-dedicado", noindex=True),
 
     dict(path="solucoes/link-box-redundancia.html", prefix=P, body=BODY_LINKBOX,
          faq=conectividade.FAQ_LINKBOX,
