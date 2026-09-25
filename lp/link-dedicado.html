@@ -47,13 +47,13 @@
         <span class="eyebrow">Link Dedicado Empresarial</span>
         <h1 class="display">Sua operação depende de sistemas em nuvem, ERP e <span class="grad-text">videoconferência?</span></h1>
         <p class="lead">Conectividade estável, velocidade garantida e IP fixo para sua operação, em fibra óptica ou rádio — conforme a disponibilidade e a necessidade do seu negócio.</p>
-        <ul class="checklist"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>100% da velocidade contratada, em download e upload</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>IP fixo e SLA definido em contrato</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Fibra óptica ou rádio, conforme o que atende seu endereço</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Consulta de viabilidade em fibra e em rádio antes da proposta</span></li></ul>
+        <ul class="checklist"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>100% da velocidade contratada, em download e upload</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>IP fixo e SLA definido em contrato</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Fibra óptica ou rádio</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Consulte a disponibilidade no seu endereço</span></li></ul>
       </div>
       <div>
 <aside class="form-card" id="form">
   <div class="form-card__head">
     <h3>Consulte a disponibilidade</h3>
-    <p>Informe o endereço da operação e verificamos a viabilidade técnica em fibra e em rádio.</p>
+    <p>Informe o endereço de instalação e verificamos a viabilidade técnica em fibra e em rádio.</p>
   </div>
   <form data-wicorp-form data-form-id="link-dedicado-lp" data-solucao="link-dedicado" novalidate>
     <div class="field">
@@ -83,8 +83,13 @@
       <span class="field__err"></span>
     </div>
     <div class="field">
+      <label for="link-dedicado-lp-tecnologia">Tecnologia <span class="opt">(opcional)</span></label>
+      <select id="link-dedicado-lp-tecnologia" name="tecnologia"><option value="">Selecione</option><option value="Fibra óptica">Fibra óptica</option><option value="Rádio">Rádio</option></select>
+      <span class="field__err"></span>
+    </div>
+    <div class="field">
       <label for="link-dedicado-lp-velocidade">Velocidade desejada <span class="opt">(opcional)</span></label>
-      <select id="link-dedicado-lp-velocidade" name="velocidade"><option value="">Selecione</option><option value="Não sei — preciso de orientação">Não sei — preciso de orientação</option><option value="50 Mbps">50 Mbps</option><option value="100 Mbps">100 Mbps</option><option value="200 Mbps">200 Mbps</option><option value="300 Mbps">300 Mbps</option><option value="500 Mbps">500 Mbps</option><option value="1 Gbps">1 Gbps</option><option value="Acima de 1 Gbps">Acima de 1 Gbps</option></select>
+      <select id="link-dedicado-lp-velocidade" name="velocidade"><option value="">Selecione</option><option value="50 Mbps">50 Mbps</option><option value="100 Mbps">100 Mbps</option><option value="200 Mbps">200 Mbps</option><option value="500 Mbps">500 Mbps</option><option value="1 Gbps">1 Gbps</option></select>
       <span class="field__err"></span>
     </div>
     <button type="submit" class="btn btn--primary btn--wide" data-label="Consultar disponibilidade">Consultar disponibilidade</button>
@@ -112,31 +117,26 @@
       <span class="eyebrow" style="margin-inline:auto">Diferenciais</span>
       <h2 class="display">Por que contratar com a Wicorp</h2>
     </div>
-    <div class="prod-difs">
+    <div class="prod-difs prod-difs--4">
       <div class="prod-dif reveal" data-d="0">
         <div class="prod-dif__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><line x1="6.5" y1="6.5" x2="10" y2="10"/><line x1="17.5" y1="6.5" x2="14" y2="10"/><line x1="6.5" y1="17.5" x2="10" y2="14"/><line x1="17.5" y1="17.5" x2="14" y2="14"/></svg></div>
         <h3>Independência de operadora</h3>
-        <p>Não somos operadora, e isso joga a favor do cliente: trabalhamos com várias e indicamos a que realmente atende o seu endereço — não a que precisamos vender.</p>
+        <p>Não somos vinculados a uma única operadora. Avaliamos as alternativas disponíveis para o endereço da sua operação e recomendamos a solução mais adequada em cobertura, desempenho, prazo e SLA — de acordo com a necessidade da sua empresa.</p>
       </div>
       <div class="prod-dif reveal" data-d="1">
         <div class="prod-dif__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-        <h3>Análise antes da proposta</h3>
-        <p>Consultamos a viabilidade em fibra e em rádio no endereço da sua operação e mostramos o que existe ali. Sem pacote pronto, sem promessa que a obra não cumpre.</p>
+        <h3>Análise de viabilidade antes da proposta</h3>
+        <p>Antes de apresentar uma solução, verificamos a disponibilidade de fibra e rádio no endereço da operação. Assim, a proposta parte de uma viabilidade real, considerando a infraestrutura disponível e as condições de entrega para aquele local.</p>
       </div>
       <div class="prod-dif reveal" data-d="2">
         <div class="prod-dif__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg></div>
-        <h3>Uma proposta, várias operadoras</h3>
-        <p>Em vez de pedir cotação a quatro operadoras e montar planilha para comparar, você recebe as opções que atendem o seu endereço lado a lado, com a diferença de prazo, banda e SLA já explicada.</p>
+        <h3>As opções de diferentes operadoras em uma única proposta</h3>
+        <p>Você não precisa conduzir várias cotações e comparar propostas com critérios diferentes. A Wicorp reúne as alternativas disponíveis para o endereço e apresenta as opções de forma comparável, considerando banda, prazo de implantação, SLA e condições comerciais.</p>
       </div>
       <div class="prod-dif reveal" data-d="3">
         <div class="prod-dif__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <h3>28 anos sabendo quem entrega</h3>
-        <p>Mapa de cobertura promete; entrega é outra coisa. Com quase 800 empresas atendidas desde 1998, sabemos na prática qual operadora cumpre o combinado em cada região — e é essa que indicamos.</p>
-      </div>
-      <div class="prod-dif reveal" data-d="4">
-        <div class="prod-dif__ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
-        <h3>O link é o começo, não o fim</h3>
-        <p>Link é sempre um caminho só, de uma operadora só. Quando a continuidade não pode depender disso, o Link.Box entra por cima — e esse é equipamento da Wicorp, monitorado pelo nosso NOC.</p>
+        <h3>28 anos de experiência na entrega</h3>
+        <p>Desde 1998, acompanhamos a implantação e a operação de conectividade em diferentes regiões e para empresas de diversos segmentos. Essa experiência nos permite considerar não apenas a cobertura informada pelas operadoras, mas também o histórico de entrega e atendimento observado na prática.</p>
       </div>
     </div>
   </div>
@@ -163,7 +163,7 @@
         <ul class="checklist"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>IP fixo</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>SLA definido em contrato</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>Velocidade simétrica</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>100% da velocidade contratada</span></li></ul>
       </div>
     </div>
-    <p class="prod-var__fecho reveal">Combinar tecnologias diferentes reduz o risco de ficar offline: uma falha que derruba a fibra raramente derruba o rádio no mesmo instante.</p>
+    <div class="prod-var__fecho reveal"><h3>Duas tecnologias, mais conectividade</h3><p>Combinar fibra e rádio reduz a dependência de uma única infraestrutura. Se uma falha interromper a conexão de fibra, o rádio pode assumir a operação e manter os serviços essenciais da empresa conectados.</p></div>
   </div>
 </section>
 
@@ -175,7 +175,7 @@
       <p class="lead">O que a Wicorp faz depois que você pede a consulta de disponibilidade.</p>
     </div>
     <div style="max-width:640px;margin-inline:auto">
-      <ol class="steps reveal"><li><h3>Consulta de viabilidade</h3><p>Verificamos com as operadoras o que existe de fibra e de rádio no endereço da sua operação — inclusive quando a resposta é que ali só uma das duas atende.</p></li><li><h3>Comparação entre operadoras</h3><p>Mostramos quais atendem aquele endereço e a diferença entre elas em prazo, banda e SLA, com a recomendação de qual faz mais sentido para o seu caso.</p></li><li><h3>Proposta por escrito</h3><p>Condições, prazo de ativação e SLA da operadora no papel, antes de qualquer assinatura. Sem surpresa depois do contrato fechado.</p></li><li><h3>Contratação e instalação</h3><p>Fechada a escolha, a operadora contratada faz a instalação e a ativação, e passa a ser a responsável pelo serviço, pelo SLA e pelo suporte técnico do link.</p></li></ol>
+      <ol class="steps reveal"><li><h3>Consulta de viabilidade</h3><p>Verificamos com as operadoras o que existe de fibra e de rádio no endereço da sua operação — inclusive quando a resposta é que ali só uma das duas atende.</p></li><li><h3>Comparação entre operadoras</h3><p>Mostramos quais atendem aquele endereço e a diferença entre elas em prazo, banda e SLA, com a recomendação de qual faz mais sentido para o seu caso.</p></li><li><h3>Proposta</h3><p>Condições, prazo de ativação e SLA da operadora no papel, antes de qualquer assinatura. Sem surpresa depois do contrato fechado.</p></li><li><h3>Contratação e instalação</h3><p>Fechada a escolha, a operadora contratada faz a instalação e a ativação, e passa a ser a responsável pelo serviço, pelo SLA e pelo suporte técnico do link.</p></li></ol>
     </div>
   </div>
 </section>
@@ -186,10 +186,10 @@
       <span class="eyebrow">O que é</span>
       <h2 class="display">Sua empresa não pode parar por causa da internet</h2>
     </div>
-    <div class="prod-sobre reveal"><p>Link dedicado não é internet compartilhada. A banda é sua, simétrica, com IP fixo e prazo de atendimento escrito em contrato.</p><p>É o que sustenta ERP, sistemas em nuvem, videoconferência e integrações que não podem travar no meio do expediente — e é por isso que ele se paga na primeira queda que não aconteceu.</p></div>
+    <div class="prod-sobre reveal"><p>Link dedicado não é internet compartilhada. A banda é sua, simétrica, com IP fixo e prazo de atendimento escrito em contrato.</p><p>É o que sustenta ERP, sistemas em nuvem, videoconferências e integrações essenciais — garantindo estabilidade e desempenho nos momentos em que sua operação mais precisa estar conectada.</p></div>
   </div>
 </section>
-<div class="faq"><details><summary>A Wicorp é a operadora do link?</summary><p>Não. A Wicorp representa operadoras: consultamos a viabilidade, comparamos quem atende o seu endereço e apresentamos a proposta. A partir da contratação, o serviço é prestado pela operadora escolhida — é dela a instalação, o SLA e o suporte técnico do link. O ganho de comprar conosco está na escolha: não estamos presos a uma rede só, então indicamos a que realmente entrega naquele endereço, e não a que precisamos vender.</p></details><details><summary>Qual a diferença entre link dedicado e banda larga comum?</summary><p>Banda larga é compartilhada com outros assinantes e a velocidade contratada é um teto, não uma garantia — no horário de pico ela cai. O link dedicado entrega banda garantida e simétrica: a mesma velocidade de subida e descida, a qualquer hora, com SLA em contrato.</p></details><details><summary>Por que preciso de IP fixo?</summary><p>Sem IP fixo você não consegue publicar serviços próprios, usar VPN com endereço estável, hospedar câmeras acessíveis de fora nem manter integrações que exigem endereço conhecido. Para uma empresa, é o que permite tratar a conexão como infraestrutura, não como acesso doméstico.</p></details><details><summary>Fibra ou rádio: qual escolher?</summary><p>Fibra é a primeira opção quando existe infraestrutura no endereço — mais estável e com maior capacidade. Rádio resolve onde a fibra não chegou ou onde a obra civil inviabiliza a instalação, e a ativação costuma ser mais rápida. A consulta de disponibilidade responde qual das duas atende o seu endereço.</p></details><details><summary>O que o SLA garante na prática?</summary><p>Prazo máximo de atendimento e de solução em caso de falha, além do compromisso de disponibilidade mensal. É o que separa um contrato empresarial de um plano residencial. O SLA é da operadora e está no contrato dela — e nós mostramos qual é o de cada opção antes de você escolher.</p></details><details><summary>Em quanto tempo o link é ativado?</summary><p>Depende da viabilidade técnica no endereço e da operadora que atende ali. Onde já existe fibra instalada, a ativação costuma ocorrer em poucos dias; em rádio, geralmente é mais rápido. Quem executa e informa o prazo é a operadora, e ele vai por escrito junto com a proposta — não antes dela.</p></details><details><summary>Quem dá suporte depois que o link está instalado?</summary><p>A operadora contratada. O link é serviço dela: monitoramento, SLA, chamado técnico e manutenção correm pelo canal de atendimento da operadora, com os prazos do contrato que você assinou com ela.</p></details><details><summary>Então em que a Wicorp continua ajudando?</summary><p>No que é nosso. O Link.Box é equipamento da Wicorp e vem com monitoramento do nosso NOC: ele acompanha a conexão principal e comuta sozinho para os chips 4G/5G quando ela cai. Quem contrata o link com o Link.Box tem a operadora cuidando do link e a Wicorp cuidando da continuidade — que é justamente o que para a operação quando falha.</p></details><details><summary>E se eu já tiver link de outra operadora?</summary><p>Dá para manter. O Link.Box gerencia múltiplos links, inclusive de operadoras diferentes, e comuta automaticamente para dois chips 4G/5G quando todos caem. Nesse caso o link que você já tem vira parte da redundância em vez de ser substituído — e o suporte de cada link continua sendo com a operadora dele.</p></details></div>
+<div class="faq"><details><summary>A Wicorp é a operadora do link?</summary><p>Não. A Wicorp representa operadoras: consultamos a viabilidade, comparamos quem atende o seu endereço e apresentamos a proposta. A partir da contratação, o serviço é prestado pela operadora escolhida — é dela a instalação, o SLA e o suporte técnico do link. O ganho de comprar conosco está na escolha: não estamos presos a uma rede só, então indicamos a que realmente entrega naquele endereço, e não a que precisamos vender.</p></details><details><summary>Qual a diferença entre link dedicado e banda larga comum?</summary><p>Banda larga é compartilhada com outros assinantes e a velocidade contratada é um teto, não uma garantia — no horário de pico ela cai. O link dedicado entrega banda garantida e simétrica: a mesma velocidade de subida e descida, a qualquer hora, com SLA em contrato.</p></details><details><summary>Fibra ou rádio: qual escolher?</summary><p>Fibra é a primeira opção quando existe infraestrutura no endereço — mais estável e com maior capacidade. Rádio resolve onde a fibra não chegou ou onde a obra civil inviabiliza a instalação, e a ativação costuma ser mais rápida. A consulta de disponibilidade responde qual das duas atende o seu endereço.</p></details><details><summary>Em quanto tempo o link é ativado?</summary><p>Depende da viabilidade técnica no endereço e da operadora que atende ali. Onde já existe fibra instalada, a ativação costuma ocorrer em poucos dias; em rádio, geralmente é mais rápido. Quem executa e informa o prazo é a operadora, e ele vai por escrito junto com a proposta — não antes dela.</p></details><details><summary>Quem dá suporte depois que o link está instalado?</summary><p>A operadora contratada. O link é serviço dela: monitoramento, SLA, chamado técnico e manutenção correm pelo canal de atendimento da operadora, com os prazos do contrato que você assinou com ela. A Wicorp segue como seu canal para o que é nosso — o Link.Box, por exemplo, é equipamento da Wicorp e vem com monitoramento do nosso NOC.</p></details></div>
 
 <section class="section section--tight">
   <div class="wrap">
@@ -197,7 +197,7 @@
       <div class="cta-band__inner">
         <div>
           <h2 class="display">Consulte a disponibilidade no seu endereço</h2>
-          <p class="lead">Verificamos o que existe de fibra e de rádio no endereço da sua operação antes de qualquer proposta. Sem compromisso.</p>
+          
         </div>
         <div class="cta-band__actions">
           <a href="#form" class="btn btn--primary btn--wide">Consultar disponibilidade

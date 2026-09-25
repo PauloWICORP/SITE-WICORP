@@ -344,7 +344,7 @@ def cta_band(titulo, texto, botao, href="#form", tel=True):
       <div class="cta-band__inner">
         <div>
           <h2 class="display">{titulo}</h2>
-          <p class="lead">{texto}</p>
+          {f'<p class="lead">{texto}</p>' if texto else ''}
         </div>
         <div class="cta-band__actions">
           <a href="{href}" class="btn btn--primary btn--wide">{botao}
