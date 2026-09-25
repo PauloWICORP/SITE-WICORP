@@ -90,8 +90,8 @@ PRODUTOS["link-dedicado"] = dict(
     qualidades=[
         "100% da velocidade contratada, em download e upload",
         "IP fixo e SLA definido em contrato",
-        "Fibra óptica ou rádio, conforme o que atende seu endereço",
-        "Consulta de viabilidade em fibra e em rádio antes da proposta",
+        "Fibra óptica ou rádio",
+        "Consulte a disponibilidade no seu endereço",
     ],
 
     # --- um pouco sobre o produto, sem virar aula ---
@@ -99,31 +99,34 @@ PRODUTOS["link-dedicado"] = dict(
     sobre=[
         "Link dedicado não é internet compartilhada. A banda é sua, simétrica, com IP fixo e "
         "prazo de atendimento escrito em contrato.",
-        "É o que sustenta ERP, sistemas em nuvem, videoconferência e integrações que não podem "
-        "travar no meio do expediente — e é por isso que ele se paga na primeira queda que não aconteceu.",
+        "É o que sustenta ERP, sistemas em nuvem, videoconferências e integrações essenciais — "
+        "garantindo estabilidade e desempenho nos momentos em que sua operação mais precisa "
+        "estar conectada.",
     ],
 
     # --- a grade de diferenciais ---
     diferenciais_titulo="Por que contratar com a Wicorp",
     diferenciais=[
         dict(icone=I_REDE, titulo="Independência de operadora",
-             texto="Não somos operadora, e isso joga a favor do cliente: trabalhamos com várias "
-                   "e indicamos a que realmente atende o seu endereço — não a que precisamos vender."),
-        dict(icone=I_LUPA, titulo="Análise antes da proposta",
-             texto="Consultamos a viabilidade em fibra e em rádio no endereço da sua operação e "
-                   "mostramos o que existe ali. Sem pacote pronto, sem promessa que a obra não cumpre."),
-        dict(icone=I_CONTRA, titulo="Uma proposta, várias operadoras",
-             texto="Em vez de pedir cotação a quatro operadoras e montar planilha para "
-                   "comparar, você recebe as opções que atendem o seu endereço lado a lado, "
-                   "com a diferença de prazo, banda e SLA já explicada."),
-        dict(icone=I_RAIO, titulo="28 anos sabendo quem entrega",
-             texto="Mapa de cobertura promete; entrega é outra coisa. Com quase 800 empresas "
-                   "atendidas desde 1998, sabemos na prática qual operadora cumpre o combinado "
-                   "em cada região — e é essa que indicamos."),
-        dict(icone=I_ESCUDO, titulo="O link é o começo, não o fim",
-             texto="Link é sempre um caminho só, de uma operadora só. Quando a continuidade "
-                   "não pode depender disso, o Link.Box entra por cima — e esse é equipamento "
-                   "da Wicorp, monitorado pelo nosso NOC."),
+             texto="Não somos vinculados a uma única operadora. Avaliamos as alternativas "
+                   "disponíveis para o endereço da sua operação e recomendamos a solução mais "
+                   "adequada em cobertura, desempenho, prazo e SLA — de acordo com a necessidade "
+                   "da sua empresa."),
+        dict(icone=I_LUPA, titulo="Análise de viabilidade antes da proposta",
+             texto="Antes de apresentar uma solução, verificamos a disponibilidade de fibra e "
+                   "rádio no endereço da operação. Assim, a proposta parte de uma viabilidade "
+                   "real, considerando a infraestrutura disponível e as condições de entrega "
+                   "para aquele local."),
+        dict(icone=I_CONTRA, titulo="As opções de diferentes operadoras em uma única proposta",
+             texto="Você não precisa conduzir várias cotações e comparar propostas com critérios "
+                   "diferentes. A Wicorp reúne as alternativas disponíveis para o endereço e "
+                   "apresenta as opções de forma comparável, considerando banda, prazo de "
+                   "implantação, SLA e condições comerciais."),
+        dict(icone=I_RAIO, titulo="28 anos de experiência na entrega",
+             texto="Desde 1998, acompanhamos a implantação e a operação de conectividade em "
+                   "diferentes regiões e para empresas de diversos segmentos. Essa experiência "
+                   "nos permite considerar não apenas a cobertura informada pelas operadoras, "
+                   "mas também o histórico de entrega e atendimento observado na prática."),
     ],
 
     # --- tecnologias / variantes do produto ---
@@ -141,8 +144,10 @@ PRODUTOS["link-dedicado"] = dict(
              itens=["IP fixo", "SLA definido em contrato", "Velocidade simétrica",
                     "100% da velocidade contratada"]),
     ],
-    variantes_fecho=("Combinar tecnologias diferentes reduz o risco de ficar offline: uma falha "
-                     "que derruba a fibra raramente derruba o rádio no mesmo instante."),
+    variantes_fecho_titulo="Duas tecnologias, mais conectividade",
+    variantes_fecho=("Combinar fibra e rádio reduz a dependência de uma única infraestrutura. "
+                     "Se uma falha interromper a conexão de fibra, o rádio pode assumir a "
+                     "operação e manter os serviços essenciais da empresa conectados."),
 
     # --- como funciona a contratação ---
     etapas_titulo="Da consulta à proposta",
@@ -154,7 +159,7 @@ PRODUTOS["link-dedicado"] = dict(
         ("Comparação entre operadoras",
          "Mostramos quais atendem aquele endereço e a diferença entre elas em prazo, banda e "
          "SLA, com a recomendação de qual faz mais sentido para o seu caso."),
-        ("Proposta por escrito",
+        ("Proposta",
          "Condições, prazo de ativação e SLA da operadora no papel, antes de qualquer "
          "assinatura. Sem surpresa depois do contrato fechado."),
         ("Contratação e instalação",
@@ -164,20 +169,20 @@ PRODUTOS["link-dedicado"] = dict(
 
     # --- formulário ---
     form_titulo="Consulte a disponibilidade",
-    form_sub="Informe o endereço da operação e verificamos a viabilidade técnica em fibra e em rádio.",
+    form_sub="Informe o endereço de instalação e verificamos a viabilidade técnica em fibra e em rádio.",
     form_botao="Consultar disponibilidade",
     form_extras=[
         dict(campo="endereco", rotulo="Endereço onde será instalado o link",
              tipo="text", placeholder="Rua, número, bairro e cidade", obrigatorio=True),
+        dict(campo="tecnologia", rotulo="Tecnologia", tipo="select", obrigatorio=False,
+             opcoes=["Fibra óptica", "Rádio"]),
         dict(campo="velocidade", rotulo="Velocidade desejada", tipo="select", obrigatorio=False,
-             opcoes=["Não sei — preciso de orientação", "50 Mbps", "100 Mbps", "200 Mbps",
-                     "300 Mbps", "500 Mbps", "1 Gbps", "Acima de 1 Gbps"]),
+             opcoes=["50 Mbps", "100 Mbps", "200 Mbps", "500 Mbps", "1 Gbps"]),
     ],
 
     # --- fechamento ---
     cta_titulo="Consulte a disponibilidade no seu endereço",
-    cta_texto=("Verificamos o que existe de fibra e de rádio no endereço da sua operação antes "
-               "de qualquer proposta. Sem compromisso."),
+    cta_texto="",
     cta_botao="Consultar disponibilidade",
 
     # --- perguntas ---
@@ -192,39 +197,21 @@ PRODUTOS["link-dedicado"] = dict(
          "Banda larga é compartilhada com outros assinantes e a velocidade contratada é um teto, "
          "não uma garantia — no horário de pico ela cai. O link dedicado entrega banda garantida e "
          "simétrica: a mesma velocidade de subida e descida, a qualquer hora, com SLA em contrato."),
-        ("Por que preciso de IP fixo?",
-         "Sem IP fixo você não consegue publicar serviços próprios, usar VPN com endereço estável, "
-         "hospedar câmeras acessíveis de fora nem manter integrações que exigem endereço conhecido. "
-         "Para uma empresa, é o que permite tratar a conexão como infraestrutura, não como acesso doméstico."),
         ("Fibra ou rádio: qual escolher?",
          "Fibra é a primeira opção quando existe infraestrutura no endereço — mais estável e com "
-         "maior capacidade. Rádio resolve onde a fibra não chegou ou onde a obra civil inviabiliza a "
-         "instalação, e a ativação costuma ser mais rápida. A consulta de disponibilidade responde "
-         "qual das duas atende o seu endereço."),
-        ("O que o SLA garante na prática?",
-         "Prazo máximo de atendimento e de solução em caso de falha, além do compromisso de "
-         "disponibilidade mensal. É o que separa um contrato empresarial de um plano residencial. "
-         "O SLA é da operadora e está no contrato dela — e nós mostramos qual é o de cada opção "
-         "antes de você escolher."),
+         "maior capacidade. Rádio resolve onde a fibra não chegou ou onde a obra civil inviabiliza "
+         "a instalação, e a ativação costuma ser mais rápida. A consulta de disponibilidade "
+         "responde qual das duas atende o seu endereço."),
         ("Em quanto tempo o link é ativado?",
          "Depende da viabilidade técnica no endereço e da operadora que atende ali. Onde já existe "
          "fibra instalada, a ativação costuma ocorrer em poucos dias; em rádio, geralmente é mais "
-         "rápido. Quem executa e informa o prazo é a operadora, e ele vai por escrito junto com "
-         "a proposta — não antes dela."),
+         "rápido. Quem executa e informa o prazo é a operadora, e ele vai por escrito junto com a "
+         "proposta — não antes dela."),
         ("Quem dá suporte depois que o link está instalado?",
          "A operadora contratada. O link é serviço dela: monitoramento, SLA, chamado técnico e "
-         "manutenção correm pelo canal de atendimento da operadora, com os prazos do contrato "
-         "que você assinou com ela."),
-        ("Então em que a Wicorp continua ajudando?",
-         "No que é nosso. O Link.Box é equipamento da Wicorp e vem com monitoramento do nosso "
-         "NOC: ele acompanha a conexão principal e comuta sozinho para os chips 4G/5G quando "
-         "ela cai. Quem contrata o link com o Link.Box tem a operadora cuidando do link e a "
-         "Wicorp cuidando da continuidade — que é justamente o que para a operação quando falha."),
-        ("E se eu já tiver link de outra operadora?",
-         "Dá para manter. O Link.Box gerencia múltiplos links, inclusive de operadoras diferentes, "
-         "e comuta automaticamente para dois chips 4G/5G quando todos caem. Nesse caso o link que "
-         "você já tem vira parte da redundância em vez de ser substituído — e o suporte de cada "
-         "link continua sendo com a operadora dele."),
+         "manutenção correm pelo canal de atendimento da operadora, com os prazos do contrato que "
+         "você assinou com ela. A Wicorp segue como seu canal para o que é nosso — o Link.Box, por "
+         "exemplo, é equipamento da Wicorp e vem com monitoramento do nosso NOC."),
     ],
 
     # --- SEO ---
@@ -269,6 +256,8 @@ def _diferenciais(p, alt=True):
         <p>{d['texto']}</p>
       </div>""" for i, d in enumerate(p["diferenciais"]))
     classe = "section section--alt sec-tex" if alt else "section sec-tex"
+    n = len(p["diferenciais"])
+    grade = "prod-difs" + (f" prod-difs--{n}" if n in (3, 4) else "")
     return f"""
 <section class="{classe}" id="diferenciais">
   <div class="wrap">
@@ -276,7 +265,7 @@ def _diferenciais(p, alt=True):
       <span class="eyebrow" style="margin-inline:auto">Diferenciais</span>
       <h2 class="display">{p['diferenciais_titulo']}</h2>
     </div>
-    <div class="prod-difs">{cards}
+    <div class="{grade}">{cards}
     </div>
   </div>
 </section>"""
@@ -292,8 +281,12 @@ def _variantes(p, alt=False):
         <p>{v['resumo']}</p>
         <ul class="checklist">{"".join(f"<li>{CHECK}<span>{x}</span></li>" for x in v['itens'])}</ul>
       </div>""" for i, v in enumerate(p["variantes"]))
-    fecho = (f'<p class="prod-var__fecho reveal">{p["variantes_fecho"]}</p>'
-             if p.get("variantes_fecho") else "")
+    if p.get("variantes_fecho"):
+        titulo = (f'<h3>{p["variantes_fecho_titulo"]}</h3>'
+                  if p.get("variantes_fecho_titulo") else "")
+        fecho = f'<div class="prod-var__fecho reveal">{titulo}<p>{p["variantes_fecho"]}</p></div>'
+    else:
+        fecho = ""
     classe = "section section--alt" if alt else "section"
     return f"""
 <section class="{classe}">

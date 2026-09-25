@@ -1827,6 +1827,9 @@ a.sup-card:hover{border-color:var(--line-strong); transform:translateY(-3px)}
 
 /* Grade de diferenciais — o bloco que mais pesa na LP */
 .prod-difs{display:grid; grid-template-columns:repeat(5,1fr); gap:26px}
+/* A grade acompanha o numero de diferenciais do produto */
+.prod-difs--4{grid-template-columns:repeat(4,1fr)}
+.prod-difs--3{grid-template-columns:repeat(3,1fr)}
 .prod-difs > *{min-width:0}
 .prod-dif{text-align:center}
 .prod-dif__ico{
@@ -1855,23 +1858,27 @@ a.sup-card:hover{border-color:var(--line-strong); transform:translateY(-3px)}
 .prod-var p{font-size:.92rem; color:var(--tx-2); line-height:1.7; margin-bottom:20px}
 .prod-var .checklist{margin:0}
 .prod-var__fecho{
-  margin-top:28px; text-align:center; font-size:.95rem; color:var(--tx-2);
-  max-width:64ch; margin-inline:auto; line-height:1.7;
+  margin-top:34px; text-align:center; max-width:66ch; margin-inline:auto;
 }
+.prod-var__fecho h3{
+  font-family:var(--f-display); text-transform:uppercase; letter-spacing:.01em;
+  font-size:1.5rem; font-weight:400; margin-bottom:12px;
+}
+.prod-var__fecho p{font-size:.97rem; color:var(--tx-2); line-height:1.75}
 
 /* Hero da LP: sem menu, o topo pode respirar menos */
 .lp-hero{padding-top:calc(var(--header-h) + 44px)}
 
 @media (max-width:1100px){
-  .prod-difs{grid-template-columns:repeat(3,1fr); gap:30px 24px}
+  .prod-difs, .prod-difs--4{grid-template-columns:repeat(3,1fr); gap:30px 24px}
 }
 @media (max-width:760px){
-  .prod-difs{grid-template-columns:repeat(2,1fr)}
+  .prod-difs, .prod-difs--4, .prod-difs--3{grid-template-columns:repeat(2,1fr)}
   .prod-vars{grid-template-columns:1fr}
   .prod-var{padding:26px 22px}
 }
 @media (max-width:420px){
-  .prod-difs{grid-template-columns:1fr; gap:26px}
+  .prod-difs, .prod-difs--4, .prod-difs--3{grid-template-columns:1fr; gap:26px}
   .prod-dif{display:grid; grid-template-columns:auto 1fr; gap:16px; text-align:left; align-items:start}
   .prod-dif__ico{width:48px; height:48px; margin:0}
 }
@@ -1899,4 +1906,16 @@ a.sup-card:hover{border-color:var(--line-strong); transform:translateY(-3px)}
 
 @media (max-width:340px){
   h1.display{font-size:1.42rem}
+}
+
+/* Títulos de tamanhos diferentes desalinham o início dos textos na grade.
+   Subgrid alinha ícone, título e corpo entre os cards. Onde não houver
+   suporte, o layout continua válido — só volta a ficar irregular. */
+@media (min-width:1101px){
+  @supports (grid-template-rows: subgrid){
+    .prod-difs{grid-template-rows:auto auto auto}
+    .prod-dif{display:grid; grid-template-rows:subgrid; grid-row:span 3; row-gap:0}
+    .prod-dif__ico{margin-bottom:18px}
+    .prod-dif h3{margin-bottom:9px; align-self:start}
+  }
 }
