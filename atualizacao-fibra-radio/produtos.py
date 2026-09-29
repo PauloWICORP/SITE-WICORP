@@ -1,0 +1,400 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Gerador de páginas de produto.
+
+Cada produto é preenchido UMA vez no dicionário PRODUTOS e vira duas páginas:
+
+  solucoes/<slug>.html   com menu, indexada. É a que o Google conhece.
+  lp/<slug>.html         sem menu, sem rota de fuga, noindex. É a de campanha.
+
+Mesmo texto, mesma prova, mesmos números. Corrigiu um, corrigiu os dois —
+e como a LP fica fora da busca, as duas nunca competem entre si.
+
+Para adicionar um produto: copie um bloco de PRODUTOS, troque o conteúdo,
+registre no build.py. Não precisa escrever HTML.
+
+--------------------------------------------------------------------------
+IMPORTANTE — REGRA QUE NAO PODE SER QUEBRADA
+
+Em produto REPRESENTADO, a Wicorp VENDE. Só isso.
+Instalação, suporte, monitoramento, SLA e manutenção são da operadora.
+
+Nenhum texto de produto representado pode dizer, nem sugerir, que a Wicorp:
+  - monitora o serviço
+  - abre, acompanha ou cobra chamado
+  - acompanha a instalação
+  - garante o SLA
+  - atende depois da entrega
+
+O valor da Wicorp nesses produtos está ANTES da venda: escolher a operadora
+certa para aquele endereço, comparar as opções e apresentar a proposta.
+Depois da assinatura, quem responde é a operadora — e o site diz isso.
+
+A exceção é o que é da Wicorp (Link.Box, por exemplo). Ali o monitoramento
+pelo NOC é verdade e pode ser dito.
+--------------------------------------------------------------------------
+A Wicorp é REPRESENTANTE, não operadora.
+O link dedicado é entregue sobre a rede de operadoras parceiras. Nenhum texto
+aqui pode afirmar rede, backbone ou infraestrutura própria. O diferencial real
+é o oposto disso: não estar presa a uma operadora só.
+--------------------------------------------------------------------------
+"""
+
+from sections import ico
+
+P = "../"
+
+CHECK = ('<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+         'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+         '<polyline points="20 6 9 17 4 12"/></svg>')
+ARROW = ico('<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>', 17, 2.5)
+
+# Ícones da grade de diferenciais
+I_REDE    = ('<circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/>'
+             '<circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><line x1="6.5" y1="6.5" x2="10" y2="10"/>'
+             '<line x1="17.5" y1="6.5" x2="14" y2="10"/><line x1="6.5" y1="17.5" x2="10" y2="14"/>'
+             '<line x1="17.5" y1="17.5" x2="14" y2="14"/>')
+I_LUPA    = '<circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>'
+I_CONTRA  = ('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>'
+             '<polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/>'
+             '<line x1="8" y1="17" x2="13" y2="17"/>')
+I_RELOGIO = '<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>'
+I_ESCUDO  = '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>'
+I_RAIO    = '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>'
+I_ANTENA  = ('<path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/>'
+             '<path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/>')
+I_FIBRA   = ('<path d="M4 20c0-8 16-8 16-16"/><circle cx="4" cy="20" r="2"/><circle cx="20" cy="4" r="2"/>')
+
+
+# ===========================================================================
+# OS PRODUTOS
+# ===========================================================================
+
+PRODUTOS = {}
+
+PRODUTOS["link-dedicado"] = dict(
+    # --- identidade ---
+    nome="Link Dedicado Empresarial",
+    categoria="Conectividade",
+    arquivo_solucao="solucoes/link-dedicado-empresarial.html",
+    arquivo_lp="lp/link-dedicado.html",
+
+    # --- topo ---
+    # H1 da página de solução: carrega a palavra que se busca no Google
+    h1_solucao='Link dedicado empresarial com <span class="grad-text">banda garantida e IP fixo</span>',
+    # H1 da LP: pergunta que nomeia a dor, no modelo de campanha
+    h1_lp='Sua operação depende de sistemas em nuvem, ERP e <span class="grad-text">videoconferência?</span>',
+    promessa=("Conectividade estável, velocidade garantida e IP fixo para sua operação, "
+              "em fibra óptica ou rádio — conforme a disponibilidade e a necessidade do seu negócio."),
+    qualidades=[
+        "100% da velocidade contratada, em download e upload",
+        "IP fixo e SLA definido em contrato",
+        "Fibra óptica ou rádio",
+        "Consulte a disponibilidade no seu endereço",
+    ],
+
+    # --- um pouco sobre o produto, sem virar aula ---
+    sobre_titulo="Sua empresa não pode parar por causa da internet",
+    sobre=[
+        "Link dedicado não é internet compartilhada. A banda é sua, simétrica, com IP fixo e "
+        "prazo de atendimento escrito em contrato.",
+        "É o que sustenta ERP, sistemas em nuvem, videoconferências e integrações essenciais — "
+        "garantindo estabilidade e desempenho nos momentos em que sua operação mais precisa "
+        "estar conectada.",
+    ],
+
+    # --- a grade de diferenciais ---
+    diferenciais_titulo="Por que contratar com a Wicorp",
+    diferenciais=[
+        dict(icone=I_REDE, titulo="Independência de operadora",
+             texto="Não somos vinculados a uma única operadora. Avaliamos as alternativas "
+                   "disponíveis para o endereço da sua operação e recomendamos a solução mais "
+                   "adequada em cobertura, desempenho, prazo e SLA — de acordo com a necessidade "
+                   "da sua empresa."),
+        dict(icone=I_LUPA, titulo="Análise de viabilidade antes da proposta",
+             texto="Antes de apresentar uma solução, verificamos a disponibilidade de fibra e "
+                   "rádio no endereço da operação. Assim, a proposta parte de uma viabilidade "
+                   "real, considerando a infraestrutura disponível e as condições de entrega "
+                   "para aquele local."),
+        dict(icone=I_CONTRA, titulo="As opções de diferentes operadoras em uma única proposta",
+             texto="Você não precisa conduzir várias cotações e comparar propostas com critérios "
+                   "diferentes. A Wicorp reúne as alternativas disponíveis para o endereço e "
+                   "apresenta as opções de forma comparável, considerando banda, prazo de "
+                   "implantação, SLA e condições comerciais."),
+        dict(icone=I_RAIO, titulo="28 anos de experiência na entrega",
+             texto="Desde 1998, acompanhamos a implantação e a operação de conectividade em "
+                   "diferentes regiões e para empresas de diversos segmentos. Essa experiência "
+                   "nos permite considerar não apenas a cobertura informada pelas operadoras, "
+                   "mas também o histórico de entrega e atendimento observado na prática."),
+    ],
+
+    # --- tecnologias / variantes do produto ---
+    variantes_titulo="Fibra óptica ou rádio",
+    variantes_sub=("A tecnologia certa depende do que existe no seu endereço. A consulta de "
+                   "disponibilidade responde isso antes de qualquer proposta."),
+    variantes=[
+        dict(icone=I_FIBRA, nome="Fibra óptica", imagem="produtos/tec-fibra",
+             alt="Painel de fibra óptica com conectores LC em um rack de rede",
+             resumo="Alta capacidade e estabilidade para empresas, indústrias, escritórios e redes de lojas.",
+             itens=["IP fixo", "SLA definido em contrato", "Velocidade simétrica",
+                    "100% da velocidade contratada"]),
+        dict(icone=I_ANTENA, nome="Rádio", imagem="produtos/tec-radio",
+             alt="Antena de enlace de rádio instalada em torre, com a cidade ao fundo",
+             resumo="Serve como conexão principal ou como redundância, criando um caminho "
+                    "alternativo para manter a operação conectada se o link principal falhar.",
+             itens=["IP fixo", "SLA definido em contrato", "Velocidade simétrica",
+                    "100% da velocidade contratada"]),
+    ],
+    variantes_fecho_titulo="Duas tecnologias, mais conectividade",
+    variantes_fecho=("Combinar fibra e rádio reduz a dependência de uma única infraestrutura. "
+                     "Se uma falha interromper a conexão de fibra, o rádio pode assumir a "
+                     "operação e manter os serviços essenciais da empresa conectados."),
+
+    # --- como funciona a contratação ---
+    etapas_titulo="Da consulta à proposta",
+    etapas_sub="O que a Wicorp faz depois que você pede a consulta de disponibilidade.",
+    etapas=[
+        ("Consulta de viabilidade",
+         "Verificamos com as operadoras o que existe de fibra e de rádio no endereço da sua "
+         "operação — inclusive quando a resposta é que ali só uma das duas atende."),
+        ("Comparação entre operadoras",
+         "Mostramos quais atendem aquele endereço e a diferença entre elas em prazo, banda e "
+         "SLA, com a recomendação de qual faz mais sentido para o seu caso."),
+        ("Proposta",
+         "Condições, prazo de ativação e SLA da operadora no papel, antes de qualquer "
+         "assinatura. Sem surpresa depois do contrato fechado."),
+        ("Contratação e instalação",
+         "Fechada a escolha, a operadora contratada faz a instalação e a ativação, e passa a "
+         "ser a responsável pelo serviço, pelo SLA e pelo suporte técnico do link."),
+    ],
+
+    # --- formulário ---
+    form_titulo="Consulte a disponibilidade",
+    form_sub="Informe o endereço de instalação e verificamos a viabilidade técnica em fibra e em rádio.",
+    form_botao="Consultar disponibilidade",
+    form_extras=[
+        dict(campo="endereco", rotulo="Endereço onde será instalado o link",
+             tipo="text", placeholder="Rua, número, bairro e cidade", obrigatorio=True),
+        dict(campo="tecnologia", rotulo="Tecnologia", tipo="select", obrigatorio=False,
+             opcoes=["Fibra óptica", "Rádio"]),
+        dict(campo="velocidade", rotulo="Velocidade desejada", tipo="select", obrigatorio=False,
+             opcoes=["50 Mbps", "100 Mbps", "200 Mbps", "500 Mbps", "1 Gbps"]),
+    ],
+
+    # --- fechamento ---
+    cta_titulo="Consulte a disponibilidade no seu endereço",
+    cta_texto="",
+    cta_botao="Consultar disponibilidade",
+
+    # --- perguntas ---
+    faq=[
+        ("A Wicorp é a operadora do link?",
+         "Não. A Wicorp representa operadoras: consultamos a viabilidade, comparamos quem atende "
+         "o seu endereço e apresentamos a proposta. A partir da contratação, o serviço é prestado "
+         "pela operadora escolhida — é dela a instalação, o SLA e o suporte técnico do link. "
+         "O ganho de comprar conosco está na escolha: não estamos presos a uma rede só, então "
+         "indicamos a que realmente entrega naquele endereço, e não a que precisamos vender."),
+        ("Qual a diferença entre link dedicado e banda larga comum?",
+         "Banda larga é compartilhada com outros assinantes e a velocidade contratada é um teto, "
+         "não uma garantia — no horário de pico ela cai. O link dedicado entrega banda garantida e "
+         "simétrica: a mesma velocidade de subida e descida, a qualquer hora, com SLA em contrato."),
+        ("Fibra ou rádio: qual escolher?",
+         "Fibra é a primeira opção quando existe infraestrutura no endereço — mais estável e com "
+         "maior capacidade. Rádio resolve onde a fibra não chegou ou onde a obra civil inviabiliza "
+         "a instalação, e a ativação costuma ser mais rápida. A consulta de disponibilidade "
+         "responde qual das duas atende o seu endereço."),
+        ("Em quanto tempo o link é ativado?",
+         "Depende da viabilidade técnica no endereço e da operadora que atende ali. Onde já existe "
+         "fibra instalada, a ativação costuma ocorrer em poucos dias; em rádio, geralmente é mais "
+         "rápido. Quem executa e informa o prazo é a operadora, e ele vai por escrito junto com a "
+         "proposta — não antes dela."),
+        ("Quem dá suporte depois que o link está instalado?",
+         "A operadora contratada. O link é serviço dela: monitoramento, SLA, chamado técnico e "
+         "manutenção correm pelo canal de atendimento da operadora, com os prazos do contrato que "
+         "você assinou com ela. A Wicorp segue como seu canal para o que é nosso — o Link.Box, por "
+         "exemplo, é equipamento da Wicorp e vem com monitoramento do nosso NOC."),
+    ],
+
+    # --- SEO ---
+    title="Link Dedicado Empresarial — Fibra ou Rádio com IP Fixo e SLA | Wicorp",
+    desc=("Link dedicado empresarial com 100% da velocidade contratada, IP fixo e SLA em contrato. "
+          "Fibra óptica ou rádio conforme o seu endereço. Consulte a disponibilidade."),
+    title_lp="Link Dedicado Empresarial com banda garantida e IP fixo | Wicorp",
+    desc_lp=("Conectividade estável, velocidade garantida e IP fixo para sua operação. "
+             "Fibra óptica ou rádio. Consulte a disponibilidade no seu endereço."),
+)
+
+
+# ===========================================================================
+# RENDERIZAÇÃO
+# ===========================================================================
+
+def _qualidades(p):
+    li = "".join(f"<li>{CHECK}<span>{q}</span></li>" for q in p["qualidades"])
+    return f'<ul class="checklist">{li}</ul>'
+
+
+def _sobre(p, alt=False):
+    paras = "".join(f"<p>{t}</p>" for t in p["sobre"])
+    classe = "section section--alt" if alt else "section"
+    return f"""
+<section class="{classe}">
+  <div class="wrap">
+    <div class="section-head reveal" style="max-width:62ch">
+      <span class="eyebrow">O que é</span>
+      <h2 class="display">{p['sobre_titulo']}</h2>
+    </div>
+    <div class="prod-sobre reveal">{paras}</div>
+  </div>
+</section>"""
+
+
+def _diferenciais(p, alt=True):
+    cards = "".join(f"""
+      <div class="prod-dif reveal" data-d="{i}">
+        <div class="prod-dif__ico">{ico(d['icone'], 26, 1.9)}</div>
+        <h3>{d['titulo']}</h3>
+        <p>{d['texto']}</p>
+      </div>""" for i, d in enumerate(p["diferenciais"]))
+    classe = "section section--alt sec-tex" if alt else "section sec-tex"
+    n = len(p["diferenciais"])
+    grade = "prod-difs" + (f" prod-difs--{n}" if n in (3, 4) else "")
+    return f"""
+<section class="{classe}" id="diferenciais">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="margin-inline:auto">Diferenciais</span>
+      <h2 class="display">{p['diferenciais_titulo']}</h2>
+    </div>
+    <div class="{grade}">{cards}
+    </div>
+  </div>
+</section>"""
+
+
+def _var_foto(v, prefix=P):
+    """Foto da tecnologia, com o nome sobre a imagem."""
+    img = v.get("imagem")
+    if not img:
+        return ""
+    c = f"{prefix}img/{img}"
+    return f"""<div class="prod-var__foto">
+          <picture>
+            <source type="image/webp" srcset="{c}-480.webp 480w, {c}.webp 760w" sizes="(max-width:900px) 100vw, 46vw">
+            <source type="image/jpeg" srcset="{c}-480.jpg 480w, {c}.jpg 760w" sizes="(max-width:900px) 100vw, 46vw">
+            <img src="{c}.jpg" alt="{v.get('alt','')}" loading="lazy" decoding="async">
+          </picture>
+          <span class="prod-var__tag">{v['nome']}</span>
+        </div>"""
+
+
+def _variantes(p, alt=False):
+    if not p.get("variantes"):
+        return ""
+    cards = "".join(f"""
+      <div class="prod-var{' prod-var--foto' if v.get('imagem') else ''} reveal" data-d="{i}">
+        {_var_foto(v)}
+        <div class="prod-var__corpo">
+          {'' if v.get('imagem') else f'<div class="prod-var__ico">{ico(v["icone"], 24, 2)}</div>'}
+          {'' if v.get('imagem') else f'<h3>{v["nome"]}</h3>'}
+          <p>{v['resumo']}</p>
+          <ul class="checklist">{"".join(f"<li>{CHECK}<span>{x}</span></li>" for x in v['itens'])}</ul>
+        </div>
+      </div>""" for i, v in enumerate(p["variantes"]))
+    if p.get("variantes_fecho"):
+        titulo = (f'<h3>{p["variantes_fecho_titulo"]}</h3>'
+                  if p.get("variantes_fecho_titulo") else "")
+        fecho = f'<div class="prod-var__fecho reveal">{titulo}<p>{p["variantes_fecho"]}</p></div>'
+    else:
+        fecho = ""
+    classe = "section section--alt" if alt else "section"
+    return f"""
+<section class="{classe}">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="margin-inline:auto">Tecnologias</span>
+      <h2 class="display">{p['variantes_titulo']}</h2>
+      <p class="lead">{p.get('variantes_sub','')}</p>
+    </div>
+    <div class="prod-vars">{cards}
+    </div>
+    {fecho}
+  </div>
+</section>"""
+
+
+def _etapas(p, alt=False):
+    if not p.get("etapas"):
+        return ""
+    li = "".join(f"<li><h3>{t}</h3><p>{d}</p></li>" for t, d in p["etapas"])
+    classe = "section section--alt" if alt else "section"
+    return f"""
+<section class="{classe}">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="margin-inline:auto">Como funciona</span>
+      <h2 class="display">{p['etapas_titulo']}</h2>
+      <p class="lead">{p.get('etapas_sub','')}</p>
+    </div>
+    <div style="max-width:640px;margin-inline:auto">
+      <ol class="steps reveal">{li}</ol>
+    </div>
+  </div>
+</section>"""
+
+
+def corpo_solucao(p, form_html, proof_html, faq_html, cta_html, extra_html=""):
+    """Página com menu, indexada — a que responde na busca."""
+    return f"""
+<main id="main">
+<section class="page-hero">
+  <div class="wrap">
+    <div class="page-hero__grid">
+      <div>
+        <span class="eyebrow">{p['categoria']}</span>
+        <h1 class="display">{p['h1_solucao']}</h1>
+        <p class="lead">{p['promessa']}</p>
+        {_qualidades(p)}
+      </div>
+      <div>{form_html}</div>
+    </div>
+  </div>
+</section>
+
+{proof_html}
+{_sobre(p, alt=True)}
+{_diferenciais(p, alt=False)}
+{_variantes(p, alt=True)}
+{_etapas(p)}
+{extra_html}
+{faq_html}
+{cta_html}
+</main>"""
+
+
+def corpo_lp(p, form_html, faq_html, cta_html):
+    """Página de campanha: sem menu, sem link para fora, um objetivo só."""
+    return f"""
+<main id="main">
+<section class="page-hero lp-hero">
+  <div class="wrap">
+    <div class="page-hero__grid">
+      <div>
+        <span class="eyebrow">{p['nome']}</span>
+        <h1 class="display">{p['h1_lp']}</h1>
+        <p class="lead">{p['promessa']}</p>
+        {_qualidades(p)}
+      </div>
+      <div>{form_html}</div>
+    </div>
+  </div>
+</section>
+
+{_diferenciais(p, alt=True)}
+{_variantes(p, alt=False)}
+{_etapas(p, alt=True)}
+{_sobre(p)}
+{faq_html}
+{cta_html}
+</main>"""
