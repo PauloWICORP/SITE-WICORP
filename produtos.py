@@ -134,11 +134,13 @@ PRODUTOS["link-dedicado"] = dict(
     variantes_sub=("A tecnologia certa depende do que existe no seu endereço. A consulta de "
                    "disponibilidade responde isso antes de qualquer proposta."),
     variantes=[
-        dict(icone=I_FIBRA, nome="Fibra óptica",
+        dict(icone=I_FIBRA, nome="Fibra óptica", imagem="produtos/tec-fibra",
+             alt="Painel de fibra óptica com conectores LC em um rack de rede",
              resumo="Alta capacidade e estabilidade para empresas, indústrias, escritórios e redes de lojas.",
              itens=["IP fixo", "SLA definido em contrato", "Velocidade simétrica",
                     "100% da velocidade contratada"]),
-        dict(icone=I_ANTENA, nome="Rádio",
+        dict(icone=I_ANTENA, nome="Rádio", imagem="produtos/tec-radio",
+             alt="Antena de enlace de rádio instalada em torre, com a cidade ao fundo",
              resumo="Serve como conexão principal ou como redundância, criando um caminho "
                     "alternativo para manter a operação conectada se o link principal falhar.",
              itens=["IP fixo", "SLA definido em contrato", "Velocidade simétrica",
@@ -271,15 +273,34 @@ def _diferenciais(p, alt=True):
 </section>"""
 
 
+def _var_foto(v, prefix=P):
+    """Foto da tecnologia, com o nome sobre a imagem."""
+    img = v.get("imagem")
+    if not img:
+        return ""
+    c = f"{prefix}img/{img}"
+    return f"""<div class="prod-var__foto">
+          <picture>
+            <source type="image/webp" srcset="{c}-480.webp 480w, {c}.webp 760w" sizes="(max-width:900px) 100vw, 46vw">
+            <source type="image/jpeg" srcset="{c}-480.jpg 480w, {c}.jpg 760w" sizes="(max-width:900px) 100vw, 46vw">
+            <img src="{c}.jpg" alt="{v.get('alt','')}" loading="lazy" decoding="async">
+          </picture>
+          <span class="prod-var__tag">{v['nome']}</span>
+        </div>"""
+
+
 def _variantes(p, alt=False):
     if not p.get("variantes"):
         return ""
     cards = "".join(f"""
-      <div class="prod-var reveal" data-d="{i}">
-        <div class="prod-var__ico">{ico(v['icone'], 24, 2)}</div>
-        <h3>{v['nome']}</h3>
-        <p>{v['resumo']}</p>
-        <ul class="checklist">{"".join(f"<li>{CHECK}<span>{x}</span></li>" for x in v['itens'])}</ul>
+      <div class="prod-var{' prod-var--foto' if v.get('imagem') else ''} reveal" data-d="{i}">
+        {_var_foto(v)}
+        <div class="prod-var__corpo">
+          {'' if v.get('imagem') else f'<div class="prod-var__ico">{ico(v["icone"], 24, 2)}</div>'}
+          {'' if v.get('imagem') else f'<h3>{v["nome"]}</h3>'}
+          <p>{v['resumo']}</p>
+          <ul class="checklist">{"".join(f"<li>{CHECK}<span>{x}</span></li>" for x in v['itens'])}</ul>
+        </div>
       </div>""" for i, v in enumerate(p["variantes"]))
     if p.get("variantes_fecho"):
         titulo = (f'<h3>{p["variantes_fecho_titulo"]}</h3>'
