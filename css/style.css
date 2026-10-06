@@ -1849,6 +1849,22 @@ a.sup-card:hover{border-color:var(--line-strong); transform:translateY(-3px)}
   border:1px solid var(--line-strong); background:var(--surface-2);
   transition:border-color .22s, transform .22s var(--ease);
 }
+/* Variante com foto: a imagem abre o card e o nome da tecnologia fica
+   sobre ela, no lugar do ícone e do título. */
+.prod-var--foto{padding:0; overflow:hidden}
+.prod-var__foto{position:relative; aspect-ratio:4/3; background:var(--surface-3)}
+.prod-var__foto img{width:100%; height:100%; object-fit:cover; display:block}
+.prod-var__foto::after{
+  content:""; position:absolute; inset:auto 0 0 0; height:52%;
+  background:linear-gradient(180deg,transparent,rgba(20,28,32,.94));
+  pointer-events:none;
+}
+.prod-var__tag{
+  position:absolute; left:24px; bottom:18px; z-index:1;
+  font-family:var(--f-display); font-size:1.75rem; letter-spacing:.02em;
+  text-transform:uppercase; line-height:1;
+}
+.prod-var--foto .prod-var__corpo{padding:26px 26px 30px}
 .prod-var:hover{border-color:var(--w-teal); transform:translateY(-3px)}
 .prod-var__ico{
   width:52px; height:52px; border-radius:14px; display:grid; place-items:center;
@@ -1876,6 +1892,9 @@ a.sup-card:hover{border-color:var(--line-strong); transform:translateY(-3px)}
   .prod-difs, .prod-difs--4, .prod-difs--3{grid-template-columns:repeat(2,1fr)}
   .prod-vars{grid-template-columns:1fr}
   .prod-var{padding:26px 22px}
+  .prod-var--foto{padding:0}
+  .prod-var--foto .prod-var__corpo{padding:22px 20px 26px}
+  .prod-var__tag{left:20px; font-size:1.55rem}
 }
 @media (max-width:420px){
   .prod-difs, .prod-difs--4, .prod-difs--3{grid-template-columns:1fr; gap:26px}

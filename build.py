@@ -1142,7 +1142,7 @@ def montar_produto(chave):
         lista.extend([f_html, faq_html, cta_html])
 
     corpo_sol = produtos.corpo_solucao(
-        p, solucao[0], proof_band(monitoramento=False), solucao[1], solucao[2])
+        p, solucao[0], "", solucao[1], solucao[2])   # sem barra de numeros
     corpo_lp = produtos.corpo_lp(p, lp[0], lp[1], lp[2])
     return p, corpo_sol, corpo_lp
 
