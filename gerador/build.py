@@ -14,6 +14,7 @@ O logo é referenciado como img/logo-wicorp.png em todas as páginas.
 Para trocar a marca, basta substituir aquele arquivo.
 """
 import pathlib
+import re
 import sections
 import paginas
 import conectividade
@@ -105,12 +106,12 @@ def header(prefix, active=""):
         </div>
       </div>
       <a href="{prefix}index.html#diferenciais" class="nav__link">Diferenciais</a>
-      <a href="{prefix}quem-somos.html" class="nav__link">Quem somos</a>
+      <a href="{prefix}institucional/quem-somos.html" class="nav__link">Quem somos</a>
       <a href="{prefix}blog/index.html" class="nav__link">Blog</a>
-      <a href="{prefix}suporte.html" class="nav__link"{cls('suporte')}>Suporte</a>
-      <a href="{prefix}contato.html" class="nav__link"{cls('contato')}>Contato</a>
+      <a href="{prefix}atendimento/suporte.html" class="nav__link"{cls('suporte')}>Suporte</a>
+      <a href="{prefix}atendimento/contato.html" class="nav__link"{cls('contato')}>Contato</a>
     </nav>
-    <a href="{prefix}contato.html" class="btn btn--primary btn--sm header__cta">Falar com um especialista</a>
+    <a href="{prefix}atendimento/contato.html" class="btn btn--primary btn--sm header__cta">Falar com um especialista</a>
     <button class="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu"><span></span></button>
   </div>
 </header>
@@ -123,11 +124,11 @@ def header(prefix, active=""):
   <a href="{prefix}solucoes/firewall-sd-wan.html" class="sub">Firewall e SD-WAN</a>
   <a href="{prefix}solucoes/infraestrutura-ti.html" class="sub">Infraestrutura e projetos</a>
   <a href="{prefix}index.html#diferenciais">Diferenciais</a>
-  <a href="{prefix}quem-somos.html">Quem somos</a>
+  <a href="{prefix}institucional/quem-somos.html">Quem somos</a>
   <a href="{prefix}blog/index.html">Blog</a>
-  <a href="{prefix}suporte.html">Suporte</a>
-  <a href="{prefix}contato.html">Contato</a>
-  <a href="{prefix}contato.html" class="btn btn--primary btn--wide">Falar com um especialista</a>
+  <a href="{prefix}atendimento/suporte.html">Suporte</a>
+  <a href="{prefix}atendimento/contato.html">Contato</a>
+  <a href="{prefix}atendimento/contato.html" class="btn btn--primary btn--wide">Falar com um especialista</a>
 </div>
 """
 
@@ -188,14 +189,14 @@ def footer(prefix, lp=False):
       <div>
         <h4>Empresa</h4>
         <ul>
-          <li><a href="{prefix}quem-somos.html">Quem somos</a></li>
+          <li><a href="{prefix}institucional/quem-somos.html">Quem somos</a></li>
           <li><a href="{prefix}index.html#diferenciais">Diferenciais</a></li>
           <li><a href="{prefix}blog/index.html">Blog</a></li>
-          <li><a href="{prefix}novidades.html">Novidades</a></li>
-          <li><a href="{prefix}consulta-disponibilidade.html">Consultar disponibilidade</a></li>
-          <li><a href="{prefix}calculadora-custo-downtime.html">Calculadora de downtime</a></li>
-          <li><a href="{prefix}contato.html">Contato</a></li>
-          <li><a href="{prefix}suporte.html">Suporte ao cliente</a></li>
+          <li><a href="{prefix}institucional/novidades.html">Novidades</a></li>
+          <li><a href="{prefix}ferramentas/consulta-disponibilidade.html">Consultar disponibilidade</a></li>
+          <li><a href="{prefix}ferramentas/calculadora-custo-downtime.html">Calculadora de downtime</a></li>
+          <li><a href="{prefix}atendimento/contato.html">Contato</a></li>
+          <li><a href="{prefix}atendimento/suporte.html">Suporte ao cliente</a></li>
         </ul>
       </div>
       <div>
@@ -210,7 +211,7 @@ def footer(prefix, lp=False):
     </div>
     <div class="footer__bar">
       <span>© 1998–<span data-year>2026</span> Wicorp — Conexões Inteligentes. Todos os direitos reservados.</span>
-      <span><a href="{prefix}privacidade.html">Política de Privacidade</a> · LGPD</span>
+      <span><a href="{prefix}institucional/privacidade.html">Política de Privacidade</a> · LGPD</span>
     </div>
   </div>
 </footer>
@@ -1194,16 +1195,16 @@ PAGES = [
               "atuais sem compromisso e mostramos o que dá para centralizar.",
          canonical="lp/centralizar-fornecedores-ti"),
 
-    dict(path="contato.html", prefix="", body=BODY_CONTATO, active="contato",
+    dict(path="atendimento/contato.html", prefix="../", raiz=True, body=BODY_CONTATO, active="contato",
          title="Contato | Wicorp — Infraestrutura de TI e Telecom",
          desc="Fale com um especialista da Wicorp. Telefone (11) 5028-7515, WhatsApp e e-mail comercial. "
               "Retornamos em até 1 dia útil.",
-         canonical="contato"),
+         canonical="atendimento/contato"),
 
-    dict(path="obrigado.html", prefix="", body=BODY_OBRIGADO, noindex=True,
+    dict(path="atendimento/obrigado.html", prefix="../", raiz=True, body=BODY_OBRIGADO, noindex=True,
          title="Obrigado pelo contato | Wicorp",
          desc="Recebemos sua solicitação. Um especialista da Wicorp entra em contato em até 1 dia útil.",
-         canonical="obrigado"),
+         canonical="atendimento/obrigado"),
 ]
 
 
@@ -1225,51 +1226,51 @@ PAGES.append(dict(
 ))
 
 PAGES.append(dict(
-    path="quem-somos.html", prefix="", body=paginas.QUEM_SOMOS,
+    path="institucional/quem-somos.html", prefix="../", raiz=True, body=paginas.QUEM_SOMOS,
     title="Quem somos | Wicorp — 28 anos em TI e Telecom",
     desc="Desde 1998 transformando tecnologia em conexão estratégica. Mais de 800 clientes "
          "e mais de 2.000 equipamentos em operação em todo o Brasil.",
-    canonical="quem-somos",
+    canonical="institucional/quem-somos",
 ))
 
 PAGES.append(dict(
-    path="privacidade.html", prefix="", body=paginas.PRIVACIDADE,
+    path="institucional/privacidade.html", prefix="../", raiz=True, body=paginas.PRIVACIDADE,
     title="Política de Privacidade | Wicorp",
     desc="Como a Wicorp trata os dados pessoais coletados neste site, conforme a Lei Geral "
          "de Proteção de Dados.",
-    canonical="privacidade", noindex=True,
+    canonical="institucional/privacidade", noindex=True,
 ))
 
 PAGES.append(dict(
-    path="calculadora-custo-downtime.html", prefix="", body=paginas.CALCULADORA,
+    path="ferramentas/calculadora-custo-downtime.html", prefix="../", raiz=True, body=paginas.CALCULADORA,
     title="Calculadora: quanto custa uma hora de operação parada | Wicorp",
     desc="Calcule quanto a indisponibilidade de internet custa para sua empresa por mês e "
          "por ano. Sem cadastro — o cálculo roda no seu navegador.",
-    canonical="calculadora-custo-downtime",
+    canonical="ferramentas/calculadora-custo-downtime",
 ))
 
 PAGES.append(dict(
-    path="consulta-disponibilidade.html", prefix="", body=paginas.CONSULTA_CEP,
+    path="ferramentas/consulta-disponibilidade.html", prefix="../", raiz=True, body=paginas.CONSULTA_CEP,
     title="Consulte a disponibilidade de link dedicado no seu endereço | Wicorp",
     desc="Informe o CEP da sua operação e verificamos a viabilidade técnica de link "
          "dedicado em fibra ou rádio. Sem compromisso, retorno em até 1 dia útil.",
-    canonical="consulta-disponibilidade",
+    canonical="ferramentas/consulta-disponibilidade",
 ))
 
 PAGES.append(dict(
-    path="novidades.html", prefix="", body=nov.pagina(), active="novidades",
+    path="institucional/novidades.html", prefix="../", raiz=True, body=nov.pagina(), active="novidades",
     title="Novidades da Wicorp — lançamentos, avisos e atualizações",
     desc="Lançamentos de solução, avisos de operação e novidades da Wicorp. "
          "O que está valendo agora, sem conteúdo vencido ocupando espaço.",
-    canonical="novidades",
+    canonical="institucional/novidades",
 ))
 
 PAGES.append(dict(
-    path="suporte.html", prefix="", body=paginas.SUPORTE, active="suporte",
+    path="atendimento/suporte.html", prefix="../", raiz=True, body=paginas.SUPORTE, active="suporte",
     title="Suporte técnico Wicorp — portal de chamados, telefone e WhatsApp",
     desc="Já é cliente Wicorp? Abra chamado no portal, ligue ou chame no WhatsApp. "
          "NOC monitorando links e infraestrutura 24 horas por dia, 7 dias por semana.",
-    canonical="suporte",
+    canonical="atendimento/suporte",
 ))
 
 PAGES.append(dict(
@@ -1278,6 +1279,29 @@ PAGES.append(dict(
     desc="A página que você procura não existe ou mudou de endereço.",
     canonical="404", noindex=True,
 ))
+
+
+def rebase(html, prefix):
+    """Corrige os caminhos de um corpo escrito como se a página estivesse na raiz.
+
+    As páginas de institucional/, atendimento/ e ferramentas/ têm o conteúdo
+    escrito com caminhos a partir da raiz (img/..., solucoes/...). Aqui cada
+    href, src e srcset relativo ganha o prefixo da pasta ("../").
+    """
+    if not prefix:
+        return html
+    externo = re.compile(r"^(?:https?:|mailto:|tel:|data:|javascript:|//|#|/|\.\./|\{)")
+
+    def um(u):
+        return u if (not u or externo.match(u)) else prefix + u
+
+    html = re.sub(r'\b(href|src|action|poster)="([^"]*)"',
+                  lambda m: f'{m.group(1)}="{um(m.group(2))}"', html)
+    html = re.sub(r'\bsrcset="([^"]*)"',
+                  lambda m: 'srcset="' + ", ".join(
+                      " ".join([um(p.split()[0])] + p.split()[1:])
+                      for p in m.group(1).split(",") if p.strip()) + '"', html)
+    return html
 
 
 def main():
@@ -1304,7 +1328,7 @@ def main():
             html = html.replace("</head>", faq_schema(pg["faq"]) + "\n</head>")
 
         html += header_lp(prefix) if pg.get("lp") else header(prefix, pg.get("active", ""))
-        html += pg["body"]
+        html += rebase(pg["body"], prefix) if pg.get("raiz") else pg["body"]
         html += footer(prefix, lp=pg.get("lp", False))
 
         out = ROOT / pg["path"]

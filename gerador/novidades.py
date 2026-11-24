@@ -71,9 +71,28 @@ def _capa(item, prefix):
       </div>"""
 
 
+# Páginas que saíram da raiz em nov/2026. Novidade publicada antes disso pode
+# ter o botão gravado com o endereço antigo no conteudo.json do servidor.
+ENDERECOS_ANTIGOS = {
+    "quem-somos.html": "institucional/quem-somos.html",
+    "novidades.html": "institucional/novidades.html",
+    "privacidade.html": "institucional/privacidade.html",
+    "contato.html": "atendimento/contato.html",
+    "suporte.html": "atendimento/suporte.html",
+    "obrigado.html": "atendimento/obrigado.html",
+    "calculadora-custo-downtime.html": "ferramentas/calculadora-custo-downtime.html",
+    "consulta-disponibilidade.html": "ferramentas/consulta-disponibilidade.html",
+}
+
+
+def atualizar_link(link):
+    pagina, sep, resto = link.partition("#")
+    return ENDERECOS_ANTIGOS.get(pagina, pagina) + sep + resto
+
+
 def card(item, prefix=""):
     etiqueta = (item.get("etiqueta") or "Novidade").strip()
-    link = (item.get("link") or "").strip()
+    link = atualizar_link((item.get("link") or "").strip())
     link_txt = (item.get("link_texto") or "Saber mais").strip()
     fim = (item.get("fim") or "").strip()
 
@@ -119,7 +138,7 @@ def faixa_home(prefix="", limite=2):
         <span class="eyebrow">Novidades</span>
         <h2 class="display">O que há de novo na Wicorp</h2>
       </div>
-      <a href="{prefix}novidades.html" class="btn btn--ghost btn--sm">Ver todas as novidades</a>
+      <a href="{prefix}institucional/novidades.html" class="btn btn--ghost btn--sm">Ver todas as novidades</a>
     </div>
     <div class="nov">{cards}
     </div>

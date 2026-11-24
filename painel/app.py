@@ -35,6 +35,10 @@ CONTEUDO = RAIZ / "conteudo.json"
 IMAGENS = RAIZ / "img" / "novidades"
 CONFIG = pathlib.Path(__file__).resolve().parent / "config.json"
 
+# Mesmo mapa de gerador/novidades.py: endereço antigo (raiz) -> endereço novo.
+sys.path.insert(0, str(RAIZ / "gerador"))
+from novidades import atualizar_link  # noqa: E402
+
 EXT_OK = {".jpg", ".jpeg", ".png", ".webp"}
 TAM_MAX = 8 * 1024 * 1024          # 8 MB por imagem
 TENTATIVAS_MAX = 5                 # por janela
@@ -131,13 +135,13 @@ def paginas_do_site():
     """
     nomes = {
         "index.html": "Home",
-        "quem-somos.html": "Quem somos",
-        "contato.html": "Contato",
-        "suporte.html": "Suporte",
-        "novidades.html": "Novidades",
-        "privacidade.html": "Política de Privacidade",
-        "consulta-disponibilidade.html": "Consulta de disponibilidade (CEP)",
-        "calculadora-custo-downtime.html": "Calculadora de custo de downtime",
+        "institucional/quem-somos.html": "Quem somos",
+        "atendimento/contato.html": "Contato",
+        "atendimento/suporte.html": "Suporte",
+        "institucional/novidades.html": "Novidades",
+        "institucional/privacidade.html": "Política de Privacidade",
+        "ferramentas/consulta-disponibilidade.html": "Consulta de disponibilidade (CEP)",
+        "ferramentas/calculadora-custo-downtime.html": "Calculadora de custo de downtime",
         "blog/index.html": "Blog",
         "solucoes/link-dedicado-empresarial.html": "Solução · Link dedicado",
         "solucoes/link-box-redundancia.html": "Solução · Link.Box",
@@ -368,7 +372,7 @@ def editar(item_id=None):
         if inicio and fim and fim < inicio:
             erros.append("A data final não pode ser anterior à inicial.")
 
-        link = request.form.get("link", "").strip()
+        link = atualizar_link(request.form.get("link", "").strip())
         ok_link, erro_link = link_valido(link)
         if not ok_link:
             erros.append(erro_link)
@@ -391,7 +395,7 @@ def editar(item_id=None):
                 flash(e, "erro")
             novo.update(titulo=titulo, resumo=resumo, inicio=inicio, fim=fim,
                         etiqueta=request.form.get("etiqueta", "").strip(),
-                        link=request.form.get("link", "").strip(),
+                        link=link,
                         link_texto=request.form.get("link_texto", "").strip())
             return render_template("form.html", item=novo, novo=item is None,
                                    paginas=paginas_do_site())
@@ -399,7 +403,7 @@ def editar(item_id=None):
         novo.update(
             titulo=titulo, resumo=resumo, inicio=inicio, fim=fim,
             etiqueta=request.form.get("etiqueta", "").strip() or "Novidade",
-            link=request.form.get("link", "").strip(),
+            link=link,
             link_texto=request.form.get("link_texto", "").strip() or "Saber mais",
         )
 

@@ -175,7 +175,7 @@ BODY_LINKBOX = f"""
           "Operações de atendimento — telefonia em nuvem cai junto com a internet",
           "Empresas com ERP em nuvem — sem link, não há sistema",
         ])}
-        <a href="{P}calculadora-custo-downtime.html" class="btn btn--ghost" style="margin-top:26px">
+        <a href="{P}ferramentas/calculadora-custo-downtime.html" class="btn btn--ghost" style="margin-top:26px">
           Calcular quanto uma hora parada custa {ARROW}
         </a>
       </div>

@@ -247,7 +247,7 @@ Mas há operações em que ela deixa de ser opcional:</p>
 </ul>
 
 <p>A conta que vale fazer é simples: quanto sua empresa deixa de faturar por hora parada?
-Fizemos uma <a href="../calculadora-custo-downtime.html">calculadora para isso</a> — coloque os números da sua operação e compare com o custo mensal da camada de redundância. Na maioria dos casos, uma única
+Fizemos uma <a href="../ferramentas/calculadora-custo-downtime.html">calculadora para isso</a> — coloque os números da sua operação e compare com o custo mensal da camada de redundância. Na maioria dos casos, uma única
 ocorrência evitada paga o ano.</p>
 """,
         cta_titulo="Sua operação tem plano B?",
@@ -519,7 +519,7 @@ def blog_index():
       com informação, não com achismo.
     </p>
     <p style="margin-top:20px">
-      <a href="../novidades.html" class="btn btn--ghost btn--sm"
+      <a href="../institucional/novidades.html" class="btn btn--ghost btn--sm"
          data-label="Ver as novidades da Wicorp">Ver as novidades da Wicorp {ARROW}</a>
     </p>
   </div>
@@ -543,7 +543,7 @@ def blog_index():
           </p>
         </div>
         <div class="cta-band__actions">
-          <a href="../contato.html" class="btn btn--primary btn--wide">Falar com um especialista {ARROW}</a>
+          <a href="../atendimento/contato.html" class="btn btn--primary btn--wide">Falar com um especialista {ARROW}</a>
           <a href="tel:{TEL_HREF}" class="btn btn--ghost btn--wide">Ligar: {TEL}</a>
         </div>
       </div>
@@ -571,7 +571,7 @@ QUEM_SOMOS = f"""
           a maior parte em operações que não podem parar.
         </p>
         <div class="hero__actions">
-          <a href="contato.html" class="btn btn--primary">Falar com um especialista {ARROW}</a>
+          <a href="atendimento/contato.html" class="btn btn--primary">Falar com um especialista {ARROW}</a>
           <a href="index.html#solucoes" class="btn btn--ghost">Ver soluções</a>
         </div>
       </div>
@@ -735,7 +735,7 @@ QUEM_SOMOS = f"""
           </p>
         </div>
         <div class="cta-band__actions">
-          <a href="contato.html" class="btn btn--primary btn--wide">Solicitar uma avaliação {ARROW}</a>
+          <a href="atendimento/contato.html" class="btn btn--primary btn--wide">Solicitar uma avaliação {ARROW}</a>
           <a href="tel:{TEL_HREF}" class="btn btn--ghost btn--wide">Ligar: {TEL}</a>
         </div>
       </div>
@@ -884,7 +884,7 @@ NAO_ENCONTRADA = f"""
 
     <div class="hero__actions" style="justify-content:center; margin-bottom:44px">
       <a href="index.html" class="btn btn--primary">Voltar para a home {ARROW}</a>
-      <a href="contato.html" class="btn btn--ghost">Falar com um especialista</a>
+      <a href="atendimento/contato.html" class="btn btn--ghost">Falar com um especialista</a>
     </div>
 
     <div class="grid grid--2" style="text-align:left">
@@ -1407,7 +1407,7 @@ SUPORTE = f"""
         <p>Uma conversa com um especialista, sem compromisso, para mapear a operação
         e identificar onde estão os pontos frágeis.</p>
         <p style="margin-top:18px">
-          <a href="contato.html" class="btn btn--primary btn--wide"
+          <a href="atendimento/contato.html" class="btn btn--primary btn--wide"
              data-label="Falar com um especialista">Falar com um especialista {ARROW}</a>
         </p>
       </div>

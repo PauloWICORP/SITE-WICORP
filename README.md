@@ -41,19 +41,24 @@ Acesse `http://localhost:8000`.
 
 ```
 .
-├── index.html                                Home
-├── quem-somos.html                           Autoridade: 28 anos, NOC, equipe própria
-├── contato.html
-├── obrigado.html                             Destino de conversão
-├── suporte.html                              Canais de suporte para quem já é cliente
-├── novidades.html                            Lançamentos e avisos, publicados pelo painel
-│                                             (fora do menu do topo — entra pelo rodapé,
-│                                              pela faixa da home e pelo blog)
-├── privacidade.html                          Política de Privacidade / LGPD
-├── 404.html                                  Página não encontrada
+├── index.html                                Home (editada à mão)
+├── 404.html                                  Página não encontrada (tem que ficar na raiz)
 │
-├── consulta-disponibilidade.html             Consulta de CEP → viabilidade de link
-├── calculadora-custo-downtime.html           Calculadora de custo de queda
+├── institucional/
+│   ├── quem-somos.html                       Autoridade: 28 anos, NOC, equipe própria
+│   ├── novidades.html                        Lançamentos e avisos, publicados pelo painel
+│   │                                         (fora do menu do topo — entra pelo rodapé,
+│   │                                          pela faixa da home e pelo blog)
+│   └── privacidade.html                      Política de Privacidade / LGPD
+│
+├── atendimento/
+│   ├── contato.html
+│   ├── suporte.html                          Canais de suporte para quem já é cliente
+│   └── obrigado.html                         Destino de conversão
+│
+├── ferramentas/
+│   ├── consulta-disponibilidade.html         Consulta de CEP → viabilidade de link
+│   └── calculadora-custo-downtime.html       Calculadora de custo de queda
 │
 ├── solucoes/
 │   ├── link-dedicado-empresarial.html        A CONEXÃO (fibra ou rádio, banda garantida)
@@ -97,6 +102,7 @@ img/novidades/             Gravada pelo painel — fora do Git
 gerador/                   Código Python que GERA as páginas (não é publicado como página)
 ├── build.py               Gera todas as páginas, menos a index
 ├── build-preview.py       Gera HTML único com CSS e JS embutidos
+├── checar-links.py       Confere se todo link interno aponta para arquivo existente
 ├── sections.py            Seções visuais e interativas
 ├── paginas.py             Blog, quem somos, privacidade, calculadora, consulta de CEP, suporte
 ├── conectividade.py       Página do Link.Box
@@ -123,6 +129,7 @@ dentro de `build.py` (ou de `paginas.py` / `conectividade.py`) e rode:
 
 ```bash
 python3 gerador/build.py
+python3 gerador/checar-links.py     # tem que terminar com 0 link(s) quebrado(s)
 ```
 
 O resultado continua sendo HTML estático puro — o script só evita repetir o mesmo
