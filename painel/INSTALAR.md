@@ -152,7 +152,7 @@ sudo crontab -e
 ```
 
 ```cron
-5 3 * * * cd /caminho/do/site && .venv/bin/python build.py >> /var/log/wicorp-build.log 2>&1
+5 3 * * * cd /caminho/do/site && .venv/bin/python gerador/build.py >> /var/log/wicorp-build.log 2>&1
 ```
 
 ## 7. Atualizações de código
@@ -162,7 +162,7 @@ O GitHub continua sendo o repositório. O fluxo fica assim:
 ```bash
 cd /caminho/do/site
 git pull
-.venv/bin/python build.py
+.venv/bin/python gerador/build.py
 ```
 
 **`conteudo.json` e `img/novidades/` não entram no Git** — são conteúdo,

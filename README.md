@@ -82,20 +82,34 @@ Acesse `http://localhost:8000`.
 ## Arquivos de apoio
 
 ```
-css/style.css          Design system inteiro (42 seções numeradas)
-js/main.js             Interações + camada de rastreamento (15 blocos numerados)
-img/logo-wicorp.png    Versão negativa — usada no site
+css/style.css              Design system inteiro (42 seções numeradas)
+js/main.js                 Interações + camada de rastreamento (15 blocos numerados)
+
+img/logo-wicorp.png        Versão negativa — usada no site
 img/logo-wicorp-original.png
 img/favicon.png
-img/fotos/             Fotos reais: NOC, racks, escritório, Link.Box
-img/arte/              Texturas de fundo (fibra e malha) e imagem de compartilhamento
-img/logos/             Logos de clientes nos depoimentos (ver LEIA-ME.txt)
-build.py               Gera todas as páginas, menos a index
-build-preview.py       Gera HTML único com CSS e JS embutidos
-sections.py            Seções visuais e interativas
-paginas.py             Blog, quem somos, privacidade, calculadora, consulta de CEP, suporte
-conectividade.py       Página do Link.Box
-produtos.py            Gerador de páginas de produto (ver abaixo)
+img/fotos/                 Fotos reais: NOC, racks, escritório, Link.Box
+img/arte/                  Texturas, capas do blog, home e imagem de compartilhamento
+img/produtos/              Imagens das páginas de produto (fibra, rádio)
+img/logos/                 Logos de clientes nos depoimentos (ver LEIA-ME.txt)
+img/novidades/             Gravada pelo painel — fora do Git
+
+gerador/                   Código Python que GERA as páginas (não é publicado como página)
+├── build.py               Gera todas as páginas, menos a index
+├── build-preview.py       Gera HTML único com CSS e JS embutidos
+├── sections.py            Seções visuais e interativas
+├── paginas.py             Blog, quem somos, privacidade, calculadora, consulta de CEP, suporte
+├── conectividade.py       Página do Link.Box
+├── produtos.py            Gerador de páginas de produto (ver abaixo)
+└── novidades.py           Lê o conteudo.json do painel
+
+painel/                    Painel /admin (Flask) — ver painel/INSTALAR.md
+conteudo.exemplo.json      Modelo do conteudo.json (que vive no servidor, na raiz)
+
+docs/                      Material de apoio — NÃO é página do site (mas é público!)
+├── PROMPTS-IMAGENS.md     Prompts para gerar imagens
+├── originais/             Arquivos-fonte de imagens antes de otimizar
+└── outros-projetos/       Arquivos de outros sistemas que caíram aqui por engano
 ```
 
 ### Um detalhe importante sobre os arquivos
@@ -104,11 +118,11 @@ O `index.html` é editado à mão. As **demais páginas são geradas** pelo `bui
 que concentra header, rodapé e `<head>` em um lugar só.
 
 Se você editar `solucoes/pabx-virtual-nuvem.html` direto, a alteração **se perde**
-no próximo `python3 build.py`. Para mudar uma página interna, edite o conteúdo dela
+no próximo `python3 gerador/build.py`. Para mudar uma página interna, edite o conteúdo dela
 dentro de `build.py` (ou de `paginas.py` / `conectividade.py`) e rode:
 
 ```bash
-python3 build.py
+python3 gerador/build.py
 ```
 
 O resultado continua sendo HTML estático puro — o script só evita repetir o mesmo
@@ -286,7 +300,7 @@ Telefone e WhatsApp usam **o mesmo número**: `(11) 5028-7515` (`+55 11 5028-751
 
 Ele vive em um lugar só por arquivo — `TEL`, `TEL_HREF` e `WPP_HREF`, no topo de
 `build.py`, `paginas.py`, `conectividade.py` e `sections.py`. Trocar o número é
-editar essas linhas e rodar `python3 build.py`. O `index.html`, por ser editado
+editar essas linhas e rodar `python3 gerador/build.py`. O `index.html`, por ser editado
 à mão, tem os valores escritos direto.
 
 ---

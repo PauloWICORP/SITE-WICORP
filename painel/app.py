@@ -234,7 +234,7 @@ def apagar_imagem(caminho):
 
 def rodar_build():
     try:
-        p = subprocess.run([sys.executable, "build.py"], cwd=RAIZ,
+        p = subprocess.run([sys.executable, "gerador/build.py"], cwd=RAIZ,
                            capture_output=True, text=True, timeout=120)
         return p.returncode == 0, (p.stdout + p.stderr)[-1500:]
     except subprocess.TimeoutExpired:

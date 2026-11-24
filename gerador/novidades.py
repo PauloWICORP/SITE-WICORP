@@ -13,7 +13,7 @@ import json
 import pathlib
 from datetime import date
 
-RAIZ = pathlib.Path(__file__).parent
+RAIZ = pathlib.Path(__file__).resolve().parent.parent  # raiz do site, onde fica o conteudo.json
 
 
 def carregar():

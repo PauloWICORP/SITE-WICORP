@@ -20,7 +20,7 @@ import conectividade
 import produtos
 import novidades as nov
 
-ROOT = pathlib.Path(__file__).parent
+ROOT = pathlib.Path(__file__).resolve().parent.parent  # raiz do site (este arquivo mora em gerador/)
 SITE = "https://wicorp.com.br"
 
 TEL, TEL_HREF = "(11) 5028-7515", "+551150287515"
@@ -1343,4 +1343,4 @@ def atualizar_novidades_na_home():
 if __name__ == "__main__":
     print("Gerando paginas do site Wicorp\n")
     main()
-    print("\nConcluido. Rode build-preview.py para gerar visualizacoes.")
+    print("\nConcluido. Rode gerador/build-preview.py para gerar visualizacoes.")

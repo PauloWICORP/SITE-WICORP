@@ -2,7 +2,7 @@
 """Gera um HTML unico com CSS e JS embutidos, para visualizacao rapida."""
 import re, pathlib, sys
 
-root = pathlib.Path(__file__).parent
+root = pathlib.Path(__file__).resolve().parent.parent  # raiz do site
 src  = root / (sys.argv[1] if len(sys.argv) > 1 else "index.html")
 out  = root / (sys.argv[2] if len(sys.argv) > 2 else "preview.html")
 

@@ -31,3 +31,14 @@ img/novidades/*
 # Senha do painel
 painel/config.json
 .venv/
+
+# Documento interno e pacote NAO entram no repositorio: tudo aqui e publico
+# (o GitHub Pages publica qualquer arquivo). Roteiro de cliente, proposta,
+# planilha e zip de atualizacao ficam fora — ver CLAUDE.md, "Onde cada arquivo mora".
+*.pdf
+*.zip
+*.xlsx
+*.xls
+*.csv
+*.docx
+*.pptx
